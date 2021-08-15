@@ -680,6 +680,10 @@ button.btn.btn-success.get-answer {
 .product-desc .btn-style {
     margin: 40px 2px;
 }
+.item-blog a{
+    width: 100%;
+    min-height: 503px;
+}
 /*end*/
 
 /*contact us page*/
@@ -763,3 +767,15 @@ button.btn.btn-success.get-answer {
   display: block !important;
 }
 /*end*/
+.joining-text {
+    font-size: 30px;
+    font-weight: 600;
+    color: #1CB5E0;
+    background: #000046;
+    width: auto;
+    padding: 5px 25px;
+}
+.joining-text span{
+    font-size: 25px;
+    color: #FFFFFF;
+}

@@ -119,3 +119,4 @@ Route::get('/youtube-videos', 'YoutubeController@showAll');
 // member
 Route::get('/buy-product','MemberController@create');
 Route::post('/member-register-account','MemberController@store');
+Route::post('/member-status/{id}','MemberController@memberIdTake');

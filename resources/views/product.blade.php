@@ -38,8 +38,25 @@
             <div class="product-desc">
                 <div class="product-name">MST Pendant</div>
                 <p> MST Energy Pendant is one of the Revolutionary Product in Health and Wellness Industry. This is now the Hottest Product in the World as far as Wellness Accessory is concern. MST Energy Pendants are Guaranteed 100% Made of Genuine Volcanic Minerals and Minerals Stone.</p>
+                <b>HEALTH BENEFITS</b>
+		          <br>
+		          <ul class="service-list">
+		            <li>Arthritis Pain</li>
+		            <li>Bruises</li>
+		            <li>Strains Swelling</li>
+		            <li>Upper back tension</li>
+		            <li>Sport injuries</li>
+		            <li>Headache</li>
+		            <li>Menstrual cramps</li>
+		            <li>Muscular Pain</li>
+		            <li>Hand & wrist pain</li>
+		            <li>Lower back pain</li>
+		            <li>Inflamation of joints</li>
+		          </ul>
+
+		          <div class="joining-text">Joining Package: <span><i class="fa fa-inr" aria-hidden="true"></i> 3400</span></div>
                 <a href="/buy-product">
-                    <button class="btn btn-style">Buy Now</button>
+                    <button class="btn btn-style">Join Now</button>
                 </a>
             </div>
         </div>

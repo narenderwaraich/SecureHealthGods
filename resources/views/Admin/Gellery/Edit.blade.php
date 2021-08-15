@@ -55,18 +55,19 @@
                                 </span>
                                 @endif
                                   </div>
-                                <label for="title">Drop only 1 Blog Image</label>
+                                <label for="title">Drop only 1 Menu Image</label>
                                   <div class="large-12 medium-12 small-12 filezone  gallery">
-                                      <input type="file" class="multi-img" id="files" name="uploadFile[]"  multiple/>
+                                      <input type="file" class="multi-img" id="files" name="image">
                                       <p>
                                           Drop your files here <br>or click to search (Maxsize 5mb)
                                       </p>
                                   </div>
-
+                                  @if($gallery->image)
                                   <div class="img-show-box pip">
-                                    <img class="imageThumb" src="/public/images/gellery/{{ $gallery->image }}"> 
+                                    <img class="imageThumb" src="/images/gallery/{{ $gallery->image }}"> 
                                     <div class="remove">Remove</div>
                                 </div>
+                                @endif
 
 
                             </div>
@@ -80,7 +81,7 @@
               </div>
         </section>
 </section>
-<script src="/public/jquery/jquery-3.2.1.min.js"></script>
+<script src="/jquery/jquery-3.2.1.min.js"></script>
 <script>
     $(document).ready(function(){
         $('.remove').on('click', function() {
@@ -92,8 +93,8 @@
     $("#files").on("change", function(e) {
       var files = e.target.files,
         filesLength = files.length;
-        if(filesLength > 4){
-          alert('plz drop only 4 image');
+        if(filesLength > 1){
+          alert('plz drop only 1 image');
         }else{
                 for (var i = 0; i < filesLength; i++) {
         var f = files[i]
@@ -116,6 +117,7 @@
   } else {
     alert("Your browser doesn't support to File API")
   }
+
 });
 </script>
 <style scoped>

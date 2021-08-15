@@ -68,13 +68,13 @@
     <h2 class="fs-50 title-main-heading">Our Gallery</h2>
     <hr class="under-line">
             <div class="row">
-                <div class="col-md-12 col-lg-12">
-                    @foreach($gellery->take(4) as $item)
+                @foreach($gellery->take(4) as $item)
+                <div class="col-md-6 col-lg-6">
                     <div class="p-r-50 p-r-0-lg">
                         <!-- item blog -->
                         <div class="item-blog">
                             <a href="#" class="item-blog-img pos-relative dis-block hov-img-zoom">
-                                <img src="{{asset('/public/images/gellery/'.$item->image)}}" alt="{{ $item->title }}">
+                                <img src="{{asset('/images/gallery/'.$item->image)}}" alt="{{ $item->title }}">
 
                                 <span class="item-blog-date dis-block flex-c-m pos1 size17 bg4 s-text1">{{$item->created_at->format('j M, Y')}}
                                 </span>
@@ -93,8 +93,8 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
                 </div>
+                 @endforeach
                 <!--<div class="col-md-4 col-lg-3">-->
                     
                 <!--</div>-->

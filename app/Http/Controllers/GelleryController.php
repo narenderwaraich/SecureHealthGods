@@ -70,17 +70,12 @@ class GelleryController extends Controller
         if(!$validate){
             Redirect::back()->withInput();
         }
-        if($request->file('uploadFile')){
-            foreach ($request->file('uploadFile') as $key => $value) {
-
-                // $imageName = time(). $key . '.' . $value->getClientOriginalExtension();
-                // $value->move(public_path('images/gellery'), $imageName);
-                // $data['image'] = $imageName;
-
+        if($request->image){
                 $image = $request->file('image'); //dd($image);
-                $data['image'] = time(). $key . '.' . $value->getClientOriginalExtension();
+                $data['image'] = time().'.'.$image->getClientOriginalExtension();
              
-                $filePath = public_path('/images/gellery');
+                $filePath = public_path('/images/gallery');
+
                 $img = Image::make($image->path()); //dd($img);
                 $img->resize(300, 250, function ($const) {
                     $const->aspectRatio();
@@ -88,7 +83,6 @@ class GelleryController extends Controller
            
                 $filePath = public_path('/images/oriznal');
                 $image->move($filePath, $data['image']);
-            }
         }
         $data['title'] = $request->title;
         $data['auth'] = $request->auth;
@@ -140,28 +134,23 @@ class GelleryController extends Controller
             Redirect::back()->withInput();
         }
         $gallery = Gellery::find($id);
-        if($request->file('uploadFile')){
-            // remove image from directory file path
-            $gallery_image_path = public_path('/images/gellery/'.$gallery->image);
-            if(File::exists($gallery_image_path)) {
-                File::delete($gallery_image_path);
-            }
-            /// oriznal image remove
-            $oriznal_image_path = public_path('/images/oriznal/'.$gallery->image);
-            if(File::exists($oriznal_image_path)) {
-                File::delete($oriznal_image_path);
-            }
-
-            foreach ($request->file('uploadFile') as $key => $value) {
-
-                // $imageName = time(). $key . '.' . $value->getClientOriginalExtension();
-                // $value->move(public_path('images/gellery'), $imageName);
-                // $data['image'] = $imageName;
+        if($request->image){
+                // remove image from directory file path
+                $gallery_image_path = public_path('/images/gallery/'.$gallery->image);
+                if(File::exists($gallery_image_path)) {
+                    File::delete($gallery_image_path);
+                }
+                /// oriznal image remove
+                $oriznal_image_path = public_path('/images/oriznal/'.$gallery->image);
+                if(File::exists($oriznal_image_path)) {
+                    File::delete($oriznal_image_path);
+                }
 
                 $image = $request->file('image'); //dd($image);
-                $data['image'] = time(). $key . '.' . $value->getClientOriginalExtension();
+                $data['image'] = time().'.'.$image->getClientOriginalExtension();
              
-                $filePath = public_path('/images/gellery');
+                $filePath = public_path('/images/gallery');
+
                 $img = Image::make($image->path()); //dd($img);
                 $img->resize(300, 250, function ($const) {
                     $const->aspectRatio();
@@ -169,7 +158,7 @@ class GelleryController extends Controller
            
                 $filePath = public_path('/images/oriznal');
                 $image->move($filePath, $data['image']);
-            }
+
             $data['title'] = $request->title;
             $data['auth'] = $request->auth;
             $data['url'] = $request->url;
@@ -195,7 +184,7 @@ class GelleryController extends Controller
     {
         $gallery = Gellery::find($id);
             // remove image from directory file path
-            $gallery_image_path = public_path('/images/gellery/'.$gallery->image);
+            $gallery_image_path = public_path('/images/gallery/'.$gallery->image);
             if(File::exists($gallery_image_path)) {
                 File::delete($gallery_image_path);
             }

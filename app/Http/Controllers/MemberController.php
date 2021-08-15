@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
-use Redirect;
-use App\User;
 use Validator;
+use Redirect;
 use Toastr;
 use Auth;
 use Response;
 use App\BanerSlide;
 use Image;
+use App\User;
 
 
 class MemberController extends Controller
@@ -56,14 +56,14 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $this->validate($request, [
-            'name' => 'required', 'string', 'max:255',
-            'email' => 'required', 'string', 'email', 'max:255', 'unique:members',
-            'phone' => 'required', 'string', 'min:10', 'max:10',
-            ]);
-            if(!$validate){
-                    Redirect::back()->withInput();
-            }
+            $validate = $this->validate(request(),[
+                  'name'=>'required|string|max:50',
+                  'email'=>'string|max:255',
+                  'phone'=> 'required|string|min:10|max:10',
+                ]);
+                if(!$validate){
+                  Redirect::back()->withInput();
+                }
         $lastMemberNumber = Member::orderBy('id', 'DESC')->pluck('member_code')->first(); 
              //dd($lastMemberNumber);
             if($lastMemberNumber){
@@ -74,7 +74,7 @@ class MemberController extends Controller
             }
             //dd($newMemberNum);
 
-            $data = ['pendant_no','name','email','phone','gender','date_of_birth','adhar_card_number','country','state','city','zipcode','address'];
+            $data = request(['pendant_no','name','email','phone','gender','date_of_birth','adhar_card_number','country','state','city','zipcode','address']);
 
             $data['refer_code'] = $request->refer_code ? $request->refer_code : "SHG000001";
             $data['member_code'] = $newMemberNum;
@@ -93,13 +93,28 @@ class MemberController extends Controller
                 $filePath = public_path('/images/oriznal');
                 $image->move($filePath, $data['logo']);
             }
+            $userData['name'] = $request->name;
+            $userData['phone'] = $request->phone;
+            $userData['email'] = $request->email;
+            $userData['password'] = Hash::make($request->pendant_no);
 
-         $member = Member::create($data);
+            $user = User::create($userData);
+            if($user){
+                $data['user_id'] = $user->id;
+                $member = Member::create($data);
+            }
         Toastr::success('Member Added', 'Success', ["positionClass" => "toast-bottom-right"]);
-        return redirect()->to('/');
+        $url = '/member-status/'.$member->id;
+        return redirect()->to($url);
 
 
     }
+
+    public function memberIdTake($id){
+            $member = Member::find($id);
+        return view('member-status',compact('member'));
+    }
+    
 
     /**
      * Display the specified resource.

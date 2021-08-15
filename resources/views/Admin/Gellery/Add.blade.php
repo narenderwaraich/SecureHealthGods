@@ -55,14 +55,19 @@
                                 </span>
                                 @endif
                                   </div>
-
-                                  <label for="title">Drop only 1 Blog Image</label>
+                                  <label for="title">Drop only 1 Menu Image</label>
                                   <div class="large-12 medium-12 small-12 filezone  gallery">
-                                      <input type="file" class="multi-img" id="files" name="uploadFile[]"  multiple/>
+                                      <input type="file" class="multi-img {{ $errors->has('image') ? ' is-invalid' : '' }}" id="files" name="image">
                                       <p>
                                           Drop your files here <br>or click to search (Maxsize 5mb)
                                       </p>
+                                        @if ($errors->has('image'))
+                                          <span class="invalid-feedback" role="alert">
+                                              <strong>{{ $errors->first('image') }}</strong>
+                                          </span>
+                                        @endif
                                   </div>
+
                             </div>
 
                             <div class="box-footer">
@@ -75,7 +80,7 @@
         </section>
 </section>
 
-<script src="/public/jquery/jquery-3.2.1.min.js"></script>
+<script src="/jquery/jquery-3.2.1.min.js"></script>
 <script>
     /// multi image 
 $(document).ready(function(){
@@ -83,8 +88,8 @@ $(document).ready(function(){
     $("#files").on("change", function(e) {
       var files = e.target.files,
         filesLength = files.length;
-        if(filesLength > 4){
-          alert('plz drop only 4 image');
+        if(filesLength > 1){
+          alert('plz drop only 1 image');
         }else{
                 for (var i = 0; i < filesLength; i++) {
         var f = files[i]

@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="box-body">
-                            <table class="table table-hover scroll-table-full">
+                            <table class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
@@ -41,7 +41,7 @@
                                    @foreach ($gallery as $galleryData)
                                     <tr>
                                         <td>{{ $galleryData->id }}</td>
-                                        <td><img src="/public/images/gellery/{{ $galleryData->image }}" class="gelleryShowImg"></td>
+                                        <td><img src="/images/gallery/{{ $galleryData->image }}" class="gelleryShowImg"></td>
                                         <td>{{ $galleryData->title }}</td>
                                         <td>{{ $galleryData->auth }}</td>
                                         <td>{{ $galleryData->url }}</td>
