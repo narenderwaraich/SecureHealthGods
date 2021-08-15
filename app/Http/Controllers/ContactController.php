@@ -14,27 +14,23 @@ use Auth;
 use App\User;
 use Mail;
 use App\BanerSlide;
-use App\MerchantAccount;
 
 class ContactController extends Controller
 {
     
     
-    // public function get(){
-    //     $banner = BanerSlide::where('page_name','=','contact-us')->first(); //dd($banner);
-    //     if (isset($banner)) {
-    //         $title = $banner->title;
-    //         $description = $banner->description;
-    //     }
-    //     if(Auth::check()){
-    //         $userId = Auth::id();
-    //         $cartCollection = CartStorage::where('user_id',$userId)->get();
-    //         $subTotal = DB::table("cart_storages")->where('user_id',$userId)->sum('subtotal');
-    //         return view('contact',compact('title','description'),['banner' =>$banner, 'cartCollection' =>$cartCollection, 'subTotal' => $subTotal]);
-    //     }else{
-    //         return view('contact',compact('title','description'),['banner' =>$banner]);
-    //     }
-    // }
+    public function contactUsPage(){
+        $banner = BanerSlide::where('page_name','=','contact-us')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }else{
+            $title = '';
+            $description = '';
+        }
+
+        return view('contact-us',compact('title','description'),['banner' =>$banner]);
+    }
 
 
     public function store(Request $request){
@@ -111,6 +107,20 @@ class ContactController extends Controller
         return redirect()->to('/admin/contact-us');
    }
 
+
+   /// about-us page
+   public function aboutUsPage(){
+        $banner = BanerSlide::where('page_name','=','about-us')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }else{
+            $title = '';
+            $description = '';
+        }
+        return view('about-us',compact('title','description','banner'));
+
+   }
 
    /// term-of-services page
    public function termOfServices(){

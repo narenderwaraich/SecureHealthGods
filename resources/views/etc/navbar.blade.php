@@ -14,19 +14,19 @@
                     <a class="nav-link" href="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Product</a>
+                    <a class="nav-link" href="/product">Product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Gallery</a>
+                    <a class="nav-link" href="/gallery">Gallery</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Videos</a>
+                    <a class="nav-link" href="/youtube-videos">Videos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About Us</a>
+                    <a class="nav-link" href="/about-us">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact Us</a>
+                    <a class="nav-link" href="/contact-us">Contact Us</a>
                 </li> 
             </ul>
 
@@ -48,7 +48,7 @@
                         @guest
                         <li><a href="/login">Login</a></li>
                         @if (Route::has('register'))
-                        <li><a href="/register">Register</a></li>
+                        <!-- <li><a href="/register">Register</a></li> -->
                         @endif
                         @else
                         <li><a href="/user-profile">Profile</a></li>

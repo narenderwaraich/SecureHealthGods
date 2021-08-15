@@ -27,55 +27,58 @@
 
 <div class="container" style="margin-top: 100px;">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="heading-title contact-heading" style="text-align: center;">Get In Touch</div>
-    <p class="contact-sub-heading" style="text-align: center;">We would be happy to help you. You can contact us ..</p>
-            <section class="login-section">
-        <div class="windows-firm-Box" style="margin-top: 50px;">
-            <div class="top-tile">
-                Contact Us
+        <div class="contct-form-section">
+            <div class="form-title">Get In Touch</div>
+            <div class="form-subtitle">We would be happy to help you. You can contact us ..</div>
+            <div class="form-style shadow-lg">
+                <form action="/contactUs" method="post">
+                    @csrf
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-input" name="name" placeholder="Name" required>
+                                @if ($errors->has('name'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input type="tel" class="form-control form-input" name="mobile" placeholder="Mobile">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control form-input " placeholder="Email" value="" required="">
+                        @if ($errors->has('email'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="dis-none" for="query">Message</label>
+                                <textarea class="form-control windows-form-input {{ $errors->has('message') ? ' is-invalid' : '' }}" name="message" rows="5" placeholder="Message" id="query"></textarea>
+                                @if ($errors->has('message'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('message') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <input type="checkbox" onclick="myFunction()"> &nbsp; <b>Show Password</b> -->
+                    <br>
+
+                    <button type="submit" class="btn btn-style btn-top" >Send</button>
+                </form>
             </div>
-        <div class="windows-form">
-            
-            <form method="POST" action="/contactUs">
-                @csrf
-            <div class="form-group">
-                <label class="dis-none" for="full-name">Name</label>
-                <input class="form-control windows-form-input {{ $errors->has('name') ? ' is-invalid' : '' }}" type="text" name="name" value="{{old('name')}}" placeholder="Name" id="full-name">
-                @if ($errors->has('name'))
-                    <span class="invalid-feedback" role="alert">
-                       <strong>{{ $errors->first('name') }}</strong>
-                    </span>
-                 @endif
-            </div>
-            
-             <div class="form-group">
-                <label class="dis-none" for="email-address">Email</label>
-                <input class="form-control windows-form-input {{ $errors->has('email') ? ' is-invalid' : '' }}" type="text" name="email" value="{{old('email')}}" placeholder="Email" id="email-address">
-                            @if ($errors->has('email'))
-                              <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $errors->first('email') }}</strong>
-                              </span>
-                            @endif
-             </div>
-            
-             <div class="form-group">
-                <label class="dis-none" for="query">Message</label>
-                <textarea class="form-control windows-form-input {{ $errors->has('message') ? ' is-invalid' : '' }}" name="message" placeholder="Message" id="query"></textarea>
-                @if ($errors->has('message'))
-                   <span class="invalid-feedback" role="alert">
-                       <strong>{{ $errors->first('message') }}</strong>
-                   </span>
-               @endif
-             </div>
-            <button type="submit" class="btn btn-style btn-top" >Send</button>
-        </form>
-        
-            </div>
-        </div>
-    </section>
-        </div>
-        <div class="col-md-4">
         </div>
     </div>
 </div>

@@ -15,54 +15,26 @@
                         <a href="/admin"><i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <h3 class="menu-title">URL</h3>
-                    @if(Auth::user()->role == "admin")
                     <li class="active">
                         <a href="/" target="_blank"><i class="menu-icon fa fa-dashboard"></i>Web Home</a>
                     </li>
-                    @endif
-                    @if(Auth::user()->role == "merchant")
-                    <li class="active">
-                        <a href="/" target="_blank"><i class="menu-icon fa fa-dashboard"></i>Web Home</a>
-                    </li>
-                    <li class="active">
-                        <a href="/dashboard" target="_blank"><i class="menu-icon fa fa-dashboard"></i>Billing Dashboard</a>
-                    </li>
-                    @endif
-                    <h3 class="menu-title">Food</h3>
-                    @if(Auth::user()->role == "admin")
+                    <h3 class="menu-title">Media</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Food Type</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-picture-o"></i>Gallery</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa fa-plus"></i><a href="/admin/food-type/create">Add</a></li>
-                            <li><i class="fa fa-table"></i><a href="/admin/food-type">View</a></li>
+                            <li><i class="fa fa fa-plus"></i><a href="/gallery/create">Add</a></li>
+                            <li><i class="fa fa-table"></i><a href="/gallery/show">View</a></li>
                         </ul>
                     </li>
-                    @endif
-                    @if(Auth::user()->role == "merchant")
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Category</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-youtube"></i>Videos</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa fa-plus"></i><a href="/admin/category/create">Add</a></li>
-                            <li><i class="fa fa-table"></i><a href="/admin/category">View</a></li>
+                            <li><i class="fa fa-plus"></i><a href="/video/create">Add</a></li>
+                            <li><i class="fa fa-table"></i><a href="/videos">View</a></li>
                         </ul>
                     </li>
                     
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Menu</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa fa-plus"></i><a href="/admin/menu/create">Add</a></li>
-                            <li><i class="fa fa-table"></i><a href="/admin/menus">View</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Meal</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa fa-plus"></i><a href="/admin/meal/create">Add</a></li>
-                            <li><i class="fa fa-table"></i><a href="/admin/meals">View</a></li>
-                        </ul>
-                    </li>
-                    @endif
+                   
                     <h3 class="menu-title">Account</h3>
                     @if(Auth::user()->role == "admin")
                     <li class="menu-item-has-children dropdown">
@@ -79,30 +51,7 @@
                             <li><i class="fa fa-table"></i><a href="/page-setup/show">View</a></li>
                         </ul>
                     </li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cog"></i>Location</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa fa-plus"></i><a href="/admin/country/list">Country</a></li>
-                            <li><i class="fa fa-table"></i><a href="/admin/state/list">State</a></li>
-                            <li><i class="fa fa-table"></i><a href="/admin/city/list">City</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Account</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="/admin/users">User</a></li>
-                            <li><i class="fa fa-table"></i><a href="/admin/merchants">Merchant</a></li>
-                        </ul>
-                    </li>
-                    @endif
-                    @if(Auth::user()->role == "merchant")
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gift"></i>Coupan</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa fa-plus"></i><a href="/discount/create">Add</a></li>
-                            <li><i class="fa fa-table"></i><a href="/discounts">View</a></li>
-                        </ul>
-                    </li>
+                   
                     <li class="">
                         <a href="/admin/online-orders"><i class="menu-icon fa fa-truck"></i>Orders</a>
                     </li>
@@ -114,8 +63,16 @@
                     <li class="">
                         <a href="/admin/plan/payments"><i class="menu-icon fa fa-inr"></i>Payments</a>
                     </li>
-                    @endif
                     <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon  fa fa-user"></i>User</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa fa-plus"></i><a href="/user/create">Add</a></li>
+                            <li><i class="fa fa-users"></i><a href="/user">Users</a></li>
+                            <li><i class="fa fa-users"></i><a href="/member/list">Members</a></li>
+                        </ul>
+                    </li>
+                    @endif
+                    <!-- <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gear"></i>Settings</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-gear"></i><a href="/admin/merchant/settings">Merchant Setting</a></li>
@@ -125,7 +82,7 @@
                             <li><i class="fa fa-history"></i><a href="/logs">Logs</a></li>
                             @endif
                         </ul>
-                    </li> 
+                    </li>  -->
                     <li>
                         <a href="/admin/change-password"> <i class="menu-icon fa fa-key"></i>Change Password</a>
                     </li>

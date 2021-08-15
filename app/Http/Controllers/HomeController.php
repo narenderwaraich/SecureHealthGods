@@ -9,6 +9,8 @@ use Redirect;
 use App\User;
 use App\UserProfile;
 use App\BanerSlide;
+use App\Youtube;
+use App\Gellery;
 
 class HomeController extends Controller
 {
@@ -34,6 +36,20 @@ class HomeController extends Controller
             $title = '';
             $description = '';
         }
-        return view('index',compact('title','description','bannerSlide'));
+        $videos = Youtube::latest()->paginate(6);
+        $gellery = Gellery::orderBy('created_at','desc')->paginate(5);
+        return view('index',compact('title','description','bannerSlide','videos','gellery'));
+    }
+
+    public function productPage(){
+        $banner = BanerSlide::where('page_name','=','product')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }else{
+            $title = '';
+            $description = '';
+        }
+        return view('product',compact('title','description','banner'));
     }
 }

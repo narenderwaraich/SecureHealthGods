@@ -14,6 +14,8 @@ use Validator;
 use Carbon\Carbon;
 use App\Page;
 use App\BanerSlide;
+use Image;
+use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
@@ -223,6 +225,11 @@ class AdminController extends Controller
         $pageSetup = BanerSlide::find($id);
         $data = request(['title','description','heading','sub_heading','button_text','button_link','page_name']);
         if($request->file('uploadFile')){
+            // remove image from directory file path
+            $banner_image_path = public_path('/images/banner/'.$pageSetup->image);
+            if(File::exists($banner_image_path)) {
+                File::delete($banner_image_path);
+            }
             foreach ($request->file('uploadFile') as $key => $value) {
 
                 $imageName = time(). $key . '.' . $value->getClientOriginalExtension();
@@ -244,6 +251,10 @@ class AdminController extends Controller
       if(Auth::check()){
         if(Auth::user()->role == "admin"){
           $pageSetup = BanerSlide::find($id);
+          $banner_image_path = public_path('/images/banner/'.$pageSetup->image);
+            if(File::exists($banner_image_path)) {
+                File::delete($banner_image_path);
+            }
           $pageSetup->delete();
           Toastr::success('Banner Deleted', 'Success', ["positionClass" => "toast-bottom-right"]);
           return redirect()->to('/page-setup/show');

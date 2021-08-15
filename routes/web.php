@@ -33,20 +33,15 @@ Route::get('/resend-otp-code/{mobile}','Auth\RegisterController@reGenrateOTP');
 // Route::post('admin/logout', 'Auth\LoginController@logout')->name('auth.logout');
 
 //// user new account
-Route::get('/register-account', function () {
-    return view('sign-up');
+Route::get('/register', function () {
+    return view('index');
 });
 
 Route::get('/verify-account', function () {
     return view('verify');
 });
 
-Route::get('/login-account', function () {
-    return view('login-account');
-});
 
-Route::post('/register-account', 'SignUpController@create');
-Route::post('/verify-account', 'SignUpController@verify');
 
 Route::get('/', 'HomeController@index');
 Route::get('/admin','AdminController@homePage');
@@ -98,3 +93,29 @@ Route::get('/privacy-policy','ContactController@privacyPolicy');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/product', 'HomeController@productPage');
+
+Route::get('/contact-us', 'ContactController@contactUsPage');
+Route::get('/about-us', 'ContactController@aboutUsPage');
+
+Route::get('/gallery', 'GelleryController@galleryPage');
+Route::get('/gallery/show', 'GelleryController@index');
+Route::get('/gallery/get', 'GelleryController@getData');
+Route::get('/gallery/create', 'GelleryController@create');
+Route::post('gallery/create', 'GelleryController@store');
+Route::get('/gallery/edit/{id}', 'GelleryController@edit');
+Route::post('/gallery/update/{id}', 'GelleryController@update');
+Route::get('/gallery/delete/{id}', 'GelleryController@destroy');
+
+Route::get('/videos', 'YoutubeController@index');
+Route::get('/video/get', 'YoutubeController@getData');
+Route::get('/video/create', 'YoutubeController@create');
+Route::post('video/create', 'YoutubeController@store');
+Route::get('/video/edit/{id}', 'YoutubeController@edit');
+Route::post('/video/update/{id}', 'YoutubeController@update');
+Route::get('/video/delete/{id}', 'YoutubeController@destroy');
+Route::get('/youtube-videos', 'YoutubeController@showAll');
+
+// member
+Route::get('/buy-product','MemberController@create');
+Route::post('/member-register-account','MemberController@store');

@@ -6,8 +6,8 @@
               <div class="footer-text">
                 About {{ config('app.name') }}
               </div>
-              <center>
-              <a class="navbar-brand" href="{{ url('/') }}">
+              <center style="padding: 30px 0;">
+              <a style="color: #fff;font-size: 35px;font-weight: 900;line-height: 30px !important;font-family: cursive;text-shadow: 0 0 30px rgb(0 0 0 / 62%);" href="{{ url('/') }}">
                 {{ config('app.name') }}
               </a>
             </center>

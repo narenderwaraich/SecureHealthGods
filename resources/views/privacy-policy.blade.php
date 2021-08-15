@@ -28,9 +28,9 @@
 
 <div class="container privacy-section m-t-70">
 
-	<div class="heading-title">AstroRightWay</div>
+	<div class="heading-title">{{ config('app.name') }}</div>
 	<br>
-	<p>We are Sale astrology & vastu products like ruby and rudraksh etc. our astrology store.
+	<p>We are Sale MST Energy Pendant is one of the Revolutionary Product in Health and Wellness Industry. This is now the Hottest Product in the World as far as Wellness Accessory is concern.
 	</p>
 	<br>
 
@@ -43,6 +43,7 @@
 	<ul class="store-info-list">
 		<li>Name</li>
 		<li>Email</li>
+		<li>Phone</li>
 	</ul>
 	<br>
 	<p>Additionally, birth and gender information submitted to us through profile updated.</p>
@@ -64,7 +65,7 @@
 	<br><br>
 	<strong>Contacting Us</strong>
 	<br>
-	<p>If there are any doubts in privacy policy, you may contact on <a href="mailto:info@astrorightway.com">info@astrorightway.com</a></p>
+	<p>If there are any doubts in privacy policy, you may contact on <a href="mailto:{{ config('app.web_mail_address') }}">{{ config('app.web_mail_address') }}</a></p>
 
 </div>
 @endsection

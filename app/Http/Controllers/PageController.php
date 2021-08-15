@@ -16,14 +16,15 @@ use Auth;
 class PageController extends Controller
 {
     public function index()
-    {if(Auth::check()){
+    {
+        if(Auth::check()){
             if(Auth::user()->role == "admin"){
-        $page = Page::orderBy('created_at','asc')->paginate(10);
-        return view('Admin.Page.Show',['page' =>$page]);
+            $page = Page::orderBy('created_at','asc')->paginate(10);
+            return view('Admin.Page.Show',['page' =>$page]);
+            }
+        }else{
+            return redirect()->to('/login');
         }
-    }else{
-        return redirect()->to('/login');
-    }
     }
 
     public function create()
