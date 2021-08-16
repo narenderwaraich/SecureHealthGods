@@ -687,6 +687,31 @@ button.btn.btn-success.get-answer {
 /*end*/
 
 /*contact us page*/
+.contact-address-box{
+    height: 185px;
+    padding: 2.5rem;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0px 0px 50px 0px;
+}
+.left-side-icon {
+    float: left;
+}
+.left-side-icon  i{
+    color: #1CB5E0;
+    font-size: 50px;
+}
+.address-content{
+    margin-left: 70px;
+}
+.address-content p{
+    color: #546E7A;
+    margin-top: 5px;
+}
+.address-content-title {
+    font-size: 20px;
+    font-weight: 600;
+}
 .contct-form-section {
     max-width: 500px;
     width: 100%;

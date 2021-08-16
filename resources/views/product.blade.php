@@ -31,7 +31,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="product-image">
-                <img src="/images/product/mst-pandant.jpg">
+                <img src="{{config('app.file_path')}}/images/product/mst-pandant.jpg">
             </div>
         </div>
         <div class="col-md-6">
@@ -54,7 +54,7 @@
 		            <li>Inflamation of joints</li>
 		          </ul>
 
-		          <div class="joining-text">Joining Package: <span><i class="fa fa-inr" aria-hidden="true"></i> 3400</span></div>
+		          <div class="joining-text">Joining Package: <span><i class="fa fa-inr" aria-hidden="true"></i> {{config('app.product_price')}}</span></div>
                 <a href="/buy-product">
                     <button class="btn btn-style">Join Now</button>
                 </a>

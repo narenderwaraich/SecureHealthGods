@@ -26,8 +26,47 @@
 @endif
 
 <div class="container" style="margin-top: 100px;">
+            <div class="row contact-address-section">
+              <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="contact-address-box">
+                  <div class="left-side-icon">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  </div>
+                <div class="address-content">
+                  <div class="address-content-title">Company Address</div>
+                  <p>Near Bajaj Agency (Kangthli)<br>
+                     Kaithal, Haryana (136033)
+                  </p>               
+                </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="contact-address-box">
+                  <div class="left-side-icon">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                  </div>
+                  <div class="address-content">
+                    <div class="address-content-title">E-Mail</div>
+                    <p><a href="mailto:{{ config('app.web_mail_address') }}">{{ config('app.web_mail_address') }}</a></p>              
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="contact-address-box">
+                  <div class="left-side-icon">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                  </div>
+                  <div class="address-content">
+                    <div class="address-content-title">Phone Number</div>
+                    <p><span class="text-primary"><a href="tel:{{ config('app.web_contact_number') }}">{{ config('app.web_contact_number') }}</a></span>
+                    </p>             
+                  </div>
+                </div>
+              </div>
+            </div>
     <div class="row justify-content-center">
-        <div class="contct-form-section">
+
+        <div class="contct-form-section m-b-50">
             <div class="form-title">Get In Touch</div>
             <div class="form-subtitle">We would be happy to help you. You can contact us ..</div>
             <div class="form-style shadow-lg">
@@ -82,4 +121,13 @@
         </div>
     </div>
 </div>
+
+    <section class="map-section">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6913.68720783754!2d76.34647792556372!3d29.955176877659273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3911da2de2e5af6d%3A0x2a04c3a9cb187b90!2sKangthali%2C%20Haryana%20136033!5e0!3m2!1sen!2sin!4v1629087723308!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+<style>
+    footer {
+    margin-top: -4px;
+}
+</style>
 @endsection

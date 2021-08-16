@@ -19,7 +19,7 @@ class MemberPaymentController extends Controller
 {
     public function payFee($memberId)
     {
-        $amount = 3400;
+        $amount = env('PENDANT_PRICE');
         $order_id = uniqid();
         $order = new MemberPayment();
         $order->order_id = $order_id;
