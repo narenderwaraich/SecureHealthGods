@@ -3,7 +3,7 @@
 
 @if(isset($banner))
 <div class="banner">
-  <img src="{{asset('/images/banner/'.$banner->image)}}" alt="{{$banner->heading}}"/>
+  <img src="{{config('app.file_path')}}/images/banner/{{$banner->image}}" alt="{{$banner->heading}}"/>
   <div class="slider-imge-overlay"></div>
   <div class="caption text-center">
     <div class="container">
@@ -175,7 +175,7 @@
     background: #272c33;
 }
 </style>
-<script type="text/javascript" src="/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
 <script>
 
     $(document).ready(function(){

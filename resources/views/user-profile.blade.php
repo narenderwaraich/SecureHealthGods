@@ -2,7 +2,7 @@
 @section('content')
 @if(isset($banner->image))
 <div class="banner">
-  <img src="{{asset('/images/banner/'.$banner->image)}}" alt="{{$banner->heading}}"/>
+  <img src="{{config('app.file_path')}}/images/banner/{{$banner->image}}" alt="{{$banner->heading}}"/>
   <div class="slider-imge-overlay"></div>
   <div class="caption text-center">
     <div class="container">
@@ -45,7 +45,7 @@
                     <img src="" class="dp-show newdp" id="profile-img-tag" alt="avatar" style="display: none;">
                     <div id="userImage"></div>
                     @else
-                    <img src="{{asset('/images/user-logo/'.$userProfile->logo)}}" alt="{{ Auth::user()->name }}" class="dp-show" id="profile-img-tag">
+                    <img src="{{config('app.file_path')}}/images/user-logo/{{$userProfile->logo}}" alt="{{ Auth::user()->name }}" class="dp-show" id="profile-img-tag">
                     @endif
                     <div id="loader_display" style="display: none;"></div>
                     <button type="button" class="btn img-upload btn-style" onclick="document.getElementById('getFile').click()">Upload</button>
@@ -260,7 +260,7 @@
     top: 22%;
   }
 </style>
-<script type="text/javascript" src="/jquery/jquery-3.2.1.min.js"></script>        
+<script type="text/javascript" src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>        
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {

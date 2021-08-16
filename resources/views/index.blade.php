@@ -12,7 +12,7 @@
                 @if($slide->heading)
                 <div class="slide-imge-overlay"></div>
                 @endif
-                <img src="{{asset('/images/banner/'.$slide->image)}}" alt="{{$slide->heading}}">
+                <img src="{{config('app.file_path')}}/images/banner/{{$slide->image}}" alt="{{$slide->heading}}">
                 <div class="caption">
                     <div class="container">
                         @if($slide->heading)
@@ -49,7 +49,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="product-image">
-                <img src="/images/product/mst-pandant.jpg">
+                <img src="{{config('app.file_path')}}/images/product/mst-pandant.jpg">
             </div>
         </div>
         <div class="col-md-6">
@@ -74,7 +74,7 @@
                         <!-- item blog -->
                         <div class="item-blog">
                             <a href="#" class="item-blog-img pos-relative dis-block hov-img-zoom">
-                                <img src="{{asset('/images/gallery/'.$item->image)}}" alt="{{ $item->title }}">
+                                <img src="{{config('app.file_path')}}/images/gallery/{{$item->image}}" alt="{{ $item->title }}">
 
                                 <span class="item-blog-date dis-block flex-c-m pos1 size17 bg4 s-text1">{{$item->created_at->format('j M, Y')}}
                                 </span>

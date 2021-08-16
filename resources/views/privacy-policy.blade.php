@@ -3,7 +3,7 @@
 
 @if(isset($banner->image))
 <div class="banner">
-	<img src="{{asset('/images/banner/'.$banner->image)}}" alt="{{$banner->heading}}"/>
+	<img src="{{config('app.file_path')}}/images/banner/{{$banner->image}}" alt="{{$banner->heading}}"/>
 	<div class="slider-imge-overlay"></div>
 	<div class="caption text-center">
 		<div class="container">
