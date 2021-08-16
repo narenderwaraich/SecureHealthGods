@@ -26,14 +26,14 @@
 <div class="m-t-150"></div>
 @endif
 
-<div class="container">
+<div class="container m-t-70">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Member Details') }}</div>
 
                 <div class="card-body">
-                    <img src="/images/icon/admin.jpg" id="showUpLog" class="avatar profile-img-tag">
+                    <img src="{{config('app.file_path')}}/images/icon/admin.jpg" id="showUpLog" class="avatar profile-img-tag">
                     <button type="button" class="btn btn-dark btn-sm" id="selectImage"><i class="fa fa-camera img-change-btn-icon"></i>  Upload Logo</button>
                     <form action="/member-register-account" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
