@@ -37,6 +37,9 @@ class YoutubeController extends Controller
         if (isset($banner)) {
             $title = $banner->title;
             $description = $banner->description;
+        }else{
+            $title = '';
+            $description = '';
         }
         $videos = Youtube::orderBy('created_at','desc')->paginate(10);
         return view('videos',compact('title','description'),['banner' =>$banner, 'videos' =>$videos]);

@@ -41,7 +41,7 @@
                                    @foreach ($gallery as $galleryData)
                                     <tr>
                                         <td>{{ $galleryData->id }}</td>
-                                        <td><img src="/images/gallery/{{ $galleryData->image }}" class="gelleryShowImg"></td>
+                                        <td><img src="{{config('app.file_path')}}/images/gallery/{{ $galleryData->image }}" class="gelleryShowImg"></td>
                                         <td>{{ $galleryData->title }}</td>
                                         <td>{{ $galleryData->auth }}</td>
                                         <td>{{ $galleryData->url }}</td>

@@ -121,7 +121,7 @@
                                   </div>
                                   @if($pageSetup->image)
                                   <div class="img-show-box pip">
-                                    <img class="imageThumb" src="/images/banner/{{ $pageSetup->image }}"> 
+                                    <img class="imageThumb" src="{{config('app.file_path')}}/images/banner/{{ $pageSetup->image }}"> 
                                     <div class="remove">Remove</div>
                                   </div>
                                   @endif
@@ -137,7 +137,7 @@
               </div>
         </section>
 </section>
-<script src="/jquery/jquery-3.2.1.min.js"></script>
+<script src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
 <script>
     $(document).ready(function(){
         $('.remove').on('click', function() {

@@ -131,7 +131,7 @@
         </section>
 </section>
 
-<script src="/jquery/jquery-3.2.1.min.js"></script>
+<script src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
 <script>
     /// multi image 
 $(document).ready(function(){

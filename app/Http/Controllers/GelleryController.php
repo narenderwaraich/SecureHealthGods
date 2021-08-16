@@ -34,6 +34,9 @@ class GelleryController extends Controller
         if (isset($banner)) {
             $title = $banner->title;
             $description = $banner->description;
+        }else{
+            $title = '';
+            $description = '';
         }
         $gallery = Gellery::orderBy('created_at','desc')->paginate(5);
         return view('gallery',compact('title','description'),['banner' =>$banner, 'gallery' =>$gallery]);

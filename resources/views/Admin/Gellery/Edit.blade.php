@@ -64,7 +64,7 @@
                                   </div>
                                   @if($gallery->image)
                                   <div class="img-show-box pip">
-                                    <img class="imageThumb" src="/images/gallery/{{ $gallery->image }}"> 
+                                    <img class="imageThumb" src="{{config('app.file_path')}}/images/gallery/{{ $gallery->image }}"> 
                                     <div class="remove">Remove</div>
                                 </div>
                                 @endif
@@ -81,7 +81,7 @@
               </div>
         </section>
 </section>
-<script src="/jquery/jquery-3.2.1.min.js"></script>
+<script src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
 <script>
     $(document).ready(function(){
         $('.remove').on('click', function() {

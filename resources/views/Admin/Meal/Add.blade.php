@@ -79,8 +79,8 @@
 </section>
 </div> <!-- right panel div close -->
 <link rel="stylesheet" href="/jquery/chosen.css">
-<script src="/jquery/jquery-3.2.1.min.js"></script>
-<script src="/jquery/chosen.jquery.js"></script>
+<script src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
+<script src="{{config('app.file_path')}}/jquery/chosen.jquery.js"></script>
 <script>
         $(document).ready(function() {
             $(".standardSelect").chosen({

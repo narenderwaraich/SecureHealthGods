@@ -41,7 +41,7 @@
                                         <td>{{ $pageSetupData->id }}</td>
                                         <td>{{ $pageSetupData->page_name }}</td>
                                         <td>{{ $pageSetupData->heading }}</td>
-                                        <td><img src="/images/banner/{{ $pageSetupData->image }}" class="bannerShowImg"></td>
+                                        <td><img src="{{config('app.file_path')}}/images/banner/{{ $pageSetupData->image }}" class="bannerShowImg"></td>
                                        <td><a href="/page-setup/edit/{{ $pageSetupData->id }}" class="btn btn-secondary">Edit</a>
                                         <a onclick="return removeAlert();" href="/page-setup/delete/{{ $pageSetupData->id }}" class="btn btn-danger on-mob-table-btn">Delete</a>
                                     </tr>
