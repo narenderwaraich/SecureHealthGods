@@ -16,6 +16,7 @@ use Response;
 use App\BanerSlide;
 use Image;
 use App\User;
+use App\Joiner;
 
 
 class MemberController extends Controller
@@ -55,6 +56,43 @@ class MemberController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    {
+            $validate = $this->validate(request(),[
+                  'name'=>'required|string|max:50',
+                  'phone'=> 'required|string|min:10|max:10',
+                ]);
+                if(!$validate){
+                  Redirect::back()->withInput();
+                }
+
+            $data = request(['pendant_no','name','email','phone','gender','date_of_birth','adhar_card_number','country','state','city','zipcode','address']);
+
+            $data['refer_code'] = $request->refer_code ? $request->refer_code : "SHG000001";
+
+            if($request->logo){
+                $image = $request->file('logo'); //dd($image);
+                $data['logo'] = time().'.'.$image->getClientOriginalExtension();
+             
+                $filePath = public_path('/images/user-logo');
+
+                $img = Image::make($image->path()); //dd($img);
+                $img->resize(200, 200, function ($const) {
+                    $const->aspectRatio();
+                })->save($filePath.'/'.$data['logo']);
+           
+                $filePath = public_path('/images/oriznal');
+                $image->move($filePath, $data['logo']);
+            }
+            
+            $member = Joiner::create($data);
+        Toastr::info('Please complete payment process', 'Success', ["positionClass" => "toast-bottom-right"]);
+        $url = '/member-payment/'.$member->id;
+        return redirect()->to($url);
+
+
+    }
+
+    public function storeData(Request $request)
     {
             $validate = $this->validate(request(),[
                   'name'=>'required|string|max:50',

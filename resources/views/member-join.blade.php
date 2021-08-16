@@ -101,7 +101,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>Adhar Card No. <span style="color: #dc3545;">*</span></label>
-                            <input name="adhar_card_number" type="number" value="{{ old('adhar_card_number') }}" placeholder="1111-2222-3333" class="form-control" required>
+                            <input name="adhar_card_number" id="adhar_number" type="tel" value="{{ old('adhar_card_number') }}" placeholder="1111-2222-3333" class="form-control" type="tel" maxlength="14" minlength="14" onkeyup="ccNumber()" required>
                           </div>
                         </div>
                         <div class="col-md-6">
@@ -247,9 +247,17 @@
         
    });
 
-    function loadUserLocation(){
-        $('#lat').val(userLat);
-        $('#long').val(userLong);
+function ccNumber() {
+      $('#adhar_number').on('keyup', function(e){
+          var val = $(this).val();
+          var newval = '';
+          val = val.replace(/\s/g, '');
+          for(var i=0; i < val.length; i++) {
+              if(i%4 == 0 && i > 0) newval = newval.concat(' ');
+              newval = newval.concat(val[i]);
+          }
+          $(this).val(newval);
+      });
     }
    </script>
 @endsection

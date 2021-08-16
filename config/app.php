@@ -58,6 +58,7 @@ return [
 
     'web_mail_address' => env('COMPANY_MAIL_ADDRESS', null),
     'web_contact_number' => env('COMPANY_MOBILE', null),
+    'file_path' => env('STORAGE_PATH', null),
 
     /*
     |--------------------------------------------------------------------------

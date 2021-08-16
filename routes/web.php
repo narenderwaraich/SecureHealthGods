@@ -120,3 +120,7 @@ Route::get('/youtube-videos', 'YoutubeController@showAll');
 Route::get('/buy-product','MemberController@create');
 Route::post('/member-register-account','MemberController@store');
 Route::post('/member-status/{id}','MemberController@memberIdTake');
+
+// payment
+Route::get('/member-payment/{id}','MemberPaymentController@payFee');
+Route::post('/member-payment-call-back', 'PaymentController@paytmCallback');

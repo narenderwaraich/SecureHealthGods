@@ -9,15 +9,15 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <!-- <link rel="canonical" href="http://www.astrorightway.com/" /> -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/fonts/themify/themify-icons.css">
-    <link rel="stylesheet" type="text/css" href="/css-hamburgers/hamburgers.css">
+    <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/fonts/themify/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/css-hamburgers/hamburgers.css">
     <link rel="stylesheet" href="/css/toastr.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/design.css">
-    <link rel="stylesheet" href="{{ asset('/css/custom.css') }}">
-    <link rel="stylesheet" type="text/css" href="/css/responsive.css">
-    <script type="text/javascript" src="/jquery/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/css/design.css">
+    <link rel="stylesheet" href="{{config('app.file_path')}}/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/css/responsive.css">
+    <script type="text/javascript" src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 
@@ -30,9 +30,9 @@
 <!-- commn code all page -->
 
 @include('etc.footer')
-    <script type="text/javascript" src="/bootstrap/js/popper.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/js/toastr.min.js"></script>
+    <script type="text/javascript" src="{{config('app.file_path')}}/bootstrap/js/popper.js"></script>
+    <script type="text/javascript" src="{{config('app.file_path')}}/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{config('app.file_path')}}/js/toastr.min.js"></script>
 
     {!! Toastr::message() !!}
 </body>
