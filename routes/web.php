@@ -63,6 +63,12 @@ Route::prefix('admin')->group(function () {
 	Route::get('/user/suspend-user/{id}','AdminController@enableDisableUser');
 	Route::get('/user/verified/{id}','AdminController@verifyUser');
 
+	Route::get('/member/add','AdminController@addMember');
+	Route::post('/member/store','AdminController@storeMemberData');
+	Route::get('/member/verified/{id}','AdminController@memberVerify');
+	Route::get('/member/edit/{id}','AdminController@editMember');
+	Route::get('/member/delete/{id}','AdminController@deleteMember');
+
 	// joiner
 	Route::get('/joiner/list','JoinerController@index');
 

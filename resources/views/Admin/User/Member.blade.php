@@ -25,6 +25,9 @@
                                 <a href="/admin/member/0/list">
                                     <button type="button" class="btn btn-danger btn-sm">Deactive</button>
                                 </a>
+                                <a href="/admin/member/add">
+                                    <button type="button" class="btn btn-dark btn-sm">Add New</button>
+                                </a>
                                 <!-- <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" id="sendButton">
                                    <i class="fa fa fa-envelope"></i> Send Mail
                                 </a> -->
@@ -76,23 +79,18 @@
                                         <td>{{ $memberData->member_code }}</td>
                                         <td>{{ $memberData->refer_code }}</td>
                                         <td>{{ $memberData->down_member }}</td>
-                                        <td>@if($memberData->status == 1)
+                                        <td>@if($memberData->is_activated == 1)
                                             <span class="user-active">Verified</span>
                                             @else
                                             <span class="user-deactive">Unverified</span>
                                             @endif
                                             </td>
                                         <td>
-                                        @if($memberData->status == 0)
-                                        <a href="/member/verified/{{ $memberData->id }}" class="btn btn-success  on-mob-table-btn">Verify</a>
+                                        @if($memberData->is_activated == 0)
+                                        <a href="/admin/member/verified/{{ $memberData->id }}" class="btn btn-success  on-mob-table-btn">Verify</a>
                                         @endif
-                                        @if($memberData->suspend)
-                                            <a href="/member/suspend-member/{{$memberData->id}}" class="btn btn-success on-mob-table-btn">Enable</a>
-                                        @else
-                                            <a href="/member/suspend-member/{{$memberData->id}}" class="btn btn-warning on-mob-table-btn">Disable</a>
-                                        @endif
-                                        <a href="/member/edit/{{ $memberData->id }}" class="btn btn-secondary">Edit</a>
-                                        <a onclick="return removeAlert();" href="/member/delete/{{ $memberData->id }}" class="btn btn-danger on-mob-table-btn">Delete</a>
+                                        <a href="/admin/member/edit/{{ $memberData->id }}" class="btn btn-secondary">Edit</a>
+                                        <a onclick="return removeAlert();" href="/admin/member/delete/{{ $memberData->id }}" class="btn btn-danger on-mob-table-btn">Delete</a>
                                     </tr>
                                     @endforeach
                                 </tbody>

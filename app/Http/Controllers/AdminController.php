@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Auth;
 use Toastr;
 use Redirect;
@@ -15,7 +16,7 @@ use Carbon\Carbon;
 use App\Page;
 use App\BanerSlide;
 use Image;
-use Illuminate\Support\Facades\File;
+use App\Member;
 
 class AdminController extends Controller
 {
@@ -46,7 +47,7 @@ class AdminController extends Controller
       if(Auth::check()){
         if(Auth::user()->role == "admin"){
             $user = User::where('is_activated',1)->orderBy('created_at','desc')->paginate(10);
-            return view('Admin.User-Show',['user' =>$user]);
+            return view('Admin.User.User-Show',['user' =>$user]);
           }
         }else{
               return redirect()->to('/login');
@@ -57,7 +58,7 @@ class AdminController extends Controller
       if(Auth::check()){
         if(Auth::user()->role == "admin"){
             $user = User::where('is_activated',$status)->orderBy('created_at','desc')->paginate(10);
-            return view('Admin.User-Show',['user' =>$user]);
+            return view('Admin.User.User-Show',['user' =>$user]);
           }
         }else{
               return redirect()->to('/login');
@@ -76,7 +77,7 @@ class AdminController extends Controller
                   ) );
                 if (count ($user) > 0){ //by user name data view
                       $total_row = $user->total(); //dd($total_row);
-                    return view ('Admin.User-Show',compact('total_row','user'))->withQuery ( $q )->withMessage ($total_row.' '. 'User found match your search');
+                    return view ('Admin.User.User-Show',compact('total_row','user'))->withQuery ( $q )->withMessage ($total_row.' '. 'User found match your search');
                  }else{ 
                     return view ('Admin.User-Show')->withMessage ( 'User not found match Your search !' );
                  }
@@ -262,6 +263,166 @@ class AdminController extends Controller
       }else{
         return redirect()->to('/login');
       }
+    }
+
+    public function addMember(){
+        $country_data =DB::table('countries')->select('id','name')->get();
+        $state_data = DB::table("states")->select('id','name')->get();
+        $city_data = DB::table("cities")->select('id','name')->get();
+        return view('Admin.User.Add-Member',compact('country_data','state_data','city_data'));
+    }
+
+    public function storeMemberData(Request $request)
+    {
+            $validate = $this->validate(request(),[
+                  'name'=>'required|string|max:50',
+                  'phone'=> 'required|string|min:10|max:10',
+                ]);
+                if(!$validate){
+                  Redirect::back()->withInput();
+                }
+
+                $email = $request->email;
+                /// Check email record in database already exists or not
+                if(sizeof(User::where('email','=',$email)->get()) > 0){
+                  Toastr::error('Sorry User email exists!', 'Error', ["positionClass" => "toast-top-right"]);
+                    return back();
+                }
+                $phone = $request->phone;
+                /// Check phone record in database already exists or not
+                if(sizeof(User::where('phone','=',$phone)->get()) > 0){
+                  Toastr::error('Sorry User phone exists!', 'Error', ["positionClass" => "toast-top-right"]);
+                    return back();
+                }
+            $lastMemberNumber = Member::orderBy('id', 'DESC')->pluck('member_code')->first(); 
+             //dd($lastMemberNumber);
+            if($lastMemberNumber){
+                $getNumber = explode('SHG', $lastMemberNumber)[1]; 
+                $newMemberNum = 'SHG'.str_pad($getNumber + 1, 6, "0", STR_PAD_LEFT); 
+            }else{
+              $newMemberNum = "SHG000001";
+            }
+            //dd($newMemberNum);
+
+            $data = request(['pendant_no','name','email','phone','gender','date_of_birth','adhar_card_number','country','state','city','zipcode','address']);
+
+            $data['refer_code'] = $request->refer_code ? $request->refer_code : "SHG000001";
+            $data['member_code'] = $newMemberNum;
+            $data['is_activated'] = 1;
+
+            if($request->logo){
+                $image = $request->file('logo'); //dd($image);
+                $data['logo'] = time().'.'.$image->getClientOriginalExtension();
+             
+                $filePath = public_path('/images/user-logo');
+
+                $img = Image::make($image->path()); //dd($img);
+                $img->resize(200, 200, function ($const) {
+                    $const->aspectRatio();
+                })->save($filePath.'/'.$data['logo']);
+           
+                $filePath = public_path('/images/oriznal');
+                $image->move($filePath, $data['logo']);
+            }
+            $userData['name'] = $request->name;
+            $userData['phone'] = $request->phone;
+            $userData['email'] = $request->email;
+            $userData['password'] = Hash::make($request->pendant_no);
+            $userData['is_activated'] = 1;
+
+            $user = User::create($userData);
+            if($user){
+                $data['user_id'] = $user->id;
+                $member = Member::create($data);
+            }
+        Toastr::success('Member Added', 'Success', ["positionClass" => "toast-bottom-right"]);
+        $url = '/admin/member/list';
+        return redirect()->to($url);
+    }
+
+    public function editMember($id){
+        $member = Member::find($id);
+        $country_data =DB::table('countries')->select('id','name')->get();
+        $state_data = DB::table("states")->select('id','name')->get();
+        $city_data = DB::table("cities")->select('id','name')->get();
+        return view('Admin.User.Edit-Member',compact('country_data','state_data','city_data','member'));
+    }
+
+    public function updateMemberData(Request $request, $id)
+    {
+            $validate = $this->validate(request(),[
+                  'name'=>'required|string|max:50',
+                ]);
+                if(!$validate){
+                  Redirect::back()->withInput();
+                }
+
+            $member = Member::find($id);
+
+            $data = request(['pendant_no','name','email','phone','gender','date_of_birth','adhar_card_number','country','state','city','zipcode','address']);
+
+
+            if($request->logo){
+                // remove image from directory file path
+                $member_image_path = public_path('/images/user-logo/'.$member->logo);
+                if(File::exists($member_image_path)) {
+                    File::delete($member_image_path);
+                }
+                /// oriznal image remove
+                $oriznal_image_path = public_path('/images/oriznal/'.$member->logo);
+                if(File::exists($oriznal_image_path)) {
+                    File::delete($oriznal_image_path);
+                }
+
+                $image = $request->file('logo'); //dd($image);
+                $data['logo'] = time().'.'.$image->getClientOriginalExtension();
+             
+                $filePath = public_path('/images/user-logo');
+
+                $img = Image::make($image->path()); //dd($img);
+                $img->resize(200, 200, function ($const) {
+                    $const->aspectRatio();
+                })->save($filePath.'/'.$data['logo']);
+           
+                $filePath = public_path('/images/oriznal');
+                $image->move($filePath, $data['logo']);
+            }
+            
+            $member->update($data);
+
+        Toastr::success('Member Updated', 'Success', ["positionClass" => "toast-bottom-right"]);
+        $url = '/admin/member/list';
+        return redirect()->to($url);
+    }
+
+    public function memberVerify($id){
+          if(Auth::check()){
+            if(Auth::user()->role == "admin"){
+                $member = Member::find($id);
+                $data['is_activated'] = 1;
+                $member->update($data);
+                Toastr::success('Member Verified', 'Success', ["positionClass" => "toast-bottom-right"]);
+                $url = '/admin/member/list';
+                return redirect()->to($url);
+            }
+          }else{
+            return redirect()->to('/login');
+          }
+
+    }
+
+    public function deleteMember($id){
+          if(Auth::check()){
+            if(Auth::user()->role == "admin"){
+                $member = Member::find($id);
+                $member->delete();
+                Toastr::success('Member Deleted', 'Success', ["positionClass" => "toast-bottom-right"]);
+                $url = '/admin/member/list';
+                return redirect()->to($url);
+            }
+          }else{
+            return redirect()->to('/login');
+          }
     }
 
 }

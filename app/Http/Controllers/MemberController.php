@@ -86,6 +86,19 @@ class MemberController extends Controller
                   Redirect::back()->withInput();
                 }
 
+                $email = $request->email;
+                /// Check email record in database already exists or not
+                if(sizeof(User::where('email','=',$email)->get()) > 0){
+                  Toastr::error('Sorry User email exists!', 'Error', ["positionClass" => "toast-top-right"]);
+                    return back();
+                }
+                $phone = $request->phone;
+                /// Check phone record in database already exists or not
+                if(sizeof(User::where('phone','=',$phone)->get()) > 0){
+                  Toastr::error('Sorry User phone exists!', 'Error', ["positionClass" => "toast-top-right"]);
+                    return back();
+                }
+
             $data = request(['pendant_no','name','email','phone','gender','date_of_birth','adhar_card_number','country','state','city','zipcode','address']);
 
             $data['refer_code'] = $request->refer_code ? $request->refer_code : "SHG000001";

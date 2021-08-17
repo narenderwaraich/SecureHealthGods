@@ -87,7 +87,7 @@
                                             @endif
                                             </td>
                                         <td>{{ $userData->role }}</td>
-                                        <td><a href="/admin/user/edit/{{ $userData->id }}" class="btn btn-secondary">Edit</a>
+                                        <td><!-- <a href="/admin/user/edit/{{ $userData->id }}" class="btn btn-secondary">Edit</a> -->
                                         @if($userData->is_activated == 0)
                                         <a href="/admin/user/verified/{{ $userData->id }}" class="btn btn-success  on-mob-table-btn">Verify</a>
                                         @endif
