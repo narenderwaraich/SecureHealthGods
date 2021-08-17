@@ -51,24 +51,15 @@
                             <li><i class="fa fa-table"></i><a href="/page-setup/show">View</a></li>
                         </ul>
                     </li>
-                   
-                    <li class="">
-                        <a href="/admin/online-orders"><i class="menu-icon fa fa-truck"></i>Orders</a>
-                    </li>
                     <li class="">
                         <a href="/admin/payments"><i class="menu-icon fa fa-inr"></i>Payments</a>
-                    </li>
-                    @endif
-                    @if(Auth::user()->role == "admin")
-                    <li class="">
-                        <a href="/admin/plan/payments"><i class="menu-icon fa fa-inr"></i>Payments</a>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon  fa fa-user"></i>User</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa fa-plus"></i><a href="/user/create">Add</a></li>
-                            <li><i class="fa fa-users"></i><a href="/user">Users</a></li>
-                            <li><i class="fa fa-users"></i><a href="/member/list">Members</a></li>
+                            <li><i class="fa fa-users"></i><a href="/admin/users">Users</a></li>
+                            <li><i class="fa fa-users"></i><a href="/admin/joiner/list">Joiners</a></li>
+                            <li><i class="fa fa-users"></i><a href="/admin/member/list">Members</a></li>
                         </ul>
                     </li>
                     @endif

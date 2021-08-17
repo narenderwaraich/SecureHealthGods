@@ -28,7 +28,25 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::check()){
+        if(Auth::user()->role == "admin"){
+            $member = Member::where('is_activated',1)->orderBy('created_at','desc')->paginate(10);
+            return view('Admin.User.Member',['member' =>$member]);
+          }
+        }else{
+              return redirect()->to('/login');
+        }
+    }
+
+    public function memberWithStatus($status){
+        if(Auth::check()){
+        if(Auth::user()->role == "admin"){
+            $member = Member::where('is_activated',$status)->orderBy('created_at','desc')->paginate(10);
+            return view('Admin.User.Member',['member' =>$member]);
+          }
+        }else{
+              return redirect()->to('/login');
+        }
     }
 
     /**

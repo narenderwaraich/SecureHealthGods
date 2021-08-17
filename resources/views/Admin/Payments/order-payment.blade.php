@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 @section('content')
 
     <section class="content-wrapper" style="min-height: 960px;">
@@ -19,13 +19,13 @@
                                 <button type="button" class="btn btn-default btn-sm" onClick="refreshPage()">
                                     <i class="fa fa-refresh"></i> Refresh
                                 </button>
-                                <a href="/order/payment/Success/paytm">
+                                <a href="/admin/payment/Success/list">
                                     <button type="button" class="btn btn-success btn-sm">Success</button>
                                 </a>
-                                <a href="/order/payment/Fields/paytm">
+                                <a href="/admin/payment/Fields/list">
                                     <button type="button" class="btn btn-danger btn-sm">Fields</button>
                                 </a>
-                                <a href="/order/payment/Pending/paytm">
+                                <a href="/admin/payment/Pending/list">
                                     <button type="button" class="btn btn-warning btn-sm">Pending</button>
                                 </a>
                             </div>
@@ -35,7 +35,7 @@
                             <table class="table table-hover scroll-table-full">
                                 <thead>
                                 <tr>
-                                     <th>Order No.</th>
+                                     <th>Id</th>
                                      <th>Order Id</th>
                                      <th>Name</th>
                                      <th>Method</th>
@@ -51,9 +51,9 @@
                                 <tbody>
                                     @foreach ($payments as $payment)
                                     <tr>
-                                        <td>{{ $payment->order_number }}</td>
+                                        <td>{{ $payment->id }}</td>
                                         <td>{{ $payment->order_id }}</td>
-                                        <td>{{ $payment->userName }}</td>
+                                        <td>{{ $payment->memberName }}</td>
                                         <td>{{ $payment->payment_method }}</td>
                                         <td>{{ $payment->bank_name }}</td>
                                         <td>{{ $payment->transaction_id }}</td>
@@ -65,10 +65,8 @@
                                         @if($payment->transaction_status == "Fields")
                                             <a href="/user/order/payment/mark-success/{{$payment->id}}" class="btn btn-success on-mob-table-btn">Mark Success</a>
                                         @endif
-                                        @if($payment->transaction_status == "Pending")
-                                            <a href="/user/order/payment/manual/{{$payment->id}}" class="btn btn-success on-mob-table-btn">Manual</a>
-                                        @endif
-                                        <a href="/order/payment/refund/{{ $payment->id }}"><button class="btn btn-danger">Refund</button></a>
+                                        
+                                        <a href="#"><button class="btn btn-danger">Refund</button></a>
                                         </td>
                                     </tr>
                                     @endforeach

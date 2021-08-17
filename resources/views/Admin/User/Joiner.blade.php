@@ -19,23 +19,17 @@
                                 <button type="button" class="btn btn-default btn-sm" onClick="refreshPage()">
                                     <i class="fa fa-refresh"></i> Refresh
                                 </button>
-                                <a href="/admin/member/1/list">
-                                    <button type="button" class="btn btn-success btn-sm">Active</button>
-                                </a>
-                                <a href="/admin/member/0/list">
-                                    <button type="button" class="btn btn-danger btn-sm">Deactive</button>
-                                </a>
                                 <!-- <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" id="sendButton">
                                    <i class="fa fa fa-envelope"></i> Send Mail
                                 </a> -->
-                                <a href="/member/list" id="clearBtn" style="display: none;">
+                                <a href="/admin/joiner/list" id="clearBtn" style="display: none;">
                                   <button type="button" class="btn btn-secondary btn-sm">Clear</button>
                               </a>
                             </div>
                         </div>
 
                         <div class="box-body">
-                            <form action="/member/search" method="GET" id="SearchData" role="search"> 
+                            <form action="/admin/joiner/search" method="GET" id="SearchData" role="search"> 
                               <div class="input-group">
                                 <input type="text" name="q" value="{{request('q')}}" id="search" class="form-control" placeholder="Search User by name, email, phone">
                                 <div class="input-group-append">
@@ -59,10 +53,10 @@
                                     <th><input type="checkbox" id="master"> Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Code</th>
                                     <th>Refer</th>
-                                    <th>Member</th>
-                                    <th>Status</th>
+                                    <th>State</th>
+                                    <th>City</th>
+                                    <th>Address</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -72,16 +66,11 @@
                                         <td>{{ $memberData->id }}</td>
                                         <td>{{ $memberData->name }}</td>
                                         <td>{{ $memberData->email }}</td>
-                                        <td>{{ $memberData->phone_no }}</td>
-                                        <td>{{ $memberData->member_code }}</td>
+                                        <td>{{ $memberData->phone }}</td>
                                         <td>{{ $memberData->refer_code }}</td>
-                                        <td>{{ $memberData->down_member }}</td>
-                                        <td>@if($memberData->status == 1)
-                                            <span class="user-active">Verified</span>
-                                            @else
-                                            <span class="user-deactive">Unverified</span>
-                                            @endif
-                                            </td>
+                                        <td>{{ $memberData->state }}</td>
+                                        <td>{{ $memberData->city }}</td>
+                                        <td>{{ $memberData->address }}</td>
                                         <td>
                                         @if($memberData->status == 0)
                                         <a href="/member/verified/{{ $memberData->id }}" class="btn btn-success  on-mob-table-btn">Verify</a>

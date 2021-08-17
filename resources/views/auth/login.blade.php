@@ -1,6 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
+@if(isset($banner))
+<div class="banner">
+    <img src="{{config('app.file_path')}}/images/banner/{{$banner->image}}" alt="{{$banner->heading}}"/>
+    <div class="slider-imge-overlay"></div>
+    <div class="caption text-center">
+        <div class="container">
+            @if($banner->heading)
+            <div class="caption-in">
+                <div class="caption-ins">
+                    <h1 class="text-up">{{$banner->heading}}<span>{{$banner->sub_heading}}</span></h1>
+                    @if($banner->button_text)
+                    <div class="links"> 
+                        <a href="{{$banner->button_link}}" class="btns slider-btn"><span>{{$banner->button_text}}</span></a> 
+                    </div>
+                    @endif
+                </div>
+            </div>
+            @endif
+        </div>
+    </div>
+</div>
+@else
+<div class="m-t-72"></div>
+@endif
 <div class="container">
     <div class="row justify-content-center m-t-150">
         <div class="contct-form-section">
@@ -39,7 +63,7 @@
 <style>
 
 </style>
-<script src="/jquery/jquery-3.2.1.min.js"></script>
+<script src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
 <script>
 $(".toggle-password").click(function() {
 $(this).toggleClass("fa-eye-slash fa-eye");

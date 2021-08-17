@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Joiner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Redirect;
+use Toastr;
+use Auth;
+use Response;
 
 class JoinerController extends Controller
 {
@@ -14,7 +19,14 @@ class JoinerController extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::check()){
+        if(Auth::user()->role == "admin"){
+            $member = Joiner::orderBy('created_at','desc')->paginate(10);
+            return view('Admin.User.Joiner',['member' =>$member]);
+          }
+        }else{
+              return redirect()->to('/login');
+        }
     }
 
     /**

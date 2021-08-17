@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 @section('content')
 
     <section class="content-wrapper" style="min-height: 960px;">
@@ -21,8 +21,8 @@
                                     <i class="fa fa-refresh"></i> Refresh
                                 </button>
                             </div>
-                            <span class="user-active">Active Member - {{$activeMembers}}</span>
-                            <span class="user-deactive"> Deactive Member - {{$deactiveMembers}}</span>
+                            <span class="user-active">Active Member - {{$activeMembers ? $activeMembers : 0}}</span>
+                            <span class="user-deactive"> Deactive Member - {{$deactiveMembers ? $deactiveMembers : 0}}</span>
                         </div>
 
                         <div class="box-body">

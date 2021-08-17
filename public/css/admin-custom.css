@@ -281,6 +281,9 @@ font-size: 13px;
 
 /*Mobile responsive*/
 @media (max-width: 767px){
+  .right-panel{
+        width: 100% !important;
+    }
   .show-product-img{
       width: auto;
   }

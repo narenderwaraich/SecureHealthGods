@@ -17,6 +17,24 @@ use App\Joiner;
 
 class MemberPaymentController extends Controller
 {
+    public function paytmShowPayments(){
+        $payments = MemberPayment::where('transaction_status','=','Success')->orderBy('created_at','desc')->paginate(10); //dd($payments);
+        foreach ($payments as $payment) {
+            $member = Joiner::find($payment->member_id);
+            $payment->memberName = $member->name;
+        }
+        return view('Admin.Payments.order-payment',['payments' =>$payments]);
+    }
+
+    public function paytmWithStatus($status){
+        $payments = MemberPayment::where('transaction_status',$status)->orderBy('created_at','desc')->paginate(10); //dd($payments);
+         foreach ($payments as $payment) {
+            $member = Joiner::find($payment->member_id);
+            $payment->memberName = $member->name;
+        }
+        return view('Admin.Payments.order-payment',['payments' =>$payments]);
+    }
+
     public function payFee($memberId)
     {
         $amount = env('PENDANT_PRICE');

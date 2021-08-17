@@ -54,14 +54,21 @@ Route::prefix('admin')->group(function () {
 	Route::get('/change-password', 'AdminController@changePassGet');
 	Route::post('/update/password', 'AdminController@changePass');
 
-	Route::get('/payments','OrderPaymentController@index');
-	Route::get('/payment/{status}/list','OrderPaymentController@paymentWithStatus');
+	Route::get('/payments','MemberPaymentController@paytmShowPayments');
+	Route::get('/payment/{status}/list','MemberPaymentController@paytmWithStatus');
 
 	// user account 
 	Route::get('/users','AdminController@index');
 	Route::get('/user/{status}','AdminController@userWithStatus');
 	Route::get('/user/suspend-user/{id}','AdminController@enableDisableUser');
 	Route::get('/user/verified/{id}','AdminController@verifyUser');
+
+	// joiner
+	Route::get('/joiner/list','JoinerController@index');
+
+	//members
+	Route::get('/member/list','MemberController@index');
+	Route::get('/member/{status}/list','MemberController@memberWithStatus');
 });
 Route::any('/user/search','AdminController@SearchData');
 

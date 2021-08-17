@@ -11,6 +11,7 @@ use App\User;
 use Carbon\Carbon;
 use Redirect;
 use Toastr;
+use App\BanerSlide;
 
 class LoginController extends Controller
 {
@@ -32,8 +33,16 @@ class LoginController extends Controller
         if(!Auth::user()->is_activated) {
             $user = User::find(Auth::id());
             Auth::logout();
+            $banner = BanerSlide::where('page_name','=','verify-acount')->first(); //dd($banner);
+            if (isset($banner)) {
+                $title = $banner->title;
+                $description = $banner->description;
+            }else{
+                $title = '';
+                $description = '';
+            }
             Toastr::error('Your account is inactive, pls verify your mobile number', 'Error', ["positionClass" => "toast-top-right"]);
-            return view('auth.verify',compact('user'));
+            return view('auth.verify',compact('banner','user'));
         }
         if(auth()->user()->role == 'admin')
         {

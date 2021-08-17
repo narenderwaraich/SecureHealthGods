@@ -57,6 +57,11 @@ hr.under-line {
     margin: 20px 5px 36px;
     width: 100px;
 }
+iframe {
+    height: 280px;
+     border: none !important;
+}
+
 /*hr.under-line {
     margin: 20px auto 35px;
 }*/
@@ -735,6 +740,7 @@ button.btn.btn-success.get-answer {
     border: 2px solid #fefefe;
     padding: 30px;
     border-radius: 10px;
+    margin: 0 10px;
 }
 .form-input {
     border: none !important;
