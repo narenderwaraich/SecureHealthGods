@@ -7,7 +7,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <!-- <link rel="apple-touch-icon" href="apple-icon.png"> -->
-      <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+      <link rel="shortcut icon" href="{{config('app.file_path')}}/favicon.ico" type="image/x-icon">
       <link rel="stylesheet" href="{{config('app.file_path')}}/css/normalize.css">
       <link rel="stylesheet" href="{{config('app.file_path')}}/bootstrap/css/bootstrap.min.css">
       <link rel="stylesheet" href="{{config('app.file_path')}}/bootstrap/css/bootstrap-toggle.min.css">
