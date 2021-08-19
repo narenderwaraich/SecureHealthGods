@@ -17,6 +17,15 @@
     <link rel="stylesheet" href="{{config('app.file_path')}}/css/custom.css">
     <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/css/responsive.css">
     <script type="text/javascript" src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KP6XGZKLW7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-KP6XGZKLW7');
+    </script>
 </head>
 <body>
 
