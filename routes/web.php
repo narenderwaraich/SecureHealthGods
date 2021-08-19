@@ -137,3 +137,8 @@ Route::post('/member-status/{id}','MemberController@memberIdTake');
 // payment
 Route::get('/member-payment/{id}','MemberPaymentController@payFee');
 Route::post('/member-payment-call-back', 'PaymentController@paytmCallback');
+
+Route::get('/sitemap',function(){
+    return response()->view('sitemap')
+      ->header('Content-Type', 'xml');
+});
