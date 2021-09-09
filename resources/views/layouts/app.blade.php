@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/fonts/themify/themify-icons.css">
     <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/css-hamburgers/hamburgers.css">
-    <link rel="stylesheet" href="/css/toastr.min.css">
+    <link rel="stylesheet" href="{{config('app.file_path')}}/css/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/css/design.css">
     <link rel="stylesheet" href="{{config('app.file_path')}}/css/custom.css">
     <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/css/responsive.css">
