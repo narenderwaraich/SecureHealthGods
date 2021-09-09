@@ -60,6 +60,7 @@ return [
     'web_contact_number' => env('COMPANY_MOBILE', null),
     'file_path' => env('STORAGE_PATH', null),
     'product_price' => env('PENDANT_PRICE', null),
+    'file_path' => env('STORAGE_PATH', null),
 
     /*
     |--------------------------------------------------------------------------

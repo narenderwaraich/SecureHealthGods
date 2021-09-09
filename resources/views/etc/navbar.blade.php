@@ -37,7 +37,7 @@
                 <div class="header-wrapicon1 dis-block user-icon">
                     @if(Auth::check())
                     @if(Auth::user()->avatar)
-                    <img src="{{asset('/public/images/user/'.Auth::user()->avatar)}}" class="navbar-user-profile-img nav-user-icon" alt="{{Auth::user()->name}}"> 
+                    <img src="{{config('app.file_path')}}/images/user/{{Auth::user()->avatar}}" class="navbar-user-profile-img nav-user-icon" alt="{{Auth::user()->name}}"> 
                     @else
                     <i class="fa fa-user-circle header-icon1 nav-user-icon" aria-hidden="true"></i>
                     @endif

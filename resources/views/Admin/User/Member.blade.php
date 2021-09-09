@@ -75,7 +75,7 @@
                                         <td>{{ $memberData->id }}</td>
                                         <td>{{ $memberData->name }}</td>
                                         <td>{{ $memberData->email }}</td>
-                                        <td>{{ $memberData->phone_no }}</td>
+                                        <td>{{ $memberData->phone }}</td>
                                         <td>{{ $memberData->member_code }}</td>
                                         <td>{{ $memberData->refer_code }}</td>
                                         <td>{{ $memberData->down_member }}</td>
