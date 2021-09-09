@@ -36,7 +36,7 @@
             <!-- item blog -->
             <div class="item-blog p-b-20">
               <a href="#" class="item-blog-img pos-relative dis-block hov-img-zoom">
-                <img src="{{config('app.file_path')}}/images/gellery/{{$item->image}}" alt="{{ $item->title }}">
+                <img src="{{config('app.file_path')}}/images/gallery/{{$item->image}}" alt="{{ $item->title }}">
 
                 <span class="item-blog-date dis-block flex-c-m pos1 size17 bg4 s-text1">
                   {{ date('d/m/Y', strtotime($item->created_at)) }}<!-- 28 Dec, 2018 -->

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{{ config('app.name') }} @if(isset($title)) {{$title}} @endif</title>
+    <title>{{config('app.name')}} @if(isset($title)){{$title}}@endif</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="@if(isset($description)) {{$description}} @endif">
@@ -35,8 +35,6 @@
 
 @yield('content')
 
-
-<!-- commn code all page -->
 
 @include('etc.footer')
     <script type="text/javascript" src="{{config('app.file_path')}}/bootstrap/js/popper.js"></script>
