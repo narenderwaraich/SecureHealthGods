@@ -23,9 +23,21 @@
                             </h3>
                         </div>
                         <div class="box-body">
+
+                            
+                            <input type="hidden" name="live_image" class="image-tag">
+
+                            <div id="my_camera" style="display:none;"></div>
+                            <div id="results" class="image-capture" style="display:none;">Your captured image will appear here...</div>
+
                             <img src="{{config('app.file_path')}}/images/icon/admin.jpg" id="showUpLog" class="avatar profile-img-tag">
                             <button type="button" class="btn btn-dark btn-sm" id="selectImage"><i class="fa fa-camera img-change-btn-icon"></i>  Upload Logo</button>
+                            <button type="button" class="btn btn-dark btn-sm" id="openCemrea" onClick="takeLiveImg()"><i class="fa fa-video-camera" aria-hidden="true"></i> Click Image</button>
+                            <button type="button" class="btn btn-success btn-sm" onClick="take_snapshot()" id="click_img_btn" style="display:none;"><i class="fa fa-camera" aria-hidden="true"></i> Take Snapshot 
+                            </button>
+
                             <input type="file" name="logo" id="getFile" accept="image/*" class="form-control input-border" style="display: none;">
+                            <br>
                             <div class="row">
                         <div class="col-md-6">
                           <div class="form-group">
@@ -36,7 +48,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>Pendant No.<span style="color: #dc3545;">*</span></label>
-                            <input type="text" value="{{old('pendant_no')}}" name="pendant_no" placeholder="SEC078348" class="form-control" required>
+                            <input type="text" value="{{old('pendant_no')}}" name="pendant_no" placeholder="SEC078348" class="form-control">
                           </div>
                         </div>
                       </div>
@@ -99,7 +111,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>Adhar Card No. <span style="color: #dc3545;">*</span></label>
-                            <input name="adhar_card_number" id="adhar_number" type="tel" value="{{ old('adhar_card_number') }}" placeholder="1111-2222-3333" class="form-control" type="tel" maxlength="14" minlength="14" onkeyup="ccNumber()" required>
+                            <input name="adhar_card_number" id="adhar_number" type="tel" value="{{ old('adhar_card_number') }}" placeholder="1111-2222-3333" class="form-control" type="tel" maxlength="14" minlength="14" onkeyup="ccNumber()">
                           </div>
                         </div>
                         <div class="col-md-6">
@@ -133,7 +145,7 @@
                             <select name="city" id="city" class="form-control" required>
                               <option value="">Select City</option>
                               @foreach($city_data as $city)
-                                <option value="{{$city->name}}" {{ (old('city') == $city->name ? "selected":"") }}>{{$state->name}}</option>
+                                <option value="{{$city->name}}" {{ (old('city') == $city->name ? "selected":"") }}>{{$city->name}}</option>
                               @endforeach
                             </select>
                             
@@ -142,7 +154,7 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label>Postal Code <span style="color: #dc3545;">*</span></label>
-                            <input type="number" name="zipcode" value="{{old('zipcode')}}" placeholder="Postal Code" class="form-control" required>
+                            <input type="number" name="zipcode" value="{{old('zipcode')}}" placeholder="Postal Code" class="form-control">
                           </div>
                         </div>
                       </div>
@@ -173,13 +185,52 @@
     display: block;
     margin: auto;
 }
-#selectImage{
-    margin: 25px auto;
+#selectImage, #openCemrea, #click_img_btn{
+    margin: 20px auto 10px auto;
     text-align: center;
     display: block;
 }
+#my_camera{
+    margin: auto;
+}
+.image-capture{
+    margin: auto;
+    display: block;
+    text-align: center;
+}
 </style>
 <script src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+<script language="JavaScript">
+    Webcam.set({
+        width: 450,
+        height: 350,
+        image_format: 'jpeg',
+        jpeg_quality: 90,
+        flip_horiz: true,
+        constraints: {
+            video: true,
+            facingMode: "environment"
+        }
+    });
+  
+  function takeLiveImg(){
+    $('#showUpLog').hide();
+    $('#selectImage').hide();
+    $('#my_camera').show();
+    $('#click_img_btn').show();
+    Webcam.attach('#my_camera');
+  }
+    
+function take_snapshot() {
+    Webcam.snap( function(data_uri) {
+        $(".image-tag").val(data_uri);
+        document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
+    } );
+    $('#my_camera').hide();
+    $('#results').show();
+}
+</script>
 <script>
 
     $(document).ready(function(){

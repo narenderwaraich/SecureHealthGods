@@ -142,6 +142,20 @@ class AdminController extends Controller
       }
     }
 
+    public function deleteUser($id){
+          if(Auth::check()){
+            if(Auth::user()->role == "admin"){
+                $user = User::find($id);
+                $user->delete();
+                Toastr::success('User Deleted', 'Success', ["positionClass" => "toast-bottom-right"]);
+                $url = '/admin/users';
+                return redirect()->to($url);
+            }
+          }else{
+            return redirect()->to('/login');
+          }
+    }
+
     //// Page Setup All function
 
     public function pageIndex()
@@ -310,6 +324,21 @@ class AdminController extends Controller
             $data['member_code'] = $newMemberNum;
             $data['is_activated'] = 1;
 
+            if($request->live_image){
+                $img = $request->live_image;
+                $folderPath = public_path("/images/user-logo/");
+                $image_parts = explode(";base64,", $img); 
+                //$image_type_aux = explode("image/", $image_parts[0]);
+                //$image_type = $image_type_aux[1]; //dd($image_type);
+              
+                $image_base64 = base64_decode($image_parts[1]);
+                $fileName = uniqid() . '.png';
+                $data['logo'] = $fileName; 
+              
+                $file = $folderPath . $fileName;
+                file_put_contents($file, $image_base64);
+            }
+
             if($request->logo){
                 $image = $request->file('logo'); //dd($image);
                 $data['logo'] = time().'.'.$image->getClientOriginalExtension();
@@ -360,6 +389,32 @@ class AdminController extends Controller
             $member = Member::find($id);
 
             $data = request(['pendant_no','name','email','phone','gender','date_of_birth','adhar_card_number','country','state','city','zipcode','address']);
+
+            if($request->live_image){
+                // remove image from directory file path
+                $member_image_path = public_path('/images/user-logo/'.$member->logo);
+                if(File::exists($member_image_path)) {
+                    File::delete($member_image_path);
+                }
+                /// oriznal image remove
+                $oriznal_image_path = public_path('/images/oriznal/'.$member->logo);
+                if(File::exists($oriznal_image_path)) {
+                    File::delete($oriznal_image_path);
+                }
+
+                $img = $request->live_image;
+                $folderPath = public_path("/images/user-logo/");
+                $image_parts = explode(";base64,", $img); 
+                //$image_type_aux = explode("image/", $image_parts[0]);
+                //$image_type = $image_type_aux[1]; //dd($image_type);
+              
+                $image_base64 = base64_decode($image_parts[1]);
+                $fileName = uniqid() . '.png';
+                $data['logo'] = $fileName; 
+              
+                $file = $folderPath . $fileName;
+                file_put_contents($file, $image_base64);
+            }
 
 
             if($request->logo){
