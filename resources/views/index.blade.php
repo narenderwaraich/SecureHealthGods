@@ -63,6 +63,32 @@
         </div>
     </div>
  </section>
+
+ @if($members->count())
+      <section class="m-t-70 members-section container bgwhite">
+        <div class="">
+          <h2 class="fs-50 title-main-heading">Our New Members</h2>
+          <hr class="under-line">
+          <div class="carousel-default owl-carousel carousel-wide-arrows">
+            @foreach($members as $member)
+            <div class="item">
+              <div class="col-sm-12 col-md-12 col-lg-12 center text-center">
+                @if($member->avatar)
+                <img class="image-testimonial-small" src="{{config('app.file_path')}}/images/user-logo/{{$member->avatar}}" alt="">
+                @else
+                <img class="image-testimonial-small" src="{{config('app.file_path')}}/images/icon/admin.jpg" alt="">
+                @endif
+                <p class="member-desc margin-bottom fs-20">{{$member->address}}<br>{{$member->city}} ({{$member->state}})</p>
+                <p class="member-postion fs-16 main-color">{{$member->name}}</p>
+              </div>
+            </div>
+            @endforeach
+          </div>
+        </div>
+      </section>
+@endif
+
+
 @if($gellery->count())
   <section class="section-top container">
     <h2 class="fs-50 title-main-heading">Our Gallery</h2>
@@ -129,4 +155,78 @@
   </section>
 @endif
 
+<script>
+  jQuery(document).ready(function($) {      
+  // Owl Carousel                     
+  var owl = $('.carousel-default');
+  owl.owlCarousel({
+    nav: true,
+    dots: true,
+    items: 1,
+    loop: true,
+    navText: ["",""],
+    autoplay: true,
+    autoplayTimeout: 4000
+  });
+
+  // Owl Carousel content section  
+  var owl = $('.carousel-blocks');
+  owl.owlCarousel({
+    nav: true,
+    dots: false,
+    items: 4,
+    responsive: {
+      0: {
+        items: 1
+      },
+      481: {
+        items: 3
+      },
+      769: {
+        items: 4
+      }
+    },
+    loop: true,
+    navText: ["",""],
+    autoplay: true,
+    autoplayTimeout: 5000
+  });
+  
+  // Owl Carousel content section
+  var owl = $('.carousel-3-blocks');
+  owl.owlCarousel({
+    nav: true,
+    dots: true,
+    items: 3,
+    responsive: {
+      0: {
+        items: 1
+      },
+      481: {
+        items: 3
+      },
+      769: {
+        items: 4
+      }
+    },
+    loop: true,
+    navText: ["",""],
+    autoplay: true,
+    autoplayTimeout: 5000
+  });  
+  
+  var owl = $('.carousel-fade-transition');
+  owl.owlCarousel({
+    nav: true,
+    dots: true,
+    items: 1,
+    loop: true,
+    navText: ["",""],
+    autoplay: true,
+    animateOut: 'fadeOut',
+    autoplayTimeout: 4000
+  }); 
+
+});
+</script>
 @endsection

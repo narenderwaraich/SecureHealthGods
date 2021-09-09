@@ -505,7 +505,7 @@ button.btn.btn-success.get-answer {
     border-radius: 100%;
     text-align: center;
     text-transform: uppercase;
-    border: 2px solid #ce2350;
+    border: 2px solid #1CB5E0;
     display: block;
     margin-bottom: 30px;
      -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
@@ -517,29 +517,29 @@ button.btn.btn-success.get-answer {
       width: 90%;
     margin-left: auto;
     margin-right: auto;
-  border-bottom: 1px solid #ce2350 !important;
+  border-bottom: 1px solid #1CB5E0 !important;
   border-radius: 0px !important;
 }
 /*end*/
 /*user Profile Css */
 .user-pro-section h1 {
-    color: #ce2350;
+    color: #1CB5E0;
     font-weight: 700;
 }
 .nav-link {
     color: #D19600;
 }
 .nav-tabs .nav-link.active {
-    color: #ce2350;
+    color: #1CB5E0;
     background-color: #fff;
-    border-color: #ce2350 #ce2350 #fff;
+    border-color: #1CB5E0 #1CB5E0 #fff;
     font-weight: 700;
 }
 .user-pro-section .nav-tabs {
-    border-bottom: 1px solid #ce2350;
+    border-bottom: 1px solid #1CB5E0;
 }
 .user-pro-section hr {
-    border-top: 1px solid #ce2350;
+    border-top: 1px solid #1CB5E0;
 }
 .user-pro-section h4 {
     color: #D19600;
@@ -548,13 +548,13 @@ button.btn.btn-success.get-answer {
     color: #D19600;
 }
 .user-pro-section .card {
-    border: 1px solid #ce2350;
+    border: 1px solid #1CB5E0;
 }
 .user-pro-section .text-muted {
     color: #D19600 !important;
 }
 .user-pro-section .list-group-item {
-    border: 1px solid #ce2350;
+    border: 1px solid #1CB5E0;
 }
 .user-pro-section .form-group {
     margin-bottom: 0px;
@@ -761,11 +761,11 @@ button.btn.btn-success.get-answer {
 .or-seperator {
     margin: 20px 0 10px;
     text-align: center;
-    border-top: 2px solid #ce2350;
+    border-top: 2px solid #1CB5E0;
 }
 .or-seperator i {
     padding: 0 10px;
-    background: #ce2350;
+    background: #1CB5E0;
     color: #fff;
     position: relative;
     top: -11px;
@@ -809,4 +809,100 @@ button.btn.btn-success.get-answer {
 .joining-text span{
     font-size: 25px;
     color: #FFFFFF;
+}
+
+/*members section*/
+.owl-item .image-testimonial-small {
+    margin: 0 auto 20px;
+    width: 200px !important;
+    height: 200px;
+    border-radius: 100%;
+}
+.margin-bottom {
+    margin-bottom: 1.25rem;
+}
+.owl-carousel .owl-nav div {
+    filter: Alpha(Opacity=50);
+    opacity: 0.5;
+    transition: all 0.20s linear 0s;
+    -o-transition: all 0.20s linear 0s;
+    -ms-transition: all 0.20s linear 0s;
+    -moz-transition: all 0.20s linear 0s;
+    -webkit-transition: all 0.20s linear 0s;
+}
+.owl-carousel .owl-nav div {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    color: #1CB5E0!important;
+    border: 1px solid #1CB5E0;
+    border-radius: 0;
+    font-family: sli;
+    height: 40px;
+    line-height: 40px;
+    margin-top: -20px;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 40px;
+}
+.owl-carousel .owl-nav div {
+    border: 0 none;
+    color: #1CB5E0 !important;
+    font-family: sli;
+    font-size: 30px;
+    height: auto;
+    line-height: 0;
+    width: auto;
+}
+.carousel-wide-arrows.owl-carousel .owl-nav .owl-prev {
+    left: -60px;
+}
+.owl-dots {
+    margin-top: 0.625rem;
+}
+.owl-carousel .owl-dots {
+    text-align: center;
+}
+.owl-carousel .owl-dot {
+    display: inline-block;
+}
+.owl-carousel .owl-dot span {
+    background: #1CB5E0 none repeat scroll 0 0;
+    border-radius: 0;
+    display: block;
+    height: 1px;
+    margin: 0 1px;
+    width: 30px;
+    opacity: 0.5;
+    transition: all 0.20s linear 0s;
+    -o-transition: all 0.20s linear 0s;
+    -ms-transition: all 0.20s linear 0s;
+    -moz-transition: all 0.20s linear 0s;
+    -webkit-transition: all 0.20s linear 0s;
+}
+.owl-carousel .owl-dot span {
+    height: 10px;
+    margin: 0 5px;
+    width: 10px;
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.owl-carousel .owl-dot.active span {
+    opacity: 1;
+}
+
+.main-color {
+    color: #1CB5E0;
+}
+.members-section{
+
+}
+.member-desc{
+    color: #546E7A;
+    text-transform: capitalize;
+    font-weight: 700;
+}
+.member-postion{
+    font-weight: 600;
 }

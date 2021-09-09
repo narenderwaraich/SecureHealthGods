@@ -15,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/css-hamburgers/hamburgers.css">
     <link rel="stylesheet" href="{{config('app.file_path')}}/css/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/css/design.css">
+    <link rel="stylesheet" href="{{config('app.file_path')}}/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="{{config('app.file_path')}}/owl-carousel/owl.theme.css">
     <link rel="stylesheet" href="{{config('app.file_path')}}/css/custom.css">
     <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/css/responsive.css">
     <script type="text/javascript" src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
@@ -40,7 +42,7 @@
     <script type="text/javascript" src="{{config('app.file_path')}}/bootstrap/js/popper.js"></script>
     <script type="text/javascript" src="{{config('app.file_path')}}/bootstrap/js/bootstrap.min.js"></script>
     <script src="{{config('app.file_path')}}/js/toastr.min.js"></script>
-
+    <script src="{{config('app.file_path')}}/owl-carousel/owl.carousel.js"></script>
     {!! Toastr::message() !!}
 </body>
 </html>

@@ -11,6 +11,7 @@ use App\UserProfile;
 use App\BanerSlide;
 use App\Youtube;
 use App\Gellery;
+use App\Member;
 
 class HomeController extends Controller
 {
@@ -36,9 +37,10 @@ class HomeController extends Controller
             $title = '';
             $description = '';
         }
-        $videos = Youtube::latest()->paginate(6);
-        $gellery = Gellery::orderBy('created_at','desc')->paginate(5);
-        return view('index',compact('title','description','bannerSlide','videos','gellery'));
+        $videos = Youtube::latest()->take(6)->get();
+        $gellery = Gellery::orderBy('created_at','desc')->take(6)->get();
+        $members = Member::where('is_activated',1)->orderBy('created_at','desc')->take(10)->get();
+        return view('index',compact('title','description','bannerSlide','videos','gellery','members'));
     }
 
     public function productPage(){
