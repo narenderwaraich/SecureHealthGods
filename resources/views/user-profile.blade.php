@@ -53,8 +53,8 @@
                 </div>
             </hr><br>
             <ul class="list-group">
-              <li class="list-group-item text-muted">Orders <i class="fa fa-dashboard fa-1x"></i></li>
-              <li class="list-group-item text-right"><span class="pull-left"><strong>Order</strong></span>{{$orders ? $orders : 0}}</li>
+              <li class="list-group-item text-muted">Members <i class="fa fa-users fa-1x"></i></li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong>Down Member</strong></span>{{$members ? $members : 0}}</li>
             </ul> 
             </div><!--/col-md-3-->
 
@@ -107,8 +107,24 @@
                                           <input type="tel" class="form-control input-style here" minlength="10" maxlength="10" name="phone" id="mobile" placeholder="New Mobile number" title="enter new mobile number if any.">
                                         </div>
                                       </div>
+                                      <div class="form-group row">
+                                        <label for="gender" class="col-md-3 col-form-label">Gender</label>
+                                        <div class="col-md-9">
+                                          <select name="gender" id="gender" class="form-control input-style here">
+                                              <option value="">-- Select Gender--</option>    
+                                              <option value="male" @if(isset($userProfile)){{'male' == $userProfile->gender  ? 'selected' : ''}}@endif>Male</option>
+                                              <option value="female" @if(isset($userProfile)){{'female' == $userProfile->gender  ? 'selected' : ''}}@endif>Female</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label for="db" class="col-md-3 col-form-label">Date of Birth</label>
+                                        <div class="col-md-9">
+                                          <input type="date" class="form-control input-style here" name="date_of_birth" id="db" placeholder="Date of Birth" value="@if(isset($userProfile)){{$userProfile->date_of_birth}}@endif">
+                                        </div>
+                                      </div>
 
-                                      <div class="form-group row" style="margin-top: -20px;margin-bottom: 20px;">
+                                      <div class="form-group row" style="margin-bottom: 20px;">
                                         <div class="col-12">
                                           <button type="submit" class="btn btn-style">Update</button>
                                         </div>

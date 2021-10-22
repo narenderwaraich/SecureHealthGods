@@ -31,6 +31,10 @@ class MemberController extends Controller
         if(Auth::check()){
         if(Auth::user()->role == "admin"){
             $member = Member::where('is_activated',1)->orderBy('created_at','desc')->paginate(10);
+            foreach ($member as $memberData) {
+                $downMember = Member::where('refer_code',$memberData->member_code)->get()->count();
+                $memberData->down_member = $downMember;
+            }
             return view('Admin.User.Member',['member' =>$member]);
           }
         }else{

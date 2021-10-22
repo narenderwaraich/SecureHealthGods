@@ -77,7 +77,7 @@
                                         <!-- <td>{{ $userData->google_id }}</td> -->
                                         <td>
                                           @if($userData->avatar)
-                                          <img src="{{asset('/images/user/'.$userData->avatar)}}" style="width: 100px;height: 100px;border-radius: 100%;border:2px solid #dc3545;">
+                                          <img src="{{asset('/images/user-logo/'.$userData->avatar)}}" style="width: 100px;height: 100px;border-radius: 100%;border:2px solid #dc3545;">
                                           @endif
                                         </td>
                                         <td>@if($userData->is_activated == 1)

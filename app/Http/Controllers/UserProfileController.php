@@ -14,7 +14,7 @@ use Hash;
 use App\User;
 use Image;
 use Illuminate\Support\Facades\File;
-use App\DeliveryOrder;
+use App\Member;
 
 class UserProfileController extends Controller
 {
@@ -31,8 +31,8 @@ class UserProfileController extends Controller
             $country_data =DB::table('countries')->select('id','name')->get();
             $state_data = DB::table("states")->select('id','name')->get();
             $city_data = DB::table("cities")->select('id','name')->get();
-            $orders = DeliveryOrder::where('user_id',$userId)->get()->count();
-            return view('user-profile',compact('userProfile','country_data','state_data','city_data','orders'));
+            $members = Member::where('user_id',$userId)->get()->count();
+            return view('user-profile',compact('userProfile','country_data','state_data','city_data','members'));
         }else{
             Toastr::error('Please login first', 'Error', ["positionClass" => "toast-bottom-right"]);
             return redirect()->to('/login');

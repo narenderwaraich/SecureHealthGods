@@ -132,7 +132,7 @@
                                       </div>
                                     </div>
 
- <script type="text/javascript" src="/public/jquery/jquery-3.2.1.min.js"></script>
+ <script type="text/javascript" src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
 <script>
 
   jQuery(document).ready(function($) {

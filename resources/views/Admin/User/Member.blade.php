@@ -71,7 +71,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($member as $memberData)
-                                    <tr class="clickable-row" data-href='/member/with-member/{{$memberData->id}}' style="cursor: pointer;">
+                                    <tr class="clickable-row" data-href='/admin/member/edit/{{$memberData->id}}' style="cursor: pointer;">
                                         <td>{{ $memberData->id }}</td>
                                         <td>{{ $memberData->name }}</td>
                                         <td>{{ $memberData->email }}</td>
@@ -141,7 +141,7 @@
                                       </div>
                                     </div>
 
- <script type="text/javascript" src="/public/jquery/jquery-3.2.1.min.js"></script>
+ <script type="text/javascript" src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
 <script>
 
   jQuery(document).ready(function($) {

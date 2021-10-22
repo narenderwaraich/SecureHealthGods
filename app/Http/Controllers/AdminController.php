@@ -17,6 +17,7 @@ use App\Page;
 use App\BanerSlide;
 use Image;
 use App\Member;
+use App\UserProfile;
 
 class AdminController extends Controller
 {
@@ -47,6 +48,11 @@ class AdminController extends Controller
       if(Auth::check()){
         if(Auth::user()->role == "admin"){
             $user = User::where('is_activated',1)->orderBy('created_at','desc')->paginate(10);
+            foreach ($user as $userData) {
+                $userProfie = UserProfile::where('user_id',$userData->id)->first();
+                $userData->gender = $userProfie ? $userProfie->gender : '';
+                $userData->avatar = $userProfie ? $userProfie->logo : '';
+            }
             return view('Admin.User.User-Show',['user' =>$user]);
           }
         }else{
@@ -359,10 +365,22 @@ class AdminController extends Controller
             $userData['password'] = Hash::make($request->pendant_no);
             $userData['is_activated'] = 1;
 
+            $userProfileData['phone_no'] = $request->phone;
+            $userProfileData['gender'] = $request->gender;
+            $userProfileData['date_of_birth'] = $request->date_of_birth;
+            $userProfileData['address'] = $request->address;
+            $userProfileData['country'] = $request->country;
+            $userProfileData['state'] = $request->state;
+            $userProfileData['city'] = $request->city;
+            $userProfileData['zipcode'] = $request->zipcode;
+
             $user = User::create($userData);
             if($user){
                 $data['user_id'] = $user->id;
                 $member = Member::create($data);
+                $userProfileData['user_id'] = $user->id;
+                $userProfileData['logo'] = $member->logo;
+                UserProfile::create($userProfileData);
             }
         Toastr::success('Member Added', 'Success', ["positionClass" => "toast-bottom-right"]);
         $url = '/admin/member/list';
