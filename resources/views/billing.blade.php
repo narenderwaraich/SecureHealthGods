@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>@if(isset($title)){{$title}}@endif | {{config('app.name')}}</title>
+    <title>{{config('app.name')}} @if(isset($title)){{$title}}@endif</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="@if(isset($description)) {{$description}} @endif">
@@ -30,16 +30,27 @@
       gtag('config', 'G-KP6XGZKLW7');
     </script>
 </head>
-<body>
+<body style="background: #000;">
 
 
-@include('etc.navbar')
+<div class="container">
+	<div class="row justify-content-center m-t-50">
+		<div class="col-md-12">
+			<div class="card m-t-100">
+				<div class="card-header">
+					<h3>Payment</h3>
+				</div>
+				<div class="card-body">
+					<p>Your bill amount Rs. 2187 is pending now pay your pending billing payment. click on button and pay your bill</p>
+					<br><br>
+					<a href="/pay-billing"><button type="button" class="btn btn-dark btn-lg">Pay Now</button></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-@yield('content')
-
-
-@include('etc.footer')
-    <script type="text/javascript" src="{{config('app.file_path')}}/bootstrap/js/popper.js"></script>
+<script type="text/javascript" src="{{config('app.file_path')}}/bootstrap/js/popper.js"></script>
     <script type="text/javascript" src="{{config('app.file_path')}}/bootstrap/js/bootstrap.min.js"></script>
     <script src="{{config('app.file_path')}}/js/toastr.min.js"></script>
     <script src="{{config('app.file_path')}}/owl-carousel/owl.carousel.js"></script>
