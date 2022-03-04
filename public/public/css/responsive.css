@@ -1,0 +1,77 @@
+@media (max-width: 767px){
+    .banner,
+    .banner img{
+    height: auto;
+    }
+    .parallax-container{
+        height: auto !important;
+        min-height: auto !important;
+    }
+    .banner .caption {
+        top: 50%;
+    }
+    .banner .caption h1 {
+        font-size: 22px;
+    }
+    .banner .caption h1 span{
+        font-size: 13px;
+    }
+    .btn-style {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    .card-warp {
+        padding: 50px 20px;
+    }
+    .footer-logo {
+        width: 200px;
+    }
+    .on-mob-table-btn{
+        margin-top: 10px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    button.btn.btn-danger.on-mob-table-btn {
+        margin-top: 10px;
+        margin-left: auto;
+        text-align: center;
+        display: block;
+        margin-right: auto;
+    }
+    .on-mob-top-30{
+        margin-top: 30px;
+    }
+    ul.navbar-nav.mr-auto {
+        margin-left: 0px;
+    }
+    .question-box {
+        overflow: scroll;
+    }
+    .text-question-page .question-box {
+        min-height: 180px;
+    }
+    .answer-options-section {
+        padding: 0px;
+    }
+    .windows-firm-Box {
+        margin-top: 100px;
+        width: auto;
+    }
+    .sidebar-box {
+        padding: 20px 20px 35px 20px;
+        margin-top: 30px;
+    }
+    h1.heading-txt {
+        font-size: 24px;
+    }
+    .header-icons {
+        right: 75px;
+        top: 40px;
+    }
+    .nav-user-icon {
+        font-size: 30px !important;
+    }
+    .user_menu {
+        top: 40px;
+    }
+}

@@ -12,13 +12,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "arcanedev/log-viewer": "~4.7.0",
         "brian2694/laravel-toastr": "^5.5",
-        "doctrine/dbal": "^2.5",
-        "intervention/image": "^2.5",
-        "laravel/socialite": "^4.1",
-        "laravelcollective/html": "^5.8",
-        "spatie/laravel-medialibrary": "^7.0.0"
+        "laravelcollective/html": "^5.2.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

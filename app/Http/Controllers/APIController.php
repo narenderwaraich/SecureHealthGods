@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use DB;
+
 class APIController extends Controller
 {
-    
     public function getStateList(Request $request)
     {   
         $countryName = $request->country_id;
@@ -19,7 +19,7 @@ class APIController extends Controller
     }
     public function getCityList(Request $request)
     {
-        $stateName =$request->state_id;
+        $stateName = $request->city_id;
         $id = DB::table("states")->where("name",$stateName)->pluck("id");
         $cities = DB::table("cities")
                     ->where("state_id",$id)

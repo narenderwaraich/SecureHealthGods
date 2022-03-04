@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.master')
 @section('content')
 
   <section class="content-wrapper" style="min-height: 960px;">
@@ -27,13 +27,14 @@
                                 @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="title">Author</label>
-                                    <input type="text" class="form-control{{ $errors->has('auth') ? ' is-invalid' : '' }}" name="auth" placeholder="Enter Author" v-model="video.auth" value="{{ old('auth') }}">
-                                @if ($errors->has('auth'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('auth') }}</strong>
-                                </span>
-                                @endif
+                                    <label for="title">Type</label>
+                                    <select class="form-control"  name="type" value="{{ old('type') }}">
+                                        <option value="">--Select Type--</option>
+                                        <option value="html">Html</option>
+                                        <option value="php">Php</option>
+                                        <option value="laravel">Laravel</option>
+                                        <option value="wordpress">Wordpress</option>
+                                      </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="title">Video Id</label>

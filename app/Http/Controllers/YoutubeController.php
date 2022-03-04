@@ -22,7 +22,7 @@ class YoutubeController extends Controller
     public function index()
     {
         if(Auth::check()){
-            if(Auth::user()->role == "administrator" || Auth::user()->role == "admin"){
+            if(Auth::user()->role == "admin"){
                 $videos = Youtube::orderBy('created_at','desc')->paginate(10);
               return view('Admin.Videos.Show',['videos' =>$videos]);
             }
@@ -37,12 +37,10 @@ class YoutubeController extends Controller
         if (isset($banner)) {
             $title = $banner->title;
             $description = $banner->description;
-        }else{
-            $title = '';
-            $description = '';
         }
         $videos = Youtube::orderBy('created_at','desc')->paginate(10);
-        return view('videos',compact('title','description'),['banner' =>$banner, 'videos' =>$videos]);
+            return view('videos',compact('title','description'),['banner' =>$banner, 'videos' =>$videos]);
+        
     }
 
     public function getData()
@@ -59,8 +57,8 @@ class YoutubeController extends Controller
     public function create()
     {
         if(Auth::check()){
-            if(Auth::user()->role == "administrator" || Auth::user()->role == "admin"){
-                return view('Admin.Videos.Add');
+            if(Auth::user()->role == "admin"){
+                return view('Admin.Videos.Add',compact('getOrders','contacts'));
             }
         }else{
             return redirect()->to('/login');
@@ -100,7 +98,7 @@ class YoutubeController extends Controller
     public function edit($id)
     {
         if(Auth::check()){
-            if(Auth::user()->role == "administrator" || Auth::user()->role == "admin"){
+            if(Auth::user()->role == "admin"){
                 $video = Youtube::find($id);
                 return view('Admin.Videos.Edit',['video' =>$video]);
             }
@@ -135,7 +133,7 @@ class YoutubeController extends Controller
     public function destroy($id)
     {
         if(Auth::check()){
-            if(Auth::user()->role == "administrator" || Auth::user()->role == "admin"){
+            if(Auth::user()->role == "admin"){
                 $video = Youtube::find($id);
                 $video->delete();
                 Toastr::success('Video deleted', 'Success', ["positionClass" => "toast-bottom-right"]);

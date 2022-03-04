@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Youtube extends Model
 {
-    protected $fillable = ['title','url','auth'];
+    protected $fillable = ['title','url','type'];
 }

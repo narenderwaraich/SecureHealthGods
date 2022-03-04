@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.master')
 @section('content')
 
     <section class="content-wrapper" style="min-height: 960px;">

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.master')
 @section('content')
 
     <section class="content-wrapper" style="min-height: 960px;">
@@ -16,7 +16,7 @@
 
                         <div class="box-body">
                             <div class="btn-group">
-                                <a href="/page/create" class="btn btn-success btn-sm">
+                                <a href="/admin/page/add" class="btn btn-success btn-sm">
                                     <i class="fa fa-plus"></i> Add new
                                 </a>
                                 <button type="button" class="btn btn-default btn-sm" onClick="refreshPage()">
@@ -41,8 +41,8 @@
                                         <td>{{ $pageData->id }}</td>
                                         <td>{{ $pageData->text }}</td>
                                         <td>{{ $pageData->slug }}</td>
-                                        <td><a href="/page/edit/{{ $pageData->id }}" class="btn btn-secondary">Edit</a>
-                                        <a onclick="return removeAlert();" href="/page/delete/{{ $pageData->id }}" class="btn btn-danger on-mob-table-btn">Delete</a>
+                                        <td><a href="/admin/page/edit/{{ $pageData->id }}" class="btn btn-secondary">Edit</a>
+                                        <a onclick="return removeAlert();" href="/admin/page/delete/{{ $pageData->id }}" class="btn btn-danger on-mob-table-btn">Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach

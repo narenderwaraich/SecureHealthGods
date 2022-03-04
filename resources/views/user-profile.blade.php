@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-@if(isset($banner->image))
+@if(isset($banner))
 <div class="banner">
-  <img src="{{config('app.file_path')}}/images/banner/{{$banner->image}}" alt="{{$banner->heading}}"/>
+  <img src="{{asset('/public/images/banner/'.$banner->image)}}" alt="{{$banner->heading}}"/>
   <div class="slider-imge-overlay"></div>
   <div class="caption text-center">
     <div class="container">
@@ -22,11 +22,11 @@
   </div>
 </div>
 @else
-<div class="m-t-150"></div>
+<div class="m-t-70"></div>
 @endif
 
 <!-- Content -->
-<div class="container m-t-70 m-b-70">
+<div class="container m-t-100 m-b-70">
     <div class="user-pro-section">
          <div class="row">
             <div class="col-sm-12">
@@ -37,24 +37,32 @@
 
           <div class="row m-t-30">
             <div class="col-sm-3"><!--left col-->
-                <div class="text-center" style="position: relative;">
-                  <form method="POST" id="logoUpdateForm" enctype="multipart/form-data">
-                    {{ csrf_field() }}
-                    <input type="file" name="logo" value="{{$userProfile ? $userProfile->logo : ''}}" style="visibility: hidden;" id="getFile">
-                    @if(empty($userProfile->logo))
+                <div class="text-center">
+                    @if(empty(Auth::user()->avatar))
                     <img src="" class="dp-show newdp" id="profile-img-tag" alt="avatar" style="display: none;">
                     <div id="userImage"></div>
                     @else
-                    <img src="{{config('app.file_path')}}/images/user-logo/{{$userProfile->logo}}" alt="{{ Auth::user()->name }}" class="dp-show" id="profile-img-tag">
+                    <img src="{{asset('/public/images/user/'.Auth::user()->avatar)}}" alt="{{ Auth::user()->name }}" class="dp-show" id="profile-img-tag">
                     @endif
-                    <div id="loader_display" style="display: none;"></div>
                     <button type="button" class="btn img-upload btn-style" onclick="document.getElementById('getFile').click()">Upload</button>
-                  </form>
                 </div>
             </hr><br>
             <ul class="list-group">
-              <li class="list-group-item text-muted">Members <i class="fa fa-users fa-1x"></i></li>
-              <li class="list-group-item text-right"><span class="pull-left"><strong>Down Member</strong></span>{{$members ? $members : 0}}</li>
+              <li class="list-group-item text-muted">Earn Money <i class="fa fa-dashboard fa-1x"></i></li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong>Your earnings</strong></span>@if(isset($subscriber->total_amount)) <i class="fa fa-rupee" style="font-size:28px;color:red"></i>{{ $subscriber->total_amount }} @else 0 @endif
+              @if(isset($subscriber->total_amount))
+                @if($subscriber->total_amount !=100) 
+                <p>
+                  Paid monthly if the total is at least <i class="fa fa-rupee" style="font-size:28px;color:red"></i>100.00 (your payout threshold)</p>
+                @endif
+              @endif
+              </li>
+              @if(isset(Auth::user()->referral_link))
+              <li class="list-group-item text-muted">Referral Code {{ Auth::user()->referral_link }}</li>
+              <li class="list-group-item text-muted"><a href="/register?ref={{ Auth::user()->referral_link }}">Referral Link </a></li>
+              @else
+              <li class="list-group-item text-muted"><a href="/refer-link/{{ Auth::user()->email }}">Genrate Referral</a></li>
+              @endif
             </ul> 
             </div><!--/col-md-3-->
 
@@ -67,6 +75,11 @@
                   <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#address">Address</a>
                   </li>
+                   @if(isset($subscriber))
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#payment">Payment</a>
+                  </li>
+                  @endif
                   <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#password-tab">Password</a>
                   </li>
@@ -85,48 +98,56 @@
 
                                 <div class="row">
                                   <div class="col-md-12">
-                                    <form method="POST" id="userUpdateForm" class="profile-form">
-                                      {{ csrf_field() }}
+                                    <form method="POST" action="/user-profile-update/{{ auth()->user()->id }}"  enctype="multipart/form-data" class="profile-form">
+                                      @csrf
                                       <div class="form-group row">
                                         <label for="username" class="col-md-3 col-form-label">Name</label> 
                                         <div class="col-md-9">
-                                          <input id="username" name="name" placeholder="Name" class="form-control input-style here" value="{{ Auth::user()->name }}" required="required" type="text">
+                                          <input id="username" name="name" placeholder="Name" class="form-control input-style here {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ Auth::user()->name }}" required="required" type="text">
+                                          @if ($errors->has('name'))
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                          </span>
+                                          @endif
                                         </div>
                                       </div>
                                       <div class="form-group row">
                                         <label for="email" class="col-md-3 col-form-label">Email</label> 
                                         <div class="col-md-9">
-                                          <small id="new-email">{{ Auth::user()->email }}</small>
-                                          <input type="email" id="email" name="email" placeholder="Enter New Email" class="form-control input-style here">
+                                          <input id="email" name="email" placeholder="Email" class="form-control input-style here {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ Auth::user()->email }}" required="required" type="text">
+                                          @if ($errors->has('email'))
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                          </span>
+                                          @endif
                                         </div>
                                       </div>
                                       <div class="form-group row">
                                         <label for="mobile" class="col-md-3 col-form-label">Mobile</label>
                                         <div class="col-md-9">
-                                          <small id="new-mobile">{{ Auth::user()->phone }}</small>
-                                          <input type="tel" class="form-control input-style here" minlength="10" maxlength="10" name="phone" id="mobile" placeholder="New Mobile number" title="enter new mobile number if any.">
+                                          <input type="number" class="form-control input-style here {{ $errors->has('phone_no') ? ' is-invalid' : '' }}" name="phone_no" value="{{ Auth::user()->phone_no }}" id="mobile" placeholder="Enter Mobile Number" title="enter your mobile number if any.">
+                                          @if ($errors->has('phone_no'))
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('phone_no') }}</strong>
+                                          </span>
+                                          @endif
                                         </div>
                                       </div>
                                       <div class="form-group row">
-                                        <label for="gender" class="col-md-3 col-form-label">Gender</label>
+                                        <label for="select" class="col-md-3 col-form-label">Gender</label> 
                                         <div class="col-md-9">
-                                          <select name="gender" id="gender" class="form-control input-style here">
-                                              <option value="">-- Select Gender--</option>    
-                                              <option value="male" @if(isset($userProfile)){{'male' == $userProfile->gender  ? 'selected' : ''}}@endif>Male</option>
-                                              <option value="female" @if(isset($userProfile)){{'female' == $userProfile->gender  ? 'selected' : ''}}@endif>Female</option>
+                                          <select name="gender" id="select" required class=" input-style form-control ">
+                                            <option value="{{ Auth::user()->gender }}">-- Select Gender--</option>    
+                                            <option value="male" @if (Auth::user()->gender == "male") {{ 'selected' }} @endif>Male</option>
+                                            <option value="female" @if (Auth::user()->gender == "female") {{ 'selected' }} @endif>Female</option>
                                           </select>
                                         </div>
                                       </div>
-                                      <div class="form-group row">
-                                        <label for="db" class="col-md-3 col-form-label">Date of Birth</label>
-                                        <div class="col-md-9">
-                                          <input type="date" class="form-control input-style here" name="date_of_birth" id="db" placeholder="Date of Birth" value="@if(isset($userProfile)){{$userProfile->date_of_birth}}@endif">
-                                        </div>
-                                      </div>
 
-                                      <div class="form-group row" style="margin-bottom: 20px;">
+                                      <input type="file" name="avatar" value="{{Auth::user()->avatar}}" style="visibility: hidden;" id="getFile">
+                                      <div class="form-group row" style="margin-top: -20px;margin-bottom: 20px;">
                                         <div class="col-12">
-                                          <button type="submit" class="btn btn-style">Update</button>
+                                          <button name="submit" type="submit" class="btn btn-style">Update</button>
                                         </div>
                                       </div>
                                     </form>
@@ -138,6 +159,7 @@
                     </div>
 
                     <div id="address" class="container tab-pane fade"><br>
+                        @if(isset($subscriber))
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -146,7 +168,7 @@
                                     <hr>
                                   </div>
                                 </div>
-                            <form id="userAddressUpdateForm" method="post"  class="profile-form">
+                            <form action="/update-user-address/{{ $subscriber->id }}" method="post"  class="profile-form">
                                 @csrf
                                 <div class="form-group row">
                                   <label for="country" class="col-md-3 col-form-label">Country</label> 
@@ -154,7 +176,7 @@
                                     <select name="country"  class="input-style form-control " id="country">
                                         <option value="">-- Select Country--</option>    
                                         @foreach($country_data as $country)
-                                            <option value="{{$country->name}}" @if(isset($userProfile)){{$country->name == $userProfile->country  ? 'selected' : ''}}@endif>{{$country->name}}</option>
+                                            <option value="{{$country->name}}" {{$country->name == $subscriber->country  ? 'selected' : ''}}>{{$country->name}}</option>
                                         @endforeach
                                     </select>  
                                   </div>
@@ -166,7 +188,7 @@
                                 <select name="state"  class="input-style form-control " id="state">
                                     <option value="">-- Select State--</option>    
                                     @foreach($state_data as $state)
-                                          <option value="{{$state->name}}" @if(isset($userProfile)){{$state->name == $userProfile->state  ? 'selected' : ''}}@endif>{{$state->name}}</option>
+                                          <option value="{{$state->name}}" {{$state->name == $subscriber->state  ? 'selected' : ''}}>{{$state->name}}</option>
                                     @endforeach
                                 </select>
 
@@ -179,7 +201,7 @@
                                 <select name="city"  class="input-style form-control " id="city">
                                     <option value="">-- Select City--</option>    
                                       @foreach($city_data as $city)
-                                          <option value="{{$city->name}}" @if(isset($userProfile)){{$city->name == $userProfile->city  ? 'selected' : ''}}@endif>{{$city->name}}</option>
+                                          <option value="{{$city->name}}" {{$city->name == $subscriber->city  ? 'selected' : ''}}>{{$city->name}}</option>
                                       @endforeach
                                 </select>  
 
@@ -187,22 +209,187 @@
                                 </div>
 
                                 <div class="form-group row">
+                                  <label for="zipcode" class="col-md-3 col-form-label">Pin Code</label> 
+                                  <div class="col-md-9">
+
+                                    <input type="text" class="input-style form-control{{ $errors->has('zipcode') ? ' is-invalid' : '' }}" id="zipcode" name="zipcode" value="{{ $subscriber->zipcode }}" placeholder="Pin Code"  >
+
+                                            @if ($errors->has('zipcode'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('zipcode') }}</strong>
+                                                </span>
+                                            @endif
+                                  </div>
+                                </div>
+
+                                <div class="form-group row">
                                   <label for="address" class="col-md-3 col-form-label">Address</label> 
                                   <div class="col-md-9">
-                                <textarea class="form-control input-style" name="address" id="address"  rows="2" placeholder="Address">{{$userProfile ? $userProfile->address : ''}}</textarea>
+                                <textarea class="form-control input-style" name="address" id="address"  rows="2" placeholder="Address">{{$subscriber->address}}</textarea>
 
                                   </div>
                                 </div>
                                   <div class="form-group row" style="margin-bottom: 13px;">
                                     <div class="col-12">
-                                      <button name="submit" type="submit" class="btn btn-style">{{$userProfile ? 'Update' : 'Submit'}}</button>
+                                      <button name="submit" type="submit" class="btn btn-style">Update</button>
                                     </div>
                                   </div>
                             </form>
                             </div>
                         </div>
+                        @else
+                        <!-- address add -->
+                          <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <h4>Add Address</h4>
+                                    <hr>
+                                  </div>
+                                </div>
+                            <form action="/add-user-address/{{ auth()->user()->id }}" method="post"  class="profile-form">
+                                @csrf
+                                <div class="form-group row">
+                                  <label for="country" class="col-md-3 col-form-label">Country</label> 
+                                  <div class="col-md-9">
+                                    <select name="country"  class="input-style form-control " id="country">
+                                            <option value="">-- Select Country--</option>    
+                                            @foreach($country_data as $country)
+                                                <option value="{{$country->name}}">{{$country->name}}</option>
+                                            @endforeach
+                                            </select> 
+                                  </div>
+                                </div>
+
+                                <div class="form-group row">
+                                  <label for="state" class="col-md-3 col-form-label">State</label> 
+                                  <div class="col-md-9">
+                                <select name="state"  class="input-style form-control " id="state">
+                                                <option value="">-- Select State--</option>    
+                                                @foreach($state_data as $state)
+                                                      <option value="{{$state->name}}">{{$state->name}}</option>
+                                                @endforeach
+                                            </select>
+
+                                  </div>
+                                </div>
+
+                                <div class="form-group row">
+                                  <label for="city" class="col-md-3 col-form-label">City</label> 
+                                  <div class="col-md-9">
+                                <select name="city"  class="input-style form-control " id="city">
+                                                <option value="">-- Select City--</option>    
+                                                @foreach($city_data as $city)
+                                                      <option value="{{$city->name}}">{{$city->name}}</option>
+                                                @endforeach
+                                            </select> 
+
+                                  </div>
+                                </div>
+
+                                <div class="form-group row">
+                                  <label for="zipcode" class="col-md-3 col-form-label">Pin Code</label> 
+                                  <div class="col-md-9">
+
+                                    <input type="text" class="input-style form-control{{ $errors->has('zipcode') ? ' is-invalid' : '' }}" id="zipcode" name="zipcode" placeholder="Pin Code"  >
+
+                                            @if ($errors->has('zipcode'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('zipcode') }}</strong>
+                                                </span>
+                                            @endif
+                                  </div>
+                                </div>
+
+                                <div class="form-group row">
+                                  <label for="address" class="col-md-3 col-form-label">Address</label> 
+                                  <div class="col-md-9">
+                                <textarea class="form-control input-style" name="address" id="address"  rows="2" placeholder="Address"></textarea>
+
+                                  </div>
+                                </div>
+                                  <div class="form-group row" style="margin-bottom: 13px;">
+                                    <div class="col-12">
+                                      <button name="submit" type="submit" class="btn btn-style">Submit</button>
+                                    </div>
+                                  </div>
+                            </form>
+                            </div>
+                        </div>
+                        <!-- end -->
+                        @endif
                     </div>
 
+                  @if(isset($subscriber))
+                    <div id="payment" class="container tab-pane"><br>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <h4>Bank Details</h4>
+                                    <hr>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <form method="POST" action="/add-bank/{{ $subscriber->id }}" class="profile-form">
+                                      @csrf
+                                      <div class="form-group row">
+                                        <label for="bank_name" class="col-md-3 col-form-label">Bank Name</label> 
+                                        <div class="col-md-9">
+                                          <input id="bank_name" name="bank_name" placeholder="Bank Name" class="form-control input-style here {{ $errors->has('bank_name') ? ' is-invalid' : '' }}" value="@if(isset($subscriber->bank_name)){{ $subscriber->bank_name }} @endif" required="required" type="text">
+                                          @if ($errors->has('bank_name'))
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('bank_name') }}</strong>
+                                          </span>
+                                          @endif
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label for="account_no" class="col-md-3 col-form-label">Account No</label>
+                                        <div class="col-md-9">
+                                          <input type="text" class="form-control input-style here {{ $errors->has('account_no') ? ' is-invalid' : '' }}" name="account_no" value="@if(isset($subscriber->account_no)) {{ $subscriber->account_no }} @endif" id="account_no" placeholder="Enter Account Number" required="required">
+                                          @if ($errors->has('account_no'))
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('account_no') }}</strong>
+                                          </span>
+                                          @endif
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group row">
+                                        <label for="ifsc_code" class="col-md-3 col-form-label">IFSC Code</label> 
+                                        <div class="col-md-9">
+                                          <input id="ifsc_code" name="ifsc_code" placeholder="IFSC Code" class="form-control input-style here {{ $errors->has('ifsc_code') ? ' is-invalid' : '' }}" value="@if(isset($subscriber->ifsc_code)){{ $subscriber->ifsc_code }} @endif" type="text" required="required">
+                                          @if ($errors->has('ifsc_code'))
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('ifsc_code') }}</strong>
+                                          </span>
+                                          @endif
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group row">
+                                        <label for="upi_id" class="col-md-3 col-form-label">UPI ID</label> 
+                                        <div class="col-md-9">
+                                          <input id="upi_id" name="upi_id" placeholder="UPI ID" class="form-control input-style here" value="@if(isset($subscriber->upi_id)){{ $subscriber->upi_id }} @endif" type="text">
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group row" style="margin-top: 20px;margin-bottom: 20px;">
+                                        <div class="col-12">
+                                          <button name="submit" type="submit" class="btn btn-style">Update</button>
+                                        </div>
+                                      </div>
+                                    </form>
+                                   </div>
+                               </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                     <div id="password-tab" class="container tab-pane fade"><br>
                         <div class="card">
                             <div class="card-body">
@@ -213,24 +400,42 @@
                                   </div>
                                 </div>
 
-                            <form id="userPassUpdateForm" method="post">
+                            <form action="/change-password" method="post">
                                 {{ csrf_field() }}
                                 <div class="form-group row">
                                       <label for="old_password" class="col-md-3 col-form-label">Old Password</label> 
                                       <div class="col-md-9">
-                                    <input type="password" name="old_password" id="old_password" class="form-control pass-filed input-style" placeholder="Enter Old Password" required>
+                                    <input type="password" name="old_password" id="old_password" class="form-control pass-filed input-style {{ $errors->has('old_password') ? ' is-invalid' : '' }}" placeholder="Enter Old Password" required>
+                                                @if ($errors->has('old_password'))
+                                                      <span class="invalid-feedback" role="alert" style="text-align: center;padding-bottom: 10px">
+                                                          <strong>{{ $errors->first('old_password') }}</strong>
+                                                      </span>
+                                                @endif
+
                                       </div>
                                     </div>
                                     <div class="form-group row">
                                       <label for="password" class="col-md-3 col-form-label">New Password</label> 
                                       <div class="col-md-9">
-                                    <input type="password" name="password" id="password" class="form-control pass-filed input-style" placeholder="Enter New Password" required>
+                                    <input type="password" name="password" id="password" class="form-control pass-filed input-style {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Enter New Password" required>
+                                                @if ($errors->has('password'))
+                                                      <span class="invalid-feedback" role="alert" style="text-align: center;padding-bottom: 10px">
+                                                          <strong>{{ $errors->first('password') }}</strong>
+                                                      </span>
+                                                @endif
+
                                       </div>
                                     </div>
                                     <div class="form-group row">
                                       <label for="password_confirmation" class="col-md-3 col-form-label">Confirm Password</label> 
                                       <div class="col-md-9">
-                                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control pass-filed input-style" placeholder="Confirm Password" required>
+                                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control pass-filed input-style {{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" placeholder="Confirm Password" required>
+                                                @if ($errors->has('password_confirmation'))
+                                                  <span class="invalid-feedback" role="alert" style="text-align: center;padding-bottom: 10px">
+                                                      <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                                  </span>
+                                                @endif
+
                                       </div>
                                     </div>
 
@@ -238,7 +443,7 @@
                                                 <br>
                                     <div class="form-group row" style="margin-bottom: 15px;">
                                         <div class="col-12">
-                                          <button type="submit" class="btn btn-style">Submit</button>
+                                          <button name="submit" type="submit" class="btn btn-style">Submit</button>
                                         </div>
                                     </div>
 
@@ -255,44 +460,23 @@
 </div>  <!-- Content End -->
 
 <span id="user_full_name" style="display: none;">{{Auth::user()->name}}</span>
-<style>
-  small{
-    width: 90%;
-      text-align: left;
-      margin-left: auto;
-      margin-right: auto;
-      display: block;
-  }
-  .loder-spinner{
-    color: #E65100;
-    font-size: 100px;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    z-index: 1;
-    display: block;
-    width: 100%;
-    top: 22%;
-  }
-</style>
-<script type="text/javascript" src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>        
+<script type="text/javascript" src="/public/jquery/jquery-3.2.1.min.js"></script>        
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            $('#profile-img-tag').attr('src', e.target.result);
-          }
-          reader.readAsDataURL(input.files[0]);
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+        $('#profile-img-tag').attr('src', e.target.result);
         }
-    }
-    $("#getFile").change(function(){
+        reader.readAsDataURL(input.files[0]);
+        }
+        }
+        $("#getFile").change(function(){
         readURL(this);
-        $('#logoUpdateForm').submit();
         $('#userImage').hide();
         $('.newdp').show();
-    });
+        });
 
     $(document).ready(function(){
          var userName = $('#user_full_name').text();
@@ -301,54 +485,53 @@
          });
 
     // get World
-
     $('#country').change(function(){
-    var countryName = $(this).val();    
-    if(countryName){
-        $.ajax({
-           type:"GET",
-           url:"{{url('get-state-list')}}?country_id="+countryName,
-           success:function(res){               
-            if(res){
-                $("#state").empty();
-                $("#state").append('<option>Select State</option>');
-                $.each(res,function(key,value){
-                    $("#state").append('<option value="'+value+'">'+value+'</option>');
-                });
-           
-            }else{
-               $("#state").empty();
-            }
-           }
-        });
-    }else{
-        $("#state").empty();
-        //$("#city").empty();
-    }      
-   });
-    $('#state').on('change',function(){
-    var stateName = $(this).val();    
-    if(stateName){
-        $.ajax({
-           type:"GET",
-           url:"{{url('get-city-list')}}?state_id="+stateName,
-           success:function(res){               
-            if(res){
-                $("#city").empty();
-                $.each(res,function(key,value){
-                    $("#city").append('<option value="'+value+'">'+value+'</option>');
-                });
-           
-            }else{
-               $("#city").empty();
-            }
-           }
-        });
-    }else{
-        $("#city").empty();
-    }
-        
-   });
+        var countryName = $(this).val();    
+        if(countryName){
+            $.ajax({
+               type:"GET",
+               url:"{{url('get-state-list')}}?country_id="+countryName,
+               success:function(res){               
+                if(res){
+                    $("#state").empty();
+                    $("#state").append('<option>Select</option>');
+                    $.each(res,function(key,value){
+                        $("#state").append('<option value="'+value+'">'+value+'</option>');
+                    });
+               
+                }else{
+                   $("#state").empty();
+                }
+               }
+            });
+        }else{
+            $("#state").empty();
+            $("#city").empty();
+        }      
+       });
+        $('#state').on('change',function(){
+        var stateName = $(this).val();  //console.log(stateName);  
+        if(stateName){
+            $.ajax({
+               type:"GET",
+               url:"{{url('get-city-list')}}?city_id="+stateName,
+               success:function(res){               
+                if(res){
+                    $("#city").empty();
+                    $.each(res,function(key,value){
+                        $("#city").append('<option value="'+value+'">'+value+'</option>');
+                    });
+               
+                }else{
+                   $("#city").empty();
+                }
+               }
+            });
+        }else{
+            $("#city").empty();
+        }
+            
+       });
 
         /// Change Password
         function myFunction() {
@@ -365,155 +548,5 @@
                 z.type = "password";
             }
         }
-
-/// ajax submit form
-/// user profile logo update
-$("#logoUpdateForm").on("submit", function(ev) {
-  ev.preventDefault(); // Prevent browser default submit.
-
-  var formData = new FormData(this);
-    
-  $.ajax({
-    url: "/user-profile-logo-update",
-    type: "POST",
-    data: formData,
-    beforeSend: function() {
-        $("#loader_display").show();
-        $('#loader_display').fadeIn(400).html('<i class="fa fa-spinner fa-spin loder-spinner" aria-hidden="true"></i>').fadeIn("slow");
-    },
-    success: function (data) {
-        if (data['success']) {
-            $("#loader_display").hide();
-           toastr.success(data['success'],"Successfuly");
-        } else if (data['error']) {
-           toastr.error(data['error']);
-           //window.location.href = '/login';
-           if (data['error'].indexOf('Login') != -1) {
-            window.location.href = '/login';
-           }
-        } else {
-            alert('Whoops Something went wrong!!');
-        }
-        
-    },
-    error: function (data) {
-        toastr.error(data.responseText,"error");
-    },
-    cache: false,
-    contentType: false,
-    processData: false
-  });
-    
-});
-
-///user data update
-$("#userUpdateForm").on("submit", function(ev) {
-  ev.preventDefault(); // Prevent browser default submit.
-
-  var userFormData = new FormData(this);    
-  $.ajax({
-    url: "/user-profile-update",
-    type: "POST",
-    data: userFormData,
-    success: function (data) {
-        if (data['success']) {
-           $('#new-email').html(data['data'].email);
-           $('#new-mobile').html(data['data'].phone);
-           $('#email').val('');
-           $('#mobile').val('');
-           toastr.success(data['success'],"Successfuly");
-        } else if (data['error']) {
-           toastr.error(data['error']);
-           //window.location.href = '/login';
-           if (data['error'].indexOf('Login') != -1) {
-            window.location.href = '/login';
-           }
-        } else {
-            alert('Whoops Something went wrong!!');
-        }
-        
-    },
-    error: function (data) {
-        toastr.error(data.responseText,"error");
-    },
-    cache: false,
-    contentType: false,
-    processData: false
-  });
-    
-});
-
-function isValidEmailAddress(emailAddress) {
-    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-    return pattern.test(emailAddress);
-}
-
-///user address update
-$("#userAddressUpdateForm").on("submit", function(ev) {
-  ev.preventDefault(); // Prevent browser default submit.
-
-  var formData = new FormData(this);
-    
-  $.ajax({
-    url: "/update-user-address",
-    type: "POST",
-    data: formData,
-    success: function (data) {
-        if (data['success']) {
-           toastr.success(data['success'],"Successfuly");
-        } else if (data['error']) {
-           toastr.error(data['error']);
-           //window.location.href = '/login';
-           if (data['error'].indexOf('Login') != -1) {
-            window.location.href = '/login';
-           }
-        } else {
-            alert('Whoops Something went wrong!!');
-        }
-        
-    },
-    error: function (data) {
-        toastr.error(data.responseText,"error");
-    },
-    cache: false,
-    contentType: false,
-    processData: false
-  });
-    
-});
-
-///user password update
-$("#userPassUpdateForm").on("submit", function(ev) {
-  ev.preventDefault(); // Prevent browser default submit.
-
-  var formData = new FormData(this);
-    
-  $.ajax({
-    url: "/user/change-password",
-    type: "POST",
-    data: formData,
-    success: function (data) {
-        if (data['success']) {
-           toastr.success(data['success'],"Successfuly");
-        } else if (data['error']) {
-           toastr.error(data['error']);
-           //window.location.href = '/login';
-           if (data['error'].indexOf('Login') != -1) {
-            window.location.href = '/login';
-           }
-        } else {
-            alert('Whoops Something went wrong!!');
-        }
-        
-    },
-    error: function (data) {
-        toastr.error(data.responseText,"error");
-    },
-    cache: false,
-    contentType: false,
-    processData: false
-  });
-    
-});
 </script>
 @endsection

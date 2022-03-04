@@ -2,10 +2,9 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use App\UserProfile;
 
 class User extends Authenticatable
 {
@@ -17,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'phone', 'email', 'password','is_activated','role','token','otp'
+        'name', 'email', 'password','phone_no','avatar','role','referral_token','referral_link','referral_code'
     ];
 
     /**
@@ -38,9 +37,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
-    public function profile()
-        {
-            return $this->belongsTo(UserProfile::class);
-        }
 }

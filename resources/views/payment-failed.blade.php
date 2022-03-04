@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content') 
 	<div class="banner">
-	<img src="{{config('app.file_path')}}/images/banner/banner_bg.jpg" alt=""/>
+	<img src="/images/banner/banner_bg.jpg" alt=""/>
 	<div class="slider-imge-overlay"></div>
 	<div class="caption text-center">
 		<div class="container">

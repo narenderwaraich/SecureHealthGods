@@ -2,7 +2,7 @@
 @section('content')
 @if(isset($banner))
 <div class="banner">
-	<img src="{{config('app.file_path')}}/images/banner/{{$banner->image}}" alt="{{$banner->heading}}"/>
+	<img src="{{asset('/public/images/banner/'.$banner->image)}}" alt="{{$banner->heading}}"/>
 	<div class="slider-imge-overlay"></div>
 	<div class="caption text-center">
 		<div class="container">
@@ -26,25 +26,26 @@
 @endif
 
 <div class="container">
-	<div class="row justify-content-center m-t-50">
-		<div class="col-md-12">
-			<div class="heading-title heading-text heading-color m-t-50">Know About {{ config('app.name') }}</div>
-			<br>
-			<p>This group has been establish for development of every individual. we keep our focus specially on the providing new planning and promotion tools to help our members.
-				<br><br>
-			We are new in terms of planning and management and we always fulfill our commitment to associates and never hide any type of conditions.</p>
-			<p>
-				<b>Our Vision</b>
-				<br>
-				We are aiming to capture the most of the market of India. For became best company in networking industry we will be consistently providing the combination of product and outstanding service that will help every individual to fulfill all his dreams. 
-				<br>
-			</p>
-			<p>
-				<b>Our Mission</b>
-				<br>We strive to break the financial barriers in the life of every individual who work with us and thereby lifting the economic level of the same by the way of direct marketing. India, being second largest populated country in the world is facing problem of unemployment, poverty and less education. Hence our first priority is to make every individual as independent and make his/her life worth full for its family and nation. 
-				<br>
-			</p>
-		</div>
-	</div>
+    <div class="row justify-content-center m-t-50">
+        <div class="col-md-8">
+            <div class="heading-title heading-text heading-color m-t-50">Know About FreeKaFanda</div>
+            <br>
+            <p>
+            <b>Our Services</b>
+            <br>
+            We only provide articles and information, and we never ask for personal or private information. Prepare your-self for the interview by reading php, laravel, wordpress and gk Interview Questions and Answers. 
+            <br>
+            <ul>
+            	<li>PHP INTERVIEW QUESTIONS & ANSWERS</li>
+            	<li>LARAVEL INTERVIEW QUESTIONS & ANSWERS</li>
+            	<li>WORDPRESS INTERVIEW QUESTIONS & ANSWERS</li>
+            	<li>GENERAL KNOWLEDGE INTERVIEW QUESTIONS & ANSWERS</li>
+            </ul>
+          </p>
+        </div>
+        <div class="col-md-4">
+            @include('etc.sidebar')
+        </div>
+    </div>
 </div>
 @endsection

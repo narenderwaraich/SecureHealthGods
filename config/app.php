@@ -56,12 +56,6 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
-    'web_mail_address' => env('COMPANY_MAIL_ADDRESS', null),
-    'web_contact_number' => env('COMPANY_MOBILE', null),
-    'file_path' => env('STORAGE_PATH', null),
-    'product_price' => env('PENDANT_PRICE', null),
-    'file_path' => env('STORAGE_PATH', null),
-
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -167,6 +161,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Brian2694\Toastr\ToastrServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -231,6 +227,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 

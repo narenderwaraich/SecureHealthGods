@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.master')
 @section('content')
 
 <section class="content-wrapper" style="min-height: 960px;">
@@ -8,7 +8,7 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <form action="/page/create" method="post">
+                <form action="/admin/page/add" method="post">
                     {{ csrf_field() }}
                     <div class="box">
                         <div class="box-header with-border">

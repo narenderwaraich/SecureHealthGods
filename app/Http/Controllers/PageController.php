@@ -7,84 +7,261 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use Redirect;
-use Toastr;
 use Carbon\Carbon;
-use App\Page;
-use Auth;
-
+use App\BanerSlide;
+use App\Category;
+use App\Post;
+use App\Question;
+use App\AnswerPoint;
+use App\TestQuestion;
 
 class PageController extends Controller
 {
-    public function index()
-    {
-        if(Auth::check()){
-            if(Auth::user()->role == "admin"){
-            $page = Page::orderBy('created_at','asc')->paginate(10);
-            return view('Admin.Page.Show',['page' =>$page]);
+    public function phpPage(){ 
+        $banner = BanerSlide::where('page_name','=','php')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }
+        $category = Category::where('name','=','Php')->first();
+        $id = $category->id;
+        $questions = Question::where('category_id',$id)->paginate(10); //dd($questions);
+        foreach ($questions as $question) {
+            $question->points = AnswerPoint::where('question_id',$question->id)->get();
+        }
+        
+            return view('php',compact('title','description'),['banner' =>$banner,'questions' =>$questions]); 
+    }
+
+    public function phpTestPage(){
+        $banner = BanerSlide::where('page_name','=','php-test')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }
+        $category = Category::where('name','=','Php')->first();
+        $id = $category->id;
+        $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
+            return view('php-test',compact('title','description'),['banner' =>$banner,'questions' =>$questions]); 
+    }
+
+    public function laravelPage(){
+        $banner = BanerSlide::where('page_name','=','laravel')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }
+        $category = Category::where('name','=','Laravel')->first();
+        $id = $category->id;
+        $questions = Question::where('category_id',$id)->paginate(10); //dd($questions);
+        foreach ($questions as $question) {
+            $question->points = AnswerPoint::where('question_id',$question->id)->get();
+        }
+            return view('laravel',compact('title','description'),['banner' =>$banner,'questions' =>$questions]); 
+    }
+
+
+    public function laravelTestPage(){
+        $banner = BanerSlide::where('page_name','=','laravel-test')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }
+        $category = Category::where('name','=','Laravel')->first();
+        $id = $category->id;
+        $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
+            return view('laravel-test',compact('title','description'),['banner' =>$banner,'questions' =>$questions]); 
+    }
+
+    public function wordpressPage(){
+        $banner = BanerSlide::where('page_name','=','wordpress')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }
+        $category = Category::where('name','=','Wordpress')->first();
+        $id = $category->id;
+        $questions = Question::where('category_id',$id)->paginate(10); //dd($questions);
+        foreach ($questions as $question) {
+            $question->points = AnswerPoint::where('question_id',$question->id)->get();
+        }
+            return view('wordpress',compact('title','description'),['banner' =>$banner,'questions' =>$questions]); 
+    }
+
+    public function wordpressTestPage(){
+        $banner = BanerSlide::where('page_name','=','wordpress-test')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }
+        $category = Category::where('name','=','Wordpress')->first();
+        $id = $category->id;
+        $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
+            return view('wordpress-test',compact('title','description'),['banner' =>$banner,'questions' =>$questions]); 
+    }
+
+
+    public function gkPage(){
+        $banner = BanerSlide::where('page_name','=','gk')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }
+        $category = Category::where('name','=','GK')->first();
+        $id = $category->id;
+        $questions = Question::where('category_id',$id)->paginate(10); //dd($questions);
+        foreach ($questions as $question) {
+            $question->points = AnswerPoint::where('question_id',$question->id)->get();
+        }
+            return view('gk',compact('title','description'),['banner' =>$banner,'questions' =>$questions]); 
+    }
+
+    public function gkTestPage(){
+        $banner = BanerSlide::where('page_name','=','gk')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }
+        $category = Category::where('name','=','GK')->first();
+        $id = $category->id;
+        $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
+            return view('gk-test',compact('title','description'),['banner' =>$banner,'questions' =>$questions]); 
+    }
+
+    public function postPage(){
+        $banner = BanerSlide::where('page_name','=','post')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }
+        $post = Post::orderBy('created_at','desc')->paginate(10);
+            return view('post',compact('title','description'),['banner' =>$banner,'post' =>$post]); 
+    }
+
+    public function aboutPage(){
+        $banner = BanerSlide::where('page_name','=','about-us')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }
+            return view('about-us',compact('title','description'),['banner' =>$banner]); 
+    }
+
+    public function privacyPolicy(){
+        $banner = BanerSlide::where('page_name','=','privacy-policy')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }
+            return view('privacy-policy',compact('title','description'),['banner' =>$banner]); 
+    }
+
+    public function phpTest(Request $request){
+        $requestAnswer = $request; //dd($requestAnswer);
+        $banner = BanerSlide::where('page_name','=','php-test')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }
+        $category = Category::where('name','=','Php')->first();
+        $id = $category->id;
+        $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
+        foreach ($questions as $question) {
+             if ($question->answer == "A") {
+                $question->shoAnswer = TestQuestion::find($question->id)->A;
             }
-        }else{
-            return redirect()->to('/login');
+            if ($question->answer == "B") {
+                $question->shoAnswer = TestQuestion::find($question->id)->B;
+            }
+            if ($question->answer == "C") {
+                $question->shoAnswer = TestQuestion::find($question->id)->C;
+            }
+            if ($question->answer == "D") {
+                $question->shoAnswer = TestQuestion::find($question->id)->D;
+            }
         }
+        return view('php-test-answer',compact('title','description'),['banner' =>$banner,'questions' =>$questions, 'requestAnswer' =>$requestAnswer]);
     }
 
-    public function create()
-    {
-        if(Auth::check()){
-    if(Auth::user()->role == "admin"){
-        return view('Admin.Page.Add');
+    public function laravelTest(Request $request){
+        $requestAnswer = $request; //dd($requestAnswer);
+        $banner = BanerSlide::where('page_name','=','laravel-test')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
         }
-    }else{
-        return redirect()->to('/login');
-    }
-    }
-
-    public function store(Request $request)
-    {
-        $validate = $this->validate($request, [
-            'text' => 'required',
-            'slug' => 'required',
-        ]);
-        if(!$validate){
-                        Redirect::back()->withInput();
-                          }
-        $page = Page::create($request->all());
-        Toastr::success('Page Add', 'Success', ["positionClass" => "toast-bottom-right"]);
-        return redirect()->to('/page/show');
-    }
-
-    public function edit($id)
-    {
-        if(Auth::check()){
-    if(Auth::user()->role == "admin"){
-        $page = Page::find($id);
-        return view('Admin.Page.Edit',['page' =>$page]);
+        $category = Category::where('name','=','Laravel')->first();
+        $id = $category->id;
+        $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
+        foreach ($questions as $question) {
+             if ($question->answer == "A") {
+                $question->shoAnswer = TestQuestion::find($question->id)->A;
+            }
+            if ($question->answer == "B") {
+                $question->shoAnswer = TestQuestion::find($question->id)->B;
+            }
+            if ($question->answer == "C") {
+                $question->shoAnswer = TestQuestion::find($question->id)->C;
+            }
+            if ($question->answer == "D") {
+                $question->shoAnswer = TestQuestion::find($question->id)->D;
+            }
         }
-    }else{
-        return redirect()->to('/login');
-    }
+        return view('laravel-test-answer',compact('title','description'),['banner' =>$banner,'questions' =>$questions, 'requestAnswer' =>$requestAnswer]);
     }
 
-    public function update(Request $request, $id)
-    {
-        $page = Page::find($id);
-
-        $page->update($request->all());
-        Toastr::success('Page updated', 'Success', ["positionClass" => "toast-bottom-right"]);
-
-      return redirect()->to('/page/show');
-    }
-
-    public function destroy($id)
-    {
-        if(Auth::check()){
-    if(Auth::user()->role == "admin"){
-        $page = Page::find($id);
-        $page->delete();
-        Toastr::success('Page deleted', 'Success', ["positionClass" => "toast-bottom-right"]);
-        return redirect()->to('/page/show');
+    public function wordpressTest(Request $request){
+        $requestAnswer = $request; //dd($requestAnswer);
+        $banner = BanerSlide::where('page_name','=','wordpress-test')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
         }
-    }else{
-        return redirect()->to('/login');
+        $category = Category::where('name','=','Php')->first();
+        $id = $category->id;
+        $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
+        foreach ($questions as $question) {
+             if ($question->answer == "A") {
+                $question->shoAnswer = TestQuestion::find($question->id)->A;
+            }
+            if ($question->answer == "B") {
+                $question->shoAnswer = TestQuestion::find($question->id)->B;
+            }
+            if ($question->answer == "C") {
+                $question->shoAnswer = TestQuestion::find($question->id)->C;
+            }
+            if ($question->answer == "D") {
+                $question->shoAnswer = TestQuestion::find($question->id)->D;
+            }
+        }
+        return view('wordpress-test-answer',compact('title','description'),['banner' =>$banner,'questions' =>$questions, 'requestAnswer' =>$requestAnswer]);
     }
+
+    public function gkTest(Request $request){
+        $requestAnswer = $request; //dd($requestAnswer);
+        $banner = BanerSlide::where('page_name','=','gk')->first(); //dd($banner);
+        if (isset($banner)) {
+            $title = $banner->title;
+            $description = $banner->description;
+        }
+        $category = Category::where('name','=','Php')->first();
+        $id = $category->id;
+        $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
+        foreach ($questions as $question) {
+             if ($question->answer == "A") {
+                $question->shoAnswer = TestQuestion::find($question->id)->A;
+            }
+            if ($question->answer == "B") {
+                $question->shoAnswer = TestQuestion::find($question->id)->B;
+            }
+            if ($question->answer == "C") {
+                $question->shoAnswer = TestQuestion::find($question->id)->C;
+            }
+            if ($question->answer == "D") {
+                $question->shoAnswer = TestQuestion::find($question->id)->D;
+            }
+        }
+        return view('gk-test-answer',compact('title','description'),['banner' =>$banner,'questions' =>$questions, 'requestAnswer' =>$requestAnswer]);
     }
+
 }
