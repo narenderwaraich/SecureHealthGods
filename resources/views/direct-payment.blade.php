@@ -2,7 +2,7 @@
 @section('content') 
 
 <div class="banner">
-	<img src="{{asset('/public/images/banner/direct-payment.jpg')}}" alt="Payment Banner"/>
+	<img src="{{config('app.file_path')}}/images/banner/direct-payment.jpg" alt="Payment Banner"/>
 	<div class="slider-imge-overlay"></div>
 	<div class="caption text-center">
 		<div class="container">
