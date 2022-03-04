@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <title>{{ config('app.name') }} @if(isset($title)) {{$title}} @endif</title>
+    <title>@if(isset($title)){{$title}}@endif | {{config('app.name')}}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="@if(isset($description)) {{$description}} @endif">
-    <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+    <meta name="google-site-verification" content="GepccWm_M384hcZ_LsUELFhZO7saTPzAnrAUm7oQM0k" />
+    <link rel="canonical" href="http://www.securehealthgods.in/" />
+    <link rel="shortcut icon" href="{{config('app.file_path')}}/favicon.ico" type="image/x-icon">
     <link rel="canonical" href="http://www.freekafanda.in/" />
     <link rel="icon" href="{{config('app.file_path')}}/favicon.ico" type="image/x-icon">
 

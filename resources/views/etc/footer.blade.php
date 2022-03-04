@@ -4,19 +4,18 @@
           <div class="row">
             <div class="col-md-4">
               <div class="footer-text">
-                About FreeKaFanda
+                About {{config('app.name')}}
               </div>
-              <center>
-              <a class="" href="/" aria-label="home">
-              <img src="/public/images/icons/logo.png"  class="footer-logo" alt="footer-web-logo"> 
+              <center style="padding: 30px 0;">
+              <a style="color: #fff;font-size: 35px;font-weight: 900;line-height: 30px !important;font-family: cursive;text-shadow: 0 0 30px rgb(0 0 0 / 62%);" href="{{ url('/') }}">
+                {{ config('app.name') }}
               </a>
             </center>
              <!-- <div class="social-icon">
                   <a href=""><i class="fa fa-facebook-f"></i></a>
                   <a href=""><i class="fa fa-instagram"></i></a>
             </div> -->
-            <a class="footer-email-address" href="mailto:hello@freekafanda.in">hello@freekafanda.in</a>
-              <!-- <div class="footer-copyright-text"> AstroRightWays @ all right reserved</div> -->
+            <a class="footer-email-address" href="mailto:hello@securehealthgods.in">hello@securehealthgods.in</a>
             </div>
 
             <div class="col-md-4">

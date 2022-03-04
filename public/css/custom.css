@@ -193,47 +193,68 @@ padding-bottom: 30px;
 
 /*banner css*/
 .banner {
-    height: 500px;
     position: relative;
-}
-.banner img {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-}
-.banner .caption {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-}
-.text-center {
+    color: #ffffff;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100vh;
     text-align: center;
+    background-attachment: fixed !important;
+    background-size: cover !important;
 }
-.banner .caption h1 {
-    text-align: center;
-    padding: 0 0 0px 0;
+.banner h1 {
     font-family: 'Montserrat', sans-serif;
     color: #ffffff;
     font-weight: 500;
     font-size: 60px;
     text-shadow: none;
+    text-align: center;
+    padding: 0 0 0px 0;
 }
-.text-up {
-    text-transform: uppercase;
-}
-.banner .caption h1 span {
+.banner h1 span {
     display: block;
+    text-transform: capitalize;
     font-size: 34px;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    line-height: 120%;
+    margin-top: 10px;
 }
-.slider-imge-overlay{
-  position: absolute;
+.text-center {
+    text-align: center;
+}
+.text-up {
+    text-transform: uppercase;
+}
+.banner .links {
+    margin-top: 35px;
+}
+.banner .slider-btn, .btns {
+    text-transform: uppercase;
+    background: transparent;
+    border: 2px solid #ffffff;
+    margin: auto;
+    text-align: center;
+    padding: 0.6180469716em 1.41575em;
+    font-size: 17px;
+    font-weight: 600;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    display: inline-block !important;
+    width: auto !important;
+}
+.banner .slider-btn:hover, .btns:hover {
+    background: #000046;
+    color: #ffffff;
+}
+.slide-imge-overlay {
+    position: absolute;
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.6);

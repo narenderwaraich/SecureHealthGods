@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light header-bg shadow-sm fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    FreeKaFanda
+                    {{config('app.name')}}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <i class="fa fa-bars" aria-hidden="true"></i>
@@ -25,9 +25,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/tuttorials">Tuttorials</a>
                         </li>
-                        <li class="nav-item">
+<!--                         <li class="nav-item">
                             <a class="nav-link" href="/get-youtube-subscribers">Get Subscriber</a>
-                        </li>
+                        </li> -->
                          <li class="nav-item">
                             <a class="nav-link" href="/about-us">About Us</a>
                         </li>
