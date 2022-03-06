@@ -26,8 +26,6 @@
 	<div class="row justify-content-center m-t-50">
 		<div class="col-md-8">
 			<h1 class="heading-txt">GK Test Answers</h1>
-		<form method="post" action="/test-gk">
-		    {{ csrf_field() }}
 		@foreach($questions as $question)
 			<div class="question-box">
 				<div class="question-title"><span class="Qu">{{$question->question_number}})</span> {{$question->question}}</div>

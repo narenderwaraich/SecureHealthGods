@@ -72,6 +72,17 @@ class TestQuestionController extends Controller
         }
         return view('Admin.TestQuestion.Show',['questions' =>$questions]);
     }
+
+    public function awsPage()
+    {
+        $name = "AWS";
+        $categoryId = Category::where('name',$name)->first()->id;
+        $questions = TestQuestion::where('category_id',$categoryId)->orderBy('created_at','desc')->paginate(10);
+        foreach ($questions as $question) {
+            $question->category = Category::where('id',$question->category_id)->first()->name;
+        }
+        return view('Admin.TestQuestion.Show',['questions' =>$questions]);
+    }
     
 
     /**
@@ -93,15 +104,14 @@ class TestQuestionController extends Controller
      */
     public function store(Request $request)
     {
+        //return $request;
         $validate = $this->validate($request, [
-            'type' => 'required',
             'question' => 'required',
-            'answer' => 'required',
         ]);
         if(!$validate){
                 Redirect::back()->withInput();
             }
-            $data = request(['question','answer','type','code','category_id','A','B','C','D']);
+            $data = request(['question','answer','type','code','category_id','A','B','C','D','ans_type','checkbox_ans_1','checkbox_ans_2','checkbox_ans_3','checkbox_ans_4','checkbox_ans_5','checkbox_ans_6','checkbox_1','checkbox_2','checkbox_3','checkbox_4','checkbox_5','checkbox_6','true_false_answer','write_ans']);
             $categoryID = $request->category_id;
             $categoryName = Category::find($categoryID)->name;
             $lastQuestionNumber = TestQuestion::where('category_id',$categoryID)->latest()->orderBy('id', 'DESC')->pluck('question_number')->first(); 

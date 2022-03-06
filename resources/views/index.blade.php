@@ -50,6 +50,14 @@
                     </a>
                 </div>
             </div>
+
+            <div class="row m-t-30">
+                <div class="col-md-12">
+                    <a href="/aws" class="hov-img-zoom">
+                        <img src="{{config('app.file_path')}}/images/section/aws.jpg" class="type-view-img" alt="aws">
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="col-md-3">
             @include('etc.sidebar')

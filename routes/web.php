@@ -25,7 +25,9 @@ Route::get('/test-laravel', 'PageController@laravelTestPage');
 Route::get('/wordpress', 'PageController@wordpressPage');
 Route::get('/test-wordpress', 'PageController@wordpressTestPage');
 Route::get('/gk', 'PageController@gkPage');
+Route::get('/aws', 'PageController@awsPage');
 Route::get('/test-gk', 'PageController@gkTestPage');
+Route::get('/test-aws', 'PageController@awsTestPage');
 Route::get('/post', 'PageController@postPage');
 Route::get('/about-us', 'PageController@aboutPage');
 Route::get('/privacy-policy', 'PageController@privacyPolicy');
@@ -35,6 +37,7 @@ Route::post('/test-php','PageController@phpTest');
 Route::post('/test-laravel','PageController@laravelTest');
 Route::post('/test-wordpress','PageController@wordpressTest');
 Route::post('/test-gk','PageController@gkTest');
+Route::post('/test-aws','PageController@awsTest');
 
 Auth::routes();
 
@@ -87,6 +90,7 @@ Route::get('/admin/test/question/show/Php', 'TestQuestionController@phpPage');
 Route::get('/admin/test/question/show/Laravel', 'TestQuestionController@laravelPage');
 Route::get('/admin/test/question/show/Wordpress', 'TestQuestionController@wordpressPage');
 Route::get('/admin/test/question/show/GK', 'TestQuestionController@gkPage');
+Route::get('/admin/test/question/show/AWS', 'TestQuestionController@awsPage');
 Route::get('/admin/test/question/delete/{id}', 'TestQuestionController@destroy');
 
 Route::get('/admin/page/add', 'AdminController@pageCreate');

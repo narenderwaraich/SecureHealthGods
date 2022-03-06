@@ -19,10 +19,8 @@ class PageController extends Controller
 {
     public function phpPage(){ 
         $banner = BanerSlide::where('page_name','=','php')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         $category = Category::where('name','=','Php')->first();
         $id = $category->id;
         $questions = Question::where('category_id',$id)->paginate(10); //dd($questions);
@@ -35,10 +33,8 @@ class PageController extends Controller
 
     public function phpTestPage(){
         $banner = BanerSlide::where('page_name','=','php-test')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         $category = Category::where('name','=','Php')->first();
         $id = $category->id;
         $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
@@ -47,10 +43,8 @@ class PageController extends Controller
 
     public function laravelPage(){
         $banner = BanerSlide::where('page_name','=','laravel')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         $category = Category::where('name','=','Laravel')->first();
         $id = $category->id;
         $questions = Question::where('category_id',$id)->paginate(10); //dd($questions);
@@ -63,10 +57,8 @@ class PageController extends Controller
 
     public function laravelTestPage(){
         $banner = BanerSlide::where('page_name','=','laravel-test')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         $category = Category::where('name','=','Laravel')->first();
         $id = $category->id;
         $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
@@ -75,10 +67,8 @@ class PageController extends Controller
 
     public function wordpressPage(){
         $banner = BanerSlide::where('page_name','=','wordpress')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         $category = Category::where('name','=','Wordpress')->first();
         $id = $category->id;
         $questions = Question::where('category_id',$id)->paginate(10); //dd($questions);
@@ -90,10 +80,8 @@ class PageController extends Controller
 
     public function wordpressTestPage(){
         $banner = BanerSlide::where('page_name','=','wordpress-test')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         $category = Category::where('name','=','Wordpress')->first();
         $id = $category->id;
         $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
@@ -103,10 +91,8 @@ class PageController extends Controller
 
     public function gkPage(){
         $banner = BanerSlide::where('page_name','=','gk')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         $category = Category::where('name','=','GK')->first();
         $id = $category->id;
         $questions = Question::where('category_id',$id)->paginate(10); //dd($questions);
@@ -118,51 +104,64 @@ class PageController extends Controller
 
     public function gkTestPage(){
         $banner = BanerSlide::where('page_name','=','gk')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         $category = Category::where('name','=','GK')->first();
         $id = $category->id;
         $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
             return view('gk-test',compact('title','description'),['banner' =>$banner,'questions' =>$questions]); 
     }
 
+    public function awsPage(){
+        $banner = BanerSlide::where('page_name','=','aws')->first(); //dd($banner);
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
+        $category = Category::where('name','=','AWS')->first();
+        $id = $category->id;
+        $questions = Question::where('category_id',$id)->paginate(10); //dd($questions);
+        foreach ($questions as $question) {
+            $question->points = AnswerPoint::where('question_id',$question->id)->get();
+        }
+            return view('aws',compact('title','description'),['banner' =>$banner,'questions' =>$questions]); 
+    }
+
+    public function awsTestPage(){
+        $banner = BanerSlide::where('page_name','=','aws')->first(); //dd($banner);
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
+        $category = Category::where('name','=','AWS')->first();
+        $id = $category->id;
+        $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
+            return view('aws-test',compact('title','description'),['banner' =>$banner,'questions' =>$questions]); 
+    }
+
     public function postPage(){
         $banner = BanerSlide::where('page_name','=','post')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         $post = Post::orderBy('created_at','desc')->paginate(10);
             return view('post',compact('title','description'),['banner' =>$banner,'post' =>$post]); 
     }
 
     public function aboutPage(){
         $banner = BanerSlide::where('page_name','=','about-us')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
             return view('about-us',compact('title','description'),['banner' =>$banner]); 
     }
 
     public function privacyPolicy(){
         $banner = BanerSlide::where('page_name','=','privacy-policy')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
             return view('privacy-policy',compact('title','description'),['banner' =>$banner]); 
     }
 
     public function phpTest(Request $request){
         $requestAnswer = $request; //dd($requestAnswer);
         $banner = BanerSlide::where('page_name','=','php-test')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         $category = Category::where('name','=','Php')->first();
         $id = $category->id;
         $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
@@ -186,10 +185,8 @@ class PageController extends Controller
     public function laravelTest(Request $request){
         $requestAnswer = $request; //dd($requestAnswer);
         $banner = BanerSlide::where('page_name','=','laravel-test')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         $category = Category::where('name','=','Laravel')->first();
         $id = $category->id;
         $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
@@ -213,10 +210,8 @@ class PageController extends Controller
     public function wordpressTest(Request $request){
         $requestAnswer = $request; //dd($requestAnswer);
         $banner = BanerSlide::where('page_name','=','wordpress-test')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         $category = Category::where('name','=','Php')->first();
         $id = $category->id;
         $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
@@ -240,10 +235,8 @@ class PageController extends Controller
     public function gkTest(Request $request){
         $requestAnswer = $request; //dd($requestAnswer);
         $banner = BanerSlide::where('page_name','=','gk')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         $category = Category::where('name','=','Php')->first();
         $id = $category->id;
         $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
@@ -262,6 +255,31 @@ class PageController extends Controller
             }
         }
         return view('gk-test-answer',compact('title','description'),['banner' =>$banner,'questions' =>$questions, 'requestAnswer' =>$requestAnswer]);
+    }
+
+    public function awsTest(Request $request){
+        $requestAnswer = $request; //dd($requestAnswer);
+        $banner = BanerSlide::where('page_name','=','aws')->first(); //dd($banner);
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
+        $category = Category::where('name','=','AWS')->first();
+        $id = $category->id;
+        $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
+        foreach ($questions as $question) {
+             if ($question->answer == "A") {
+                $question->shoAnswer = TestQuestion::find($question->id)->A;
+            }
+            if ($question->answer == "B") {
+                $question->shoAnswer = TestQuestion::find($question->id)->B;
+            }
+            if ($question->answer == "C") {
+                $question->shoAnswer = TestQuestion::find($question->id)->C;
+            }
+            if ($question->answer == "D") {
+                $question->shoAnswer = TestQuestion::find($question->id)->D;
+            }
+        }
+        return view('aws-test-answer',compact('title','description'),['banner' =>$banner,'questions' =>$questions, 'requestAnswer' =>$requestAnswer]);
     }
 
 }

@@ -44,7 +44,7 @@
                                     <tr>
                                         <td>{{ $questionData->question_number }}</td>
                                         <td>{{ $questionData->category }}</td>
-                                        <td>{{ $questionData->type }}</td>
+                                        <td style="text-transform: capitalize;">{{ $questionData->type }}</td>
                                         <td><a href="/admin/test/question/edit/{{ $questionData->id }}" class="btn btn-secondary">Edit</a>
                                         <a onclick="return removeAlert();" href="/admin/test/question/delete/{{ $questionData->id }}" class="btn btn-danger on-mob-table-btn">Delete</a>
                                         </td>

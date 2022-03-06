@@ -9,6 +9,13 @@
                 </div>
                 <br>
                 <div class="btn-div">
+                    <strong>AWS</strong>
+                   <a href="/test-aws">
+                        <button type="button" class="btn text-link-btn">Ready</button>
+                    </a> 
+                </div>
+                <br>
+                <div class="btn-div">
                     <strong>Laravel</strong>
                    <a href="/test-laravel">
                         <button type="button" class="btn text-link-btn">Ready</button>
@@ -20,5 +27,5 @@
                    <a href="/test-wordpress">
                         <button type="button" class="btn text-link-btn">Ready</button>
                     </a> 
-                </div>
+                </div>  
             </div>

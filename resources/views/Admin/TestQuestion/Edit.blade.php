@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 <label for="page">Type</label>
                                   <select class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}"  name="type">
-                                    <option value="">--Select Type--</option>
+                                    <option value="all" {{ $question->type == 'all' ? "selected":"" }}>All</option>
                                     <option value="fresher" {{ $question->type == 'fresher' ? "selected":"" }}>Fresher</option>
                                     <option value="experince" {{ $question->type == 'experince' ? "selected":"" }}>Experince</option>
                                   </select>

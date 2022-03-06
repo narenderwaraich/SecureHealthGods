@@ -23,6 +23,9 @@
                             <a class="nav-link" href="/gk">GK</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="/aws">AWS</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="/tuttorials">Tuttorials</a>
                         </li>
 <!--                         <li class="nav-item">

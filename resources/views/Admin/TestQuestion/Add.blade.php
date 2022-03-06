@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 <label for="page">Type</label>
                                   <select class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}"  name="type" >
-                                    <option value="">--Select Type--</option>
+                                    <option value="all">All</option>
                                     <option value="fresher">Fresher</option>
                                     <option value="experince">Experince</option>
                                   </select>
@@ -52,46 +52,63 @@
                                     @endif
                             </div>
                             <div class="form-group">
-                                <label for="a">Option A</label>
-                                <input type="text" name="A" id="a" placeholder="Option A" class="form-control{{ $errors->has('A') ? ' is-invalid' : '' }}" required>
-                                 @if ($errors->has('A'))
+                                <label for="page">Answer Type</label>
+                                  <select class="form-control{{ $errors->has('ans_type') ? ' is-invalid' : '' }}"  name="ans_type" id="select-ans-type">
+                                    <option value="">--Answer Type--</option>
+                                    <option value="option">Option</option>
+                                    <option value="choosie">Choosie</option>
+                                    <option value="true_false">True/False</option>
+                                    <option value="write">Text Write</option>
+                                  </select>
+                                   @if ($errors->has('ans_type'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('A') }}</strong>
+                                        <strong>{{ $errors->first('ans_type') }}</strong>
                                     </span>
                                     @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="b">Option B</label>
-                                <input type="text" name="B" id="b" placeholder="Option B" class="form-control{{ $errors->has('B') ? ' is-invalid' : '' }}" required>
-                                 @if ($errors->has('B'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('B') }}</strong>
-                                    </span>
-                                    @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="c">Option C</label>
-                                <input type="text" name="C" id="c" placeholder="Option C" class="form-control{{ $errors->has('C') ? ' is-invalid' : '' }}" required>
-                                 @if ($errors->has('C'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('C') }}</strong>
-                                    </span>
-                                    @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="d">Option D</label>
-                                <input type="text" name="D" id="d" placeholder="Option D" class="form-control{{ $errors->has('D') ? ' is-invalid' : '' }}" required>
-                                 @if ($errors->has('D'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('D') }}</strong>
-                                    </span>
-                                    @endif
-                            </div>
+                             </div>
+                            <div id="option" style="display:none;">
+                                <div class="form-group">
+                                    <label for="a">Option A</label>
+                                    <input type="text" name="A" id="a" placeholder="Option A" class="form-control{{ $errors->has('A') ? ' is-invalid' : '' }}">
+                                     @if ($errors->has('A'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('A') }}</strong>
+                                        </span>
+                                        @endif
+                                </div>
+                                <div class="form-group">
+                                    <label for="b">Option B</label>
+                                    <input type="text" name="B" id="b" placeholder="Option B" class="form-control{{ $errors->has('B') ? ' is-invalid' : '' }}">
+                                     @if ($errors->has('B'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('B') }}</strong>
+                                        </span>
+                                        @endif
+                                </div>
+                                <div class="form-group">
+                                    <label for="c">Option C</label>
+                                    <input type="text" name="C" id="c" placeholder="Option C" class="form-control{{ $errors->has('C') ? ' is-invalid' : '' }}">
+                                     @if ($errors->has('C'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('C') }}</strong>
+                                        </span>
+                                        @endif
+                                </div>
+                                <div class="form-group">
+                                    <label for="d">Option D</label>
+                                    <input type="text" name="D" id="d" placeholder="Option D" class="form-control{{ $errors->has('D') ? ' is-invalid' : '' }}">
+                                     @if ($errors->has('D'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('D') }}</strong>
+                                        </span>
+                                        @endif
+                                </div>
+
                             <div class="answr-txt-lbl">Answer</div>
-                            <div class="answr-form-grup">
+                             <div class="answr-form-grup">
                                <div class="form-check-inline">
                                   <label class="form-check-label" for="checkA">
-                                    <input type="radio" class="form-check-input" id="checkA" name="answer" value="A" checked>Option A
+                                    <input type="radio" class="form-check-input" id="checkA" name="answer" value="A">Option A
                                   </label>
                                 </div>
                                 <div class="form-check-inline">
@@ -110,6 +127,39 @@
                                   </label>
                                 </div>
                               </div>
+                            </div>
+
+                            <div id="choosie" style="display:none;">
+                                <div class="input-group">
+                                    <input type="text" id="checkBoxVal" name="" placeholder="Check Box Value" class="form-control">
+                                    <div class="input-group-btn"><button type="button" class="btn btn-primary" id="addCheckBox">Add</button></div>
+                                </div>
+                                <div class="form-group" style="margin: 10px 10px;">
+                                      <div class="form-check" id="check_box_field">
+
+                                      </div>
+                                </div>
+                            </div>
+
+                            <div id="true_false" style="display:none;">
+                              <div class="answr-form-grup">
+                               <div class="form-check-inline">
+                                  <label class="form-check-label" for="checkA">
+                                    <input type="radio" class="form-check-input" id="true-false-checkA" name="true_false_answer" value="1">True
+                                  </label>
+                                </div>
+                                <div class="form-check-inline">
+                                  <label class="form-check-label" for="checkB">
+                                    <input type="radio" class="form-check-input" id="true-false-checkB" name="true_false_answer" value="0">False
+                                  </label>
+                                </div>
+                                </div>  
+                            </div>
+
+                            <div id="write" style="display:none;">
+                                <textarea name="write_ans" class="form-control" placeholder="Write Answer"></textarea>
+                            </div>
+                            
 
                         </div>
 
@@ -122,4 +172,62 @@
         </div>
     </section>
 </section>
+<script>
+    $('#select-ans-type').on('change',function(){
+        showAnswerType($(this).val());
+    });
+
+    function showAnswerType(id){
+        console.log(id);
+        if(id === "option"){
+            $('#option').show();
+            $('#choosie').hide();
+            $('#true_false').hide();
+            $('#write').hide();
+        }
+
+        if(id === "choosie"){
+            $('#choosie').show();
+            $('#option').hide();
+            $('#true_false').hide();
+            $('#write').hide();
+        }
+
+        if(id === "true_false"){
+            $('#true_false').show();
+            $('#choosie').hide();
+            $('#option').hide();
+            $('#write').hide();
+        }
+
+        if(id === "write"){
+            $('#write').show();
+            $('#choosie').hide();
+            $('#true_false').hide();
+            $('#option').hide();
+        }
+    }
+
+var i=0;
+var v=1;   
+
+  $('#addCheckBox').click(function(){    
+  var checkBoxValue = $('#checkBoxVal').val();
+  if(v > 6){ 
+    alert('add only 6 checkbox!') 
+  }else{
+    $('#check_box_field').append('<div class="checkbox" id="frm'+i+'">'+v+'.  <label for="checkbox'+v+'" class="form-check-label "><input type="checkbox" id="checkbox'+v+'" name="checkbox_ans_'+v+'" value="'+checkBoxValue+'" class="form-check-input"> '+checkBoxValue+'</label></div><input type="hidden" name="checkbox_'+v+'" value="'+checkBoxValue+'">');
+       i++;
+       v++;
+  }
+  
+    $('#checkBoxVal').val('');
+
+  });  
+
+  $(document).on('click', '.btn_remove', function(){  
+       var button_id = $(this).attr("id");   
+       $('#frm'+button_id+'').remove();
+  });
+</script>
 @endsection
