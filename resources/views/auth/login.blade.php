@@ -37,7 +37,7 @@
 </div>
 </section>
 </div>
-<script src="/public/jquery/jquery-3.2.1.min.js"></script>
+<script src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
 <script>
 $(".toggle-password").click(function() {
 $(this).toggleClass("fa-eye-slash fa-eye");

@@ -25,7 +25,7 @@
 <div class="container text-question-page">
 	<div class="row justify-content-center m-t-50">
 		<div class="col-md-12">
-			<h1 class="heading-txt">AWS Test Questions and Answers</h1>
+			<h1 class="heading-txt">AWS Practice Exams</h1>
 		<!-- <form method="post" action="/test-aws">
 		    {{ csrf_field() }} -->
 		@foreach($questions as $question)

@@ -28,55 +28,10 @@ class TestQuestionController extends Controller
         $category = Category::orderBy('created_at','desc')->paginate(10);
         return view('Admin.TestQuestion.List',['category' =>$category]);
     }
-    
-    public function phpPage()
-    {
-        $name = "Php";
-        $categoryId = Category::where('name',$name)->first()->id;
-        $questions = TestQuestion::where('category_id',$categoryId)->orderBy('created_at','desc')->paginate(10);
-        foreach ($questions as $question) {
-            $question->category = Category::where('id',$question->category_id)->first()->name;
-        }
-        return view('Admin.TestQuestion.Show',['questions' =>$questions]);
-    }
 
-    public function laravelPage()
+    public function examListPage($category)
     {
-        $name = "Laravel";
-        $categoryId = Category::where('name',$name)->first()->id;
-        $questions = TestQuestion::where('category_id',$categoryId)->orderBy('created_at','desc')->paginate(10);
-        foreach ($questions as $question) {
-            $question->category = Category::where('id',$question->category_id)->first()->name;
-        }
-        return view('Admin.TestQuestion.Show',['questions' =>$questions]);
-    }
-
-    public function wordpressPage()
-    {
-        $name = "Wordpress";
-        $categoryId = Category::where('name',$name)->first()->id;
-        $questions = TestQuestion::where('category_id',$categoryId)->orderBy('created_at','desc')->paginate(10);
-        foreach ($questions as $question) {
-            $question->category = Category::where('id',$question->category_id)->first()->name;
-        }
-        return view('Admin.TestQuestion.Show',['questions' =>$questions]);
-    }
-
-    public function gkPage()
-    {
-        $name = "GK";
-        $categoryId = Category::where('name',$name)->first()->id;
-        $questions = TestQuestion::where('category_id',$categoryId)->orderBy('created_at','desc')->paginate(10);
-        foreach ($questions as $question) {
-            $question->category = Category::where('id',$question->category_id)->first()->name;
-        }
-        return view('Admin.TestQuestion.Show',['questions' =>$questions]);
-    }
-
-    public function awsPage()
-    {
-        $name = "AWS";
-        $categoryId = Category::where('name',$name)->first()->id;
+        $categoryId = Category::where('name',$category)->first()->id;
         $questions = TestQuestion::where('category_id',$categoryId)->orderBy('created_at','desc')->paginate(10);
         foreach ($questions as $question) {
             $question->category = Category::where('id',$question->category_id)->first()->name;

@@ -25,27 +25,13 @@
 <div class="container">
 	<div class="row justify-content-center m-t-50">
 		<div class="col-md-8">
-			<h1 class="heading-txt">AWS Questions and Answers</h1>
-		@foreach($questions as $question)
-			<div class="question-box">
-				<div class="question-title"><span class="Qu">{{$question->question_number}})</span> {{$question->question}}</div>
-				<p class="answer"><span class="ans">Ans.</span>{{$question->answer}}</p>
-			@if(isset($question->points))
-				<ul class="answer-points">
-					@foreach($question->points as $point)
-					<li>{{$point->title}}</li>
-					@endforeach
-				</ul>
-			@endif
-			</div>
-			@if($question->code)
-			<div class="code-show">
-				{{$question->code}}
-			</div>
-			@endif
-		 @endforeach
+			<h1 class="heading-txt">AWS Practites Exam</h1>
+		@foreach($allCategory as $question)
+			<a href="/practice-exams/{{$question->name}}">
+				<button type="button" class="btn btn-primary btn-lg">Practites Exam {{$question->name}}</button>
+			</a>
+		@endforeach
 		</div>
-		{!! $questions->links() !!}
 		<div class="col-md-4">
 		</div>
 	</div>

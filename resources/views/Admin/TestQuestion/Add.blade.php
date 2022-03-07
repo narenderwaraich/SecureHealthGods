@@ -56,7 +56,7 @@
                                   <select class="form-control{{ $errors->has('ans_type') ? ' is-invalid' : '' }}"  name="ans_type" id="select-ans-type">
                                     <option value="">--Answer Type--</option>
                                     <option value="option">Option</option>
-                                    <option value="choosie">Choosie</option>
+                                    <option value="choice">Choice</option>
                                     <option value="true_false">True/False</option>
                                     <option value="write">Text Write</option>
                                   </select>
@@ -129,7 +129,7 @@
                               </div>
                             </div>
 
-                            <div id="choosie" style="display:none;">
+                            <div id="choice" style="display:none;">
                                 <div class="input-group">
                                     <input type="text" id="checkBoxVal" name="" placeholder="Check Box Value" class="form-control">
                                     <div class="input-group-btn"><button type="button" class="btn btn-primary" id="addCheckBox">Add</button></div>
@@ -181,13 +181,13 @@
         console.log(id);
         if(id === "option"){
             $('#option').show();
-            $('#choosie').hide();
+            $('#choice').hide();
             $('#true_false').hide();
             $('#write').hide();
         }
 
-        if(id === "choosie"){
-            $('#choosie').show();
+        if(id === "choice"){
+            $('#choice').show();
             $('#option').hide();
             $('#true_false').hide();
             $('#write').hide();
@@ -195,14 +195,14 @@
 
         if(id === "true_false"){
             $('#true_false').show();
-            $('#choosie').hide();
+            $('#choice').hide();
             $('#option').hide();
             $('#write').hide();
         }
 
         if(id === "write"){
             $('#write').show();
-            $('#choosie').hide();
+            $('#choice').hide();
             $('#true_false').hide();
             $('#option').hide();
         }

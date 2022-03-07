@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-6 on-mob-top-30">
                     <a href="/gk" class="hov-img-zoom">
-                        <img src="{{config('app.file_path')}}/images/section/gk.jpg" class="type-view-img" alt="gk">
+                        <img src="{{config('app.file_path')}}/images/section/gk.webp" class="type-view-img" alt="gk">
                     </a>
                 </div>
             </div>

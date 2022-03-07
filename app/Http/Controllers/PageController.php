@@ -116,13 +116,9 @@ class PageController extends Controller
         $banner = BanerSlide::where('page_name','=','aws')->first(); //dd($banner);
         $title = $banner ? $banner->title : '';
         $description = $banner ? $banner->description : '';
-        $category = Category::where('name','=','AWS')->first();
-        $id = $category->id;
-        $questions = Question::where('category_id',$id)->paginate(10); //dd($questions);
-        foreach ($questions as $question) {
-            $question->points = AnswerPoint::where('question_id',$question->id)->get();
-        }
-            return view('aws',compact('title','description'),['banner' =>$banner,'questions' =>$questions]); 
+        $query = 'AWS';
+        $allCategory = Category::where('name','LIKE','%'.$query.'%')->get();
+            return view('aws',compact('title','description'),['banner' =>$banner,'allCategory' =>$allCategory]); 
     }
 
     public function awsTestPage(){
@@ -132,6 +128,16 @@ class PageController extends Controller
         $category = Category::where('name','=','AWS')->first();
         $id = $category->id;
         $questions = TestQuestion::where('category_id',$id)->paginate(10); //dd($questions);
+            return view('aws-test',compact('title','description'),['banner' =>$banner,'questions' =>$questions]); 
+    }
+
+    public function awsExamTestPage($category){
+        $banner = BanerSlide::where('page_name','=','aws')->first(); //dd($banner);
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
+        $category = Category::where('name',$category)->first();
+        $id = $category->id;
+        $questions = TestQuestion::where('category_id',$id)->get(); //dd($questions);
             return view('aws-test',compact('title','description'),['banner' =>$banner,'questions' =>$questions]); 
     }
 
