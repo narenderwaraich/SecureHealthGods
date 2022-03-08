@@ -40,6 +40,8 @@ Route::post('/test-wordpress','PageController@wordpressTest');
 Route::post('/test-gk','PageController@gkTest');
 Route::post('/test-aws','PageController@awsTest');
 
+Route::any('/search-question/{query}','TestQuestionController@searchQuestion');
+
 Auth::routes();
 
 Route::get('/admin', 'AdminController@index')->name('admin');

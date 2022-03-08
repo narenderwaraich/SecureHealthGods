@@ -24,7 +24,7 @@
 
 <div class="container">
 	<div class="row justify-content-center m-t-50">
-		<div class="col-md-8">
+		<div class="col-md-12">
 			<h1 class="heading-txt">AWS Practites Exam</h1>
 		@foreach($allCategory as $question)
 			<a href="/practice-exams/{{$question->name}}">
@@ -32,8 +32,19 @@
 			</a>
 		@endforeach
 		</div>
-		<div class="col-md-4">
-		</div>
 	</div>
+
+	<!-- <div class="row m-t-50">
+          <div class="col-md-12">
+              <input type="text" name="query" class="form-control search-query" id="search-question" onkeyup="runQuery()" placeholder="Search Question" aria-label="Search Question">
+          </div>
+  </div>
+
+  <section class="m-t-30">
+  	<div class="row justify-content-center" id="search-record"></div>
+  </section>
+ -->
 </div>
+<!-- <script src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
+<script src="{{config('app.file_path')}}/js/custom.js"></script> -->
 @endsection

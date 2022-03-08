@@ -94,7 +94,6 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $validate = $this->validate($request, [
-            'type' => 'required',
             'question' => 'required',
             'answer' => 'required',
         ]);
@@ -172,7 +171,6 @@ class QuestionController extends Controller
     public function update(Request $request, $id)
     {
         $validate = $this->validate($request, [
-            'type' => 'required',
             'question' => 'required',
             'answer' => 'required',
         ]);

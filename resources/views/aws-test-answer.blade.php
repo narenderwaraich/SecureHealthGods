@@ -74,7 +74,7 @@
 					<div class="show-answer m-t-20"><span class="ans">Ans.</span> {{$question->shoAnswer}}</div>
 					@endif
 
-					@if($question->ans_type == "choosie")
+					@if($question->ans_type == "choice")
 					<div class="form-check">
 						@if($question->checkbox_1)
               <div class="checkbox">
@@ -120,18 +120,26 @@
             @endif
 
             <div class="show-answer m-t-20"><span class="ans">Ans.</span> 
-            	<br>
-            	@if($question->checkbox_ans_1) {{$question->checkbox_ans_1}} @endif
-            	<br>
-            	@if($question->checkbox_ans_2) {{$question->checkbox_ans_2}} @endif
-            	<br>
-            	@if($question->checkbox_ans_3) {{$question->checkbox_ans_3}} @endif
-            	<br>
-            	@if($question->checkbox_ans_4) {{$question->checkbox_ans_4}} @endif
-            	<br>
-            	@if($question->checkbox_ans_5) {{$question->checkbox_ans_5}} @endif
-            	<br>
-            	@if($question->checkbox_ans_6) {{$question->checkbox_ans_6}} @endif
+            	<ul>
+                @if($question->checkbox_ans_1)
+                  <li>{{$question->checkbox_ans_1}}</li> 
+                @endif
+                @if($question->checkbox_ans_2)
+                  <li>{{$question->checkbox_ans_2}}</li> 
+                @endif
+                @if($question->checkbox_ans_3)
+                  <li>{{$question->checkbox_ans_3}}</li> 
+                @endif
+                @if($question->checkbox_ans_4)
+                  <li>{{$question->checkbox_ans_4}}</li> 
+                @endif
+                @if($question->checkbox_ans_5)
+                  <li>{{$question->checkbox_ans_5}}</li> 
+                @endif
+                @if($question->checkbox_ans_6)
+                  <li>{{$question->checkbox_ans_6}}</li> 
+                @endif
+              </ul>
 
             </div>
             </div>

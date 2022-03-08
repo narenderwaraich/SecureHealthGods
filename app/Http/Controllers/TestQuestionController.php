@@ -121,9 +121,7 @@ class TestQuestionController extends Controller
     public function update(Request $request, $id)
     {
         $validate = $this->validate($request, [
-            'type' => 'required',
             'question' => 'required',
-            'answer' => 'required',
         ]);
         if(!$validate){
                 Redirect::back()->withInput();
@@ -133,7 +131,38 @@ class TestQuestionController extends Controller
         $categoryName = Category::find($categoryID)->name;
         $question = TestQuestion::find($id);
 
-        $question->update($request->all());
+        $data = request(['question','answer','type','code','category_id','A','B','C','D','ans_type','checkbox_1','checkbox_2','checkbox_3','checkbox_4','checkbox_5','checkbox_6','true_false_answer','write_ans']);
+        if($request->checkbox_ans_1){
+            $data['checkbox_ans_1'] = $request->checkbox_ans_1;
+        }else{
+            $data['checkbox_ans_1'] = null;
+        }
+        if($request->checkbox_ans_2){
+            $data['checkbox_ans_2'] = $request->checkbox_ans_2;
+        }else{
+            $data['checkbox_ans_2'] = null;
+        }
+        if($request->checkbox_ans_3){
+            $data['checkbox_ans_3'] = $request->checkbox_ans_3;
+        }else{
+            $data['checkbox_ans_3'] = null;
+        }
+        if($request->checkbox_ans_4){
+            $data['checkbox_ans_4'] = $request->checkbox_ans_4;
+        }else{
+            $data['checkbox_ans_4'] = null;
+        }
+        if($request->checkbox_ans_5){
+            $data['checkbox_ans_5'] = $request->checkbox_ans_5;
+        }else{
+            $data['checkbox_ans_5'] = null;
+        }
+        if($request->checkbox_ans_6){
+            $data['checkbox_ans_6'] = $request->checkbox_ans_6;
+        }else{
+            $data['checkbox_ans_6'] = null;
+        }
+        $question->update($data);
 
         Toastr::success('Test Question updated', 'Success', ["positionClass" => "toast-bottom-right"]);
 
@@ -152,5 +181,10 @@ class TestQuestionController extends Controller
         $question->delete();
         Toastr::success('TestQuestion deleted', 'Success', ["positionClass" => "toast-bottom-right"]);
         return redirect()->to('/admin/test/question/show');
+    }
+
+    public function searchQuestion($query){
+        $data = TestQuestion::where('question','LIKE','%'.$query.'%')->get();
+        return response()->json($data);
     }
 }
