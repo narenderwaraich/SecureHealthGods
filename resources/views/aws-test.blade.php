@@ -178,7 +178,22 @@
 		</div>
 	</div>
 </div>
-
+<style>
+    body{
+        background: #0a3644;
+        color: #ffffff;
+    }
+    h1.heading-txt {
+        color: #ffffff;
+    }
+    .text-question-page .question-box {
+        border: 1px solid rgb(255 194 8);
+    }
+    .question-box {
+        -webkit-box-shadow: 0 1rem 3rem rgb(255 194 8 / 30%) !important;
+        box-shadow: 0 1rem 3rem rgb(255 194 8 / 30%) !important;
+    }
+</style>
 <script>
 	function showAnswer(id){
 		$('#show_answer_'+id).show();

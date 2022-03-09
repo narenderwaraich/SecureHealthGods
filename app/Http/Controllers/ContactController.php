@@ -20,10 +20,8 @@ class ContactController extends Controller
 {
     public function get(){
         $banner = BanerSlide::where('page_name','=','contact-us')->first(); //dd($banner);
-          if (isset($banner)) {
-              $title = $banner->title;
-              $description = $banner->description;
-          }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
             return view('contact-us',compact('title','description'),['banner' =>$banner]); 
     }
     public function store(Request $request){

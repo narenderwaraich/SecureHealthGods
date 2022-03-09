@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row justify-content-center m-t-50">
         <div class="col-md-8">
-            <div class="heading-title heading-text heading-color m-t-50">Know About FreeKaFanda</div>
+            <div class="heading-title heading-text heading-color m-t-50">Know About {{config('app.name')}}</div>
             <br>
             <p>
             <b>Our Services</b>

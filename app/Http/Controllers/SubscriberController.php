@@ -31,10 +31,8 @@ class SubscriberController extends Controller
     public function index()
     {
         $banner = BanerSlide::where('page_name','=','dashboard')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         if(Auth::check()){
             $userId = Auth::id();
             $subscriber = subscriber::where('user_id',$userId)->first();

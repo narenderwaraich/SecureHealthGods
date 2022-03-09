@@ -21,10 +21,8 @@ class HomeController extends Controller
     public function index()
     {
         $banner = BanerSlide::where('page_name','=','home')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         return view('index',compact('title','description'),['banner' =>$banner]);
     }
 }

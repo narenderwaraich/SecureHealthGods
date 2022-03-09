@@ -27,10 +27,8 @@ class UserProfileControler extends Controller
 
     public function viewProfile(){
         $banner = BanerSlide::where('page_name','=','profile')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         if(Auth::check()){
             $userId = Auth::id();
             $country_data =DB::table('countries')->select('id','name')->get();

@@ -34,10 +34,8 @@ class YoutubeController extends Controller
     public function showAll()
     {
         $banner = BanerSlide::where('page_name','=','videos')->first(); //dd($banner);
-        if (isset($banner)) {
-            $title = $banner->title;
-            $description = $banner->description;
-        }
+        $title = $banner ? $banner->title : '';
+        $description = $banner ? $banner->description : '';
         $videos = Youtube::orderBy('created_at','desc')->paginate(10);
             return view('videos',compact('title','description'),['banner' =>$banner, 'videos' =>$videos]);
         
