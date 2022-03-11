@@ -50,10 +50,7 @@ Route::post('/admin/question/add', 'QuestionController@store');
 Route::get('/admin/question/edit/{id}', 'QuestionController@edit');
 Route::post('/admin/question/update/{id}', 'QuestionController@update');
 Route::get('/admin/question/show', 'QuestionController@pageList');
-Route::get('/admin/question/show/Php', 'QuestionController@phpPage');
-Route::get('/admin/question/show/Laravel', 'QuestionController@laravelPage');
-Route::get('/admin/question/show/Wordpress', 'QuestionController@wordpressPage');
-Route::get('/admin/question/show/GK', 'QuestionController@gkPage');
+Route::get('/admin/question/show/{category}', 'QuestionController@questionList');
 Route::get('/admin/question/delete/{id}', 'QuestionController@destroy');
 
 Route::get('/admin/category/add', 'CategoryController@create');

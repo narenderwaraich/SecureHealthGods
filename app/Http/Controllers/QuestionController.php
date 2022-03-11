@@ -30,10 +30,9 @@ class QuestionController extends Controller
         return view('Admin.Question.List',['category' =>$category]);
     }
 
-    public function phpPage()
+    public function questionList($category)
     {
-        $name = "Php";
-        $categoryId = Category::where('name',$name)->first()->id;
+        $categoryId = Category::where('name',$category)->first()->id;
         $questions = Question::where('category_id',$categoryId)->orderBy('created_at','desc')->paginate(10);
         foreach ($questions as $question) {
             $question->category = Category::where('id',$question->category_id)->first()->name;
@@ -41,38 +40,6 @@ class QuestionController extends Controller
         return view('Admin.Question.Show',['questions' =>$questions]);
     }
 
-    public function laravelPage()
-    {
-        $name = "Laravel";
-        $categoryId = Category::where('name',$name)->first()->id;
-        $questions = Question::where('category_id',$categoryId)->orderBy('created_at','desc')->paginate(10);
-        foreach ($questions as $question) {
-            $question->category = Category::where('id',$question->category_id)->first()->name;
-        }
-        return view('Admin.Question.Show',['questions' =>$questions]);
-    }
-
-    public function wordpressPage()
-    {
-        $name = "Wordpress";
-        $categoryId = Category::where('name',$name)->first()->id;
-        $questions = Question::where('category_id',$categoryId)->orderBy('created_at','desc')->paginate(10);
-        foreach ($questions as $question) {
-            $question->category = Category::where('id',$question->category_id)->first()->name;
-        }
-        return view('Admin.Question.Show',['questions' =>$questions]);
-    }
-
-     public function gkPage()
-    {
-        $name = "GK";
-        $categoryId = Category::where('name',$name)->first()->id;
-        $questions = Question::where('category_id',$categoryId)->orderBy('created_at','desc')->paginate(10);
-        foreach ($questions as $question) {
-            $question->category = Category::where('id',$question->category_id)->first()->name;
-        }
-        return view('Admin.Question.Show',['questions' =>$questions]);
-    }
 
     /**
      * Show the form for creating a new resource.
