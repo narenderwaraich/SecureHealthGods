@@ -14,20 +14,12 @@
     <link rel="canonical" href="http://www.freekafanda.in/" />
     <link rel="icon" href="{{config('app.file_path')}}/favicon.ico" type="image/x-icon">
 
-    <!-- Scripts -->
-    <script src="{{config('app.file_path')}}/js/app.js" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
     <!-- Styles -->
-    <link href="{{config('app.file_path')}}/css/app.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/css/custom.css">
     <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{config('app.file_path')}}/css/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/css/design.css">
+    <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/css/custom.css">
     <link rel="stylesheet" type="text/css" href="{{config('app.file_path')}}/css/responsive.css">
     <script type="text/javascript" src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js" async></script>
 </head>
