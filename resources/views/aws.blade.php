@@ -28,7 +28,7 @@
 			<h1 class="heading-txt">AWS Practites Exam</h1>
 		@foreach($allCategory as $question)
 			<a href="/practice-exams/{{$question->name}}">
-				<button type="button" class="btn btn-primary btn-lg" style="cursor: pointer;">Practites Exam {{$question->name}}</button>
+				<button type="button" class="btn btn-primary btn-lg on-mob-top-15" style="cursor: pointer;">Practites Exam {{$question->name}}</button>
 			</a>
 		@endforeach
 

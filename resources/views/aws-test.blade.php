@@ -22,7 +22,7 @@
 <div class="m-t-150"></div>
 @endif
 
-<div class="container text-question-page">
+<div class="container text-question-page aws-exam-question">
 	<div class="row justify-content-center m-t-50">
 		<div class="col-md-12">
 			<h1 class="heading-txt">AWS Practice Exams</h1>
@@ -31,7 +31,7 @@
 		@foreach($questions as $question)
 			<div class="question-box">
 				<div class="question-title"><span class="Qu">{{$question->question_number}})</span> {{$question->question}}</div>
-				<div class="answer-options-section">
+				<div class="answer-options-section on-mob-top-15">
 					@if($question->ans_type == "option")
 					<div class="answer-options">
 						@if($question->A)
@@ -86,48 +86,48 @@
 					<div class="form-check">
 						@if($question->checkbox_1)
               <div class="checkbox">
-                <label for="checkbox1" class="form-check-label checkbox-btn-design ">
-                  <input type="checkbox" id="checkbox1" name="checkbox1" value="{{$question->checkbox_1}}" class="form-check-input"> <span style="margin-left: 35px;">{{$question->checkbox_1}}</span>
+                <label for="checkbox_1_{{$question->id}}" class="form-check-label checkbox-btn-design ">
+                  <input type="checkbox" id="checkbox_1_{{$question->id}}" name="checkbox1" value="{{$question->checkbox_1}}" class="form-check-input"> <span style="margin-left: 35px;">{{$question->checkbox_1}}</span>
                 <span class="checkbox-checkmark"></span>
                 </label>
               </div>
             @endif
             @if($question->checkbox_2)
               <div class="checkbox">
-                <label for="checkbox2" class="form-check-label checkbox-btn-design ">
-                  <input type="checkbox" id="checkbox2" name="checkbox2" value="{{$question->checkbox_2}}" class="form-check-input"> <span style="margin-left: 35px;">{{$question->checkbox_2}}</span>
+                <label for="checkbox_2_{{$question->id}}" class="form-check-label checkbox-btn-design ">
+                  <input type="checkbox" id="checkbox_2_{{$question->id}}" name="checkbox2" value="{{$question->checkbox_2}}" class="form-check-input"> <span style="margin-left: 35px;">{{$question->checkbox_2}}</span>
                 <span class="checkbox-checkmark"></span>
                 </label>
               </div>
             @endif
             @if($question->checkbox_3)
               <div class="checkbox">
-                <label for="checkbox3" class="form-check-label checkbox-btn-design ">
-                  <input type="checkbox" id="checkbox3" name="checkbox3" value="{{$question->checkbox_3}}" class="form-check-input"> <span style="margin-left: 35px;">{{$question->checkbox_3}}</span>
+                <label for="checkbox_3_{{$question->id}}" class="form-check-label checkbox-btn-design ">
+                  <input type="checkbox" id="checkbox_3_{{$question->id}}" name="checkbox3" value="{{$question->checkbox_3}}" class="form-check-input"> <span style="margin-left: 35px;">{{$question->checkbox_3}}</span>
                 <span class="checkbox-checkmark"></span>
                 </label>
               </div>
             @endif
             @if($question->checkbox_4)
               <div class="checkbox">
-                <label for="checkbox4" class="form-check-label checkbox-btn-design ">
-                  <input type="checkbox" id="checkbox4" name="checkbox4" value="{{$question->checkbox_4}}" class="form-check-input"> <span style="margin-left: 35px;">{{$question->checkbox_4}}</span>
+                <label for="checkbox_4_{{$question->id}}" class="form-check-label checkbox-btn-design ">
+                  <input type="checkbox" id="checkbox_4_{{$question->id}}" name="checkbox4" value="{{$question->checkbox_4}}" class="form-check-input"> <span style="margin-left: 35px;">{{$question->checkbox_4}}</span>
                 <span class="checkbox-checkmark"></span>
                 </label>
               </div>
             @endif
             @if($question->checkbox_5)
               <div class="checkbox">
-                <label for="checkbox5" class="form-check-label checkbox-btn-design ">
-                  <input type="checkbox" id="checkbox5" name="checkbox5" value="{{$question->checkbox_5}}" class="form-check-input"> <span style="margin-left: 35px;">{{$question->checkbox_5}}</span>
+                <label for="checkbox_5_{{$question->id}}" class="form-check-label checkbox-btn-design ">
+                  <input type="checkbox" id="checkbox_5_{{$question->id}}" name="checkbox5" value="{{$question->checkbox_5}}" class="form-check-input"> <span style="margin-left: 35px;">{{$question->checkbox_5}}</span>
                 <span class="checkbox-checkmark"></span>
                 </label>
               </div>
             @endif
             @if($question->checkbox_6)
               <div class="checkbox">
-                <label for="checkbox6" class="form-check-label checkbox-btn-design ">
-                  <input type="checkbox" id="checkbox6" name="checkbox6" value="{{$question->checkbox_6}}" class="form-check-input"> <span style="margin-left: 35px;">{{$question->checkbox_6}}</span>
+                <label for="checkbox_6_{{$question->id}}" class="form-check-label checkbox-btn-design ">
+                  <input type="checkbox" id="checkbox_6_{{$question->id}}" name="checkbox6" value="{{$question->checkbox_6}}" class="form-check-input"> <span style="margin-left: 35px;">{{$question->checkbox_6}}</span>
                 <span class="checkbox-checkmark"></span>
                 </label>
               </div>
@@ -195,144 +195,7 @@
         background: #0a3644;
         color: #ffffff;
     }
-    h1.heading-txt {
-        color: #ffffff;
-    }
-    .text-question-page .question-box {
-        border: 1px solid rgb(255 194 8);
-    }
-    .question-box {
-        -webkit-box-shadow: 0 1rem 3rem rgb(255 194 8 / 30%) !important;
-        box-shadow: 0 1rem 3rem rgb(255 194 8 / 30%) !important;
-    }
-    /* The radio-btn-design */
-.radio-btn-design {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* Hide the browser's default radio button */
-.radio-btn-design input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-/* Create a custom radio button */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #fff;
-  border-radius: 50%;
-}
-
-/* On mouse-over, add a grey background color */
-.radio-btn-design:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-
-/* When the radio button is checked, add a blue background */
-.radio-btn-design input:checked ~ .checkmark {
-  background-color: #ffbb33;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.radio-btn-design input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the indicator (dot/circle) */
-.radio-btn-design .checkmark:after {
-  top: 9px;
-  left: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: white;
-}
-
-.checkbox-btn-design {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* Hide the browser's default checkbox */
-.checkbox-btn-design input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-/* Create a custom checkbox */
-.checkbox-checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #fff;
-}
-
-/* On mouse-over, add a grey background color */
-.checkbox-btn-design:hover input ~ .checkbox-checkmark {
-  background-color: #ccc;
-}
-
-/* When the checkbox is checked, add a blue background */
-.checkbox-btn-design input:checked ~ .checkbox-checkmark {
-  background-color: #ffbb33;
-}
-
-/* Create the checkbox-checkmark/indicator (hidden when not checked) */
-.checkbox-checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the checkbox-checkmark when checked */
-.checkbox-btn-design input:checked ~ .checkbox-checkmark:after {
-  display: block;
-}
-
-/* Style the checkbox-checkmark/indicator */
-.checkbox-btn-design .checkbox-checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
+    
 </style>
 <script>
 	function showAnswer(id){

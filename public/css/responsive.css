@@ -41,6 +41,9 @@
     .on-mob-top-30{
         margin-top: 30px;
     }
+    .on-mob-top-15{
+        margin-top: 30px;
+    }
     ul.navbar-nav.mr-auto {
         margin-left: 0px;
     }
@@ -73,5 +76,13 @@
     }
     .user_menu {
         top: 40px;
+    }
+    span.options-ans-left {
+        float: unset;
+        width: auto;
+    }
+    span.options-ans-right {
+        float: unset;
+        width: auto;
     }
 }
