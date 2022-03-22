@@ -26,6 +26,7 @@ Route::get('/wordpress', 'PageController@wordpressPage');
 Route::get('/test-wordpress', 'PageController@wordpressTestPage');
 Route::get('/gk', 'PageController@gkPage');
 Route::get('/aws', 'PageController@awsPage');
+Route::get('/aws-exam', 'PageController@awsExamPage');
 Route::get('/test-gk', 'PageController@gkTestPage');
 Route::get('/test-aws', 'PageController@awsTestPage');
 Route::get('/practice-exams/{category}', 'PageController@awsExamTestPage');

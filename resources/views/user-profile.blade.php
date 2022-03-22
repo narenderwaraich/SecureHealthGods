@@ -457,7 +457,7 @@
 </div>  <!-- Content End -->
 
 <span id="user_full_name" style="display: none;">{{Auth::user()->name}}</span>
-<script type="text/javascript" src="/public/jquery/jquery-3.2.1.min.js"></script>        
+<script type="text/javascript" src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>        
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {

@@ -24,35 +24,27 @@
 
 <div class="container">
 	<div class="row justify-content-center m-t-50">
-		<div class="col-md-12">
-			<h1 class="heading-txt">AWS Practites Exam</h1>
-		@foreach($allCategory as $question)
-			<a href="/practice-exams/{{$question->name}}">
-				<button type="button" class="btn btn-primary btn-lg on-mob-top-15" style="cursor: pointer;">Practites Exam {{$question->name}}</button>
-			</a>
-		@endforeach
+<div class="col-md-12">
+  <h1 class="heading-txt">AWS Practites Exam</h1>
+  <a href="/practice-exams/AWS">
+    <button type="button" class="btn btn-primary btn-lg on-mob-top-15" style="cursor: pointer;">Practites Exam AWS</button>
+  </a>
 
-    <div class="m-t-50">
-      @foreach($questions as $question)
-      <div class="question-box">
-        <div class="question-title"><!-- <span class="Qu">{{$question->question_number}})</span> --> {{$question->question}}</div>
-        <p class="answer"><!-- <span class="ans">Ans.</span> -->{!! nl2br($question->answer) !!}</p>
-      @if(isset($question->points))
-        <ul class="answer-points">
-          @foreach($question->points as $point)
-          <li>{!! nl2br($point->title) !!}</li>
-          @endforeach
-        </ul>
-      @endif
-      </div>
-      @if($question->code)
-      <div class="code-show">
-        {{$question->code}}
-      </div>
-      @endif
-     @endforeach
+  <div class="m-t-50">
+    <div class="question-box">
+      <div class="question-title"><!-- <span class="Qu">Q.01)</span> --> AWS Pricing Calculator</div>
+      <p class="answer"><!-- <span class="ans">Ans.</span> -->AWS Pricing Calculator lets you explore AWS services and create an estimate for the cost of your use cases on AWS. You can model your solutions before building them, explore the price points and calculations behind your estimate, and find the available instance types and contract terms that meet your needs. This enables you to make informed decisions about using AWS. You can plan your AWS costs and usage or price out setting up a new set of instances and services. You cannot use this service to forecast your AWS account cost and usage.</p>
     </div>
-		</div>
+    <div class="question-box">
+      <div class="question-title"><!-- <span class="Qu">Q.01)</span> --> U2F security key</div>
+      <p class="answer"><!-- <span class="ans">Ans.</span> -->Universal 2nd Factor (U2F) Security Key is a device that you can plug into a USB port on your computer. U2F is an open authentication standard hosted by the FIDO Alliance. When you enable a U2F security key, you sign in by entering your credentials and then tapping the device instead of manually entering a code.<br>
+        <br>
+        <br><br>
+        How to enable the U2F Security Key for your own IAM user:<br>
+        <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_u2f.html">https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_u2f.html</a></p>
+      </div>
+    </div>
+  </div>
 	</div>
 
 	<!-- <div class="row m-t-50">
