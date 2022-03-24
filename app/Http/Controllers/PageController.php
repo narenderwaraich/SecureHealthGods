@@ -127,21 +127,6 @@ class PageController extends Controller
         return view('aws',compact('title','description'),['banner' =>$banner,'allCategory' =>$allCategory,'questions' =>$questions]); 
     }
 
-    public function awsExamPage(){
-        $banner = BanerSlide::where('page_name','=','aws')->first(); //dd($banner);
-        $title = $banner ? $banner->title : '';
-        $description = $banner ? $banner->description : '';
-        $category = Category::where('name','=','AWS-Guide')->first();
-        if($category){
-            $questions = Question::where('category_id',$category->id)->get();
-        }else{
-            $questions = [];
-        }
-        $query = 'AWS';
-        $allCategory = Category::where('name','LIKE','%'.$query.'%')->get();
-        return view('aws-practice-exam',compact('title','description'),['banner' =>$banner,'allCategory' =>$allCategory,'questions' =>$questions]); 
-    }
-
     public function awsTestPage(){
         $banner = BanerSlide::where('page_name','=','aws')->first(); //dd($banner);
         $title = $banner ? $banner->title : '';
