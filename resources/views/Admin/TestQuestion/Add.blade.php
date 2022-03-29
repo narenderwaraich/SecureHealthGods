@@ -36,7 +36,7 @@
                             <div class="form-group">
                                     <label for="title">Category</label>
                                       <select class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" name="category_id" required>
-                                        <option value="">Select Category</option>
+                                        <!-- <option value="">Select Category</option> -->
                               @foreach ($categories as $category)
                           <option value="{{ $category->id }}" {{ (old("category_id") == $category->id ? "selected":"") }}>{{ $category->name}}</option>
                               @endforeach
@@ -55,7 +55,7 @@
                                 <label for="page">Answer Type</label>
                                   <select class="form-control{{ $errors->has('ans_type') ? ' is-invalid' : '' }}"  name="ans_type" id="select-ans-type">
                                     <option value="">--Answer Type--</option>
-                                    <option value="option">Option</option>
+                                    <option value="option" selected>Option</option>
                                     <option value="choice">Choice</option>
                                     <option value="true_false">True/False</option>
                                     <option value="write">Text Write</option>
@@ -66,7 +66,7 @@
                                     </span>
                                     @endif
                              </div>
-                            <div id="option" style="display:none;">
+                            <div id="option">
                                 <div class="form-group">
                                     <label for="a">Option A</label>
                                     <input type="text" name="A" id="a" placeholder="Option A" class="form-control{{ $errors->has('A') ? ' is-invalid' : '' }}">
@@ -173,6 +173,7 @@
     </section>
 </section>
 <script>
+
     $('#select-ans-type').on('change',function(){
         showAnswerType($(this).val());
     });

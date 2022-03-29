@@ -47,7 +47,7 @@ class TestQuestionController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('created_at','desc')->get();
         return view('Admin.TestQuestion.Add',['categories' =>$categories]);
     }
 
