@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\SubscribeApprovel;
+use App\Models\SubscribeApprovel;
 use Illuminate\Http\Request;
 use Toastr;
 use Auth;
 use Redirect;
 use Validator;
 use Carbon\Carbon;
-use App\youtubeGet;
-use App\subscriber;
+use App\Models\youtubeGet;
+use App\Models\subscriber;
 
 class SubscribeApprovelController extends Controller
 {

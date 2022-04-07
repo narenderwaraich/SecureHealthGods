@@ -22,7 +22,7 @@
 <div class="m-t-150"></div>
 @endif
 
-<div class="container">
+<div class="container aws-exam-question">
   <div class="row justify-content-center m-t-50">
     <div class="col-md-12">
       <h1 class="heading-txt">AWS Practites Exam</h1>
@@ -32,7 +32,17 @@
       </a>
     @endforeach
 
-    <div class="m-t-50">
+  <div class="row m-t-50">
+      <div class="col-md-12">
+          <input type="text" name="query" class="form-control search-query" id="search-question" onkeyup="runQuery()" placeholder="Search Question" aria-label="Search Question">
+      </div>
+  </div>
+
+  <section class="m-t-30">
+    <div class="row justify-content-center" id="search-record"></div>
+  </section>
+
+    <div class="m-t-50" id="aws-desc">
       @foreach($questions as $question)
       <div class="question-box">
         <div class="question-title"><!-- <span class="Qu">{{$question->question_number}})</span> --> {{$question->question}}</div>
@@ -55,17 +65,20 @@
     </div>
   </div>
 
-  <!-- <div class="row m-t-50">
-          <div class="col-md-12">
-              <input type="text" name="query" class="form-control search-query" id="search-question" onkeyup="runQuery()" placeholder="Search Question" aria-label="Search Question">
-          </div>
-  </div>
 
-  <section class="m-t-30">
-    <div class="row justify-content-center" id="search-record"></div>
-  </section>
- -->
+
 </div>
-<!-- <script src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
-<script src="{{config('app.file_path')}}/js/custom.js"></script> -->
+
+<style>
+    body{
+        background: #0a3644;
+        color: #ffffff;
+    }
+    .btn{
+      cursor: pointer;
+    }
+</style>
+
+<script src="{{config('app.file_path')}}/jquery/jquery-3.2.1.min.js"></script>
+<script src="{{config('app.file_path')}}/js/custom.js"></script>
 @endsection

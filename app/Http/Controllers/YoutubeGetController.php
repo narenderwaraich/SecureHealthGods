@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\youtubeGet;
+use App\Models\youtubeGet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\BanerSlide;
+use App\Models\BanerSlide;
 use Illuminate\Support\Facades\Input;
 use Toastr;
 use Auth;
 use Redirect;
 use Validator;
-use App\SubscriberPlan;
+use App\Models\SubscriberPlan;
 
 class YoutubeGetController extends Controller
 {

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\SubscriberPlan;
+use App\Models\SubscriberPlan;
 use Illuminate\Http\Request;
 use Toastr;
 use Auth;

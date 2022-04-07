@@ -10,15 +10,15 @@ use Toastr;
 use Auth;
 use Redirect;
 use Validator;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
-use App\Question;
-use App\Category;
-use App\Contact;
-use App\TestQuestion;
-use App\Page;
-use App\SubscribeApprovel;
-use App\payments;
+use App\Models\Question;
+use App\Models\Category;
+use App\Models\Contact;
+use App\Models\TestQuestion;
+use App\Models\Page;
+use App\Models\SubscribeApprovel;
+use App\Models\payments;
 
 class AdminController extends Controller
 {

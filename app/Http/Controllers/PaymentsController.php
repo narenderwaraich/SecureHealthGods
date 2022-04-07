@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\payments;
+use App\Models\payments;
 use Illuminate\Http\Request;
 use App\youtubeGet;
 use Illuminate\Support\Facades\Input;

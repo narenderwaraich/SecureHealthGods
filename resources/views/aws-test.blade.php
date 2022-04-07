@@ -28,9 +28,9 @@
 			<h1 class="heading-txt">AWS Practice Exams</h1>
 		<!-- <form method="post" action="/test-aws">
 		    {{ csrf_field() }} -->
-		@foreach($questions as $question)
+		@foreach($questions as $key => $question)
 			<div class="question-box">
-				<div class="question-title"><span class="Qu">{{$question->question_number}})</span> {{$question->question}}</div>
+				<div class="question-title"><span class="Qu"><!-- {{$question->question_number}} -->Q.{{$key+1}}</span> {{$question->question}}</div>
 				<div class="answer-options-section on-mob-top-15">
 					@if($question->ans_type == "option")
 					<div class="answer-options">
@@ -78,7 +78,8 @@
 						@endif
 
 					</div>
-					<button type="button" class="btn btn-success m-t-20" onclick="showAnswer({{$question->id}})">Show Answer</button>
+					<button type="button" class="btn btn-success m-t-20" onclick="showAnswer({{$question->id}})" id="showBtn_{{$question->id}}">Show Answer</button>
+          <button type="button" class="btn btn-danger m-t-20" onclick="hideAnswer({{$question->id}})" style="display:none;" id="hideBtn_{{$question->id}}">Hide Answer</button>
 					<div class="show-answer m-t-20" style="display: none;" id="show_answer_{{$question->id}}"><span class="ans">Ans.</span> {{$question->answer}}</div>
 					@endif
 
@@ -133,7 +134,8 @@
               </div>
             @endif
             </div>
-            <button type="button" class="btn btn-success m-t-20" onclick="showAnswer({{$question->id}})">Show Answer</button>
+            <button type="button" class="btn btn-success m-t-20" onclick="showAnswer({{$question->id}})" id="showBtn_{{$question->id}}">Show Answer</button>
+          <button type="button" class="btn btn-danger m-t-20" onclick="hideAnswer({{$question->id}})" style="display:none;" id="hideBtn_{{$question->id}}">Hide Answer</button>
             <div class="show-answer m-t-20" style="display: none;" id="show_answer_{{$question->id}}"><span class="ans">Ans.</span> 
             	<ul>
                 @if($question->checkbox_ans_1)
@@ -171,13 +173,15 @@
             <span class="checkmark"></span>
             </label>
 					</div>
-					<button type="button" class="btn btn-success m-t-20" onclick="showAnswer({{$question->id}})">Show Answer</button>
+          <button type="button" class="btn btn-success m-t-20" onclick="showAnswer({{$question->id}})" id="showBtn_{{$question->id}}">Show Answer</button>
+          <button type="button" class="btn btn-danger m-t-20" onclick="hideAnswer({{$question->id}})" style="display:none;" id="hideBtn_{{$question->id}}">Hide Answer</button>
 					<div class="show-answer m-t-20" style="display: none;" id="show_answer_{{$question->id}}"><span class="ans">Ans.</span> @if($question->true_false_answer) True @else False @endif</div>
 					@endif
 
 					@if($question->ans_type == "write")
 					<textarea name="write_ans_data_{{$question->id}}" class="form-control" rows="9" placeholder="Write Answer"></textarea>
-					<button type="button" class="btn btn-success m-t-20" onclick="showAnswer({{$question->id}})">Show Answer</button>
+          <button type="button" class="btn btn-success m-t-20" onclick="showAnswer({{$question->id}})" id="showBtn_{{$question->id}}">Show Answer</button>
+          <button type="button" class="btn btn-danger m-t-20" onclick="hideAnswer({{$question->id}})" style="display:none;" id="hideBtn_{{$question->id}}">Hide Answer</button>
 					<div class="show-answer m-t-20" style="display: none;" id="show_answer_{{$question->id}}"><span class="ans">Ans.</span> {{$question->write_ans}}</div>
 					@endif
 
@@ -195,11 +199,20 @@
         background: #0a3644;
         color: #ffffff;
     }
-    
+    .btn{
+      cursor: pointer;
+    }
 </style>
 <script>
 	function showAnswer(id){
 		$('#show_answer_'+id).show();
+    $('#hideBtn_'+id).show();
+    $('#showBtn_'+id).hide();
 	}
+  function hideAnswer(id){
+    $('#show_answer_'+id).hide();
+    $('#showBtn_'+id).show();
+    $('#hideBtn_'+id).hide();
+  }
 </script>
 @endsection

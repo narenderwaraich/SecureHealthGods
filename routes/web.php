@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,7 +12,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
@@ -40,7 +41,7 @@ Route::post('/test-wordpress','PageController@wordpressTest');
 Route::post('/test-gk','PageController@gkTest');
 Route::post('/test-aws','PageController@awsTest');
 
-Route::any('/search-question/{query}','TestQuestionController@searchQuestion');
+Route::any('/search-question/{query}','PageController@searchQuestion');
 
 Auth::routes();
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\BanerSlide;
+use App\Models\BanerSlide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -11,7 +11,7 @@ use Toastr;
 use Redirect;
 use Validator;
 use Carbon\Carbon;
-use App\Page;
+use App\Models\Page;
 
 class BanerSlideController extends Controller
 {

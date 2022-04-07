@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Question;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -11,8 +11,8 @@ use Toastr;
 use Redirect;
 use Validator;
 use Carbon\Carbon;
-use App\AnswerPoint;
-use App\Category;
+use App\Models\AnswerPoint;
+use App\Models\Category;
 
 class QuestionController extends Controller
 {

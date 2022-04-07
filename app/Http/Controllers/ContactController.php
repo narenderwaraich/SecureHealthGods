@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\DB;
 use Redirect;
 use Toastr;
 use Validator;
-use App\Contact;
+use App\Models\Contact;
 use Auth;
-use App\User;
+use App\Models\User;
 use Mail;
 use App\Mail\ContactReply;
-use App\BanerSlide;
+use App\Models\BanerSlide;
 use App\Mail\SendEMail;
 
 class ContactController extends Controller

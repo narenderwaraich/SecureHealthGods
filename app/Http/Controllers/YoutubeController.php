@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Youtube;
+use App\Models\Youtube;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Validator;
@@ -10,7 +10,7 @@ use Redirect;
 use Toastr;
 use Auth;
 use Response;
-use App\BanerSlide;
+use App\Models\BanerSlide;
 
 class YoutubeController extends Controller
 {

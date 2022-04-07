@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Input;
 use Validator;
 use Redirect;
 use Carbon\Carbon;
-use App\BanerSlide;
-use App\Category;
-use App\Post;
-use App\Question;
-use App\AnswerPoint;
-use App\TestQuestion;
+use App\Models\BanerSlide;
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\Question;
+use App\Models\AnswerPoint;
+use App\Models\TestQuestion;
 
 class PageController extends Controller
 {
@@ -143,7 +143,7 @@ class PageController extends Controller
         $description = $banner ? $banner->description : '';
         $category = Category::where('name',$category)->first();
         $id = $category->id;
-        $questions = TestQuestion::where('category_id',$id)->get(); //dd($questions);
+        $questions = TestQuestion::where('category_id',$id)->inRandomOrder()->get(); //dd($questions);
             return view('aws-test',compact('title','description'),['banner' =>$banner,'questions' =>$questions]); 
     }
 
@@ -292,6 +292,11 @@ class PageController extends Controller
             }
         }
         return view('aws-test-answer',compact('title','description'),['banner' =>$banner,'questions' =>$questions, 'requestAnswer' =>$requestAnswer]);
+    }
+
+    public function searchQuestion($query){
+        $data = TestQuestion::where('question','LIKE','%'.$query.'%')->get();
+        return response()->json($data);
     }
 
 }

@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Auth;
 use Hash;
-use App\User;
+use App\Models\User;
 use Redirect;
 use Toastr;
-use App\BanerSlide;
+use App\Models\BanerSlide;
 use Mail;
 use App\Mail\EmailVerification;
 

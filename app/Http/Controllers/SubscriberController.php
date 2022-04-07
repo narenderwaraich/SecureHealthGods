@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\subscriber;
+use App\Models\subscriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\BanerSlide;
+use App\Models\BanerSlide;
 use Illuminate\Support\Facades\Input;
 use Toastr;
 use Auth;
 use Redirect;
 use Validator;
-use App\User;
-use App\youtubeGet;
-use App\SubscribeApprovel;
+use App\Models\User;
+use App\Models\youtubeGet;
+use App\Models\SubscribeApprovel;
 
 class SubscriberController extends Controller
 {

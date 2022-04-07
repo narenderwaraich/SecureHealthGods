@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
 use Auth;
 use Toastr;
 use Cart;
 use DB;
 use Hash;
-use App\BanerSlide;
-use App\subscriber;
+use App\Models\BanerSlide;
+use App\Models\subscriber;
 use Illuminate\Support\Str;
 
 class UserProfileControler extends Controller

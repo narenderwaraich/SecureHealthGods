@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\TestQuestion;
+use App\Models\TestQuestion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -11,7 +11,7 @@ use Toastr;
 use Redirect;
 use Validator;
 use Carbon\Carbon;
-use App\Category;
+use App\Models\Category;
 
 class TestQuestionController extends Controller
 {
@@ -181,10 +181,5 @@ class TestQuestionController extends Controller
         $question->delete();
         Toastr::success('TestQuestion deleted', 'Success', ["positionClass" => "toast-bottom-right"]);
         return redirect()->to('/admin/test/question/show');
-    }
-
-    public function searchQuestion($query){
-        $data = TestQuestion::where('question','LIKE','%'.$query.'%')->get();
-        return response()->json($data);
     }
 }
